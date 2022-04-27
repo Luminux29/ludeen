@@ -20,6 +20,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -94,10 +96,12 @@ import { CardSchoolComponent } from './elements/card-school/card-school.componen
   ],
   imports: [
     MatDatepickerModule,
+    MatDividerModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatCheckboxModule,
     MatNativeDateModule,
     MatInputModule,
     MatCardModule,

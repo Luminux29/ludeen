@@ -33,9 +33,9 @@
         </mat-form-field>
 
 
-            <!--course-->
+            <!--Course-->
         <mat-form-field  class="full-width">
-            <mat-label>course</mat-label>
+            <mat-label>Basic Education/Degree/Course</mat-label>
             <input
             name="course"
             matInput
@@ -45,6 +45,8 @@
             <mat-error *ngIf = "form.get('course').invalid">Please enter course.</mat-error>
         </mat-form-field>
 
+        <mat-divider></mat-divider>
+        <h1>Period of Attendance</h1>
           <!--fromYear-->
           <mat-form-field class="full-width">
             <mat-label>fromYear</mat-label>
@@ -70,8 +72,13 @@
             <mat-error *ngIf = "form.get('toYear').invalid">Please enter a toYear</mat-error>
         </mat-form-field><br>
 
-         <!--highestLevel-->
-         <mat-form-field class="full-width">
+
+        <mat-divider></mat-divider>
+        <mat-checkbox formControlName = "checkBox">Graduate?</mat-checkbox><br>
+       
+       
+        <!--highestLevel-->
+         <mat-form-field *ngIf="!form.value.checkBox" class="full-width">
           <mat-label>highestLevel</mat-label>
           <textarea
           matInput
@@ -84,7 +91,7 @@
 
 
          <!--yearGraduated-->
-         <mat-form-field class="full-width">
+         <mat-form-field  *ngIf="form.value.checkBox"  class="full-width">
           <mat-label>yearGraduated</mat-label>
           <textarea
           matInput

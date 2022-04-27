@@ -1,1 +1,171 @@
-<p>card-school works!</p>
+<!--SHOW THIS IF LOADING-->
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<!--ELSE SHOW THIS-->
+<main  *ngIf="schools.length > 0 && !isLoading">
+
+    
+    <!-- ELEMENTARY -->
+    <mat-accordion multi=true  >
+        <mat-expansion-panel>
+            
+            <mat-expansion-panel-header>
+                <b>Elementary</b>
+            </mat-expansion-panel-header>
+            
+            <!-- INFORMATION -->
+            <mat-card *ngFor = "let primarySchool of primarySchools">
+                <mat-card-title>{{primarySchool.nameOfSchool}}</mat-card-title>
+                <mat-card-subtitle>{{primarySchool.course}}</mat-card-subtitle>
+            
+                <li><b>From Year: </b>{{primarySchool.fromYear}}</li>
+                <li><b>To Year: </b>{{primarySchool.toYear}}</li>
+                <li *ngIf="primarySchool.highestLevel"><b>Highest Level: </b>{{primarySchool.highestLevel}}</li>
+                <li  *ngIf="primarySchool.yearGraduated"><b>Year Graduated: </b>{{primarySchool.yearGraduated}}</li>
+                <li *ngIf="primarySchool.honor"><b>Honors: </b>{{primarySchool.honor}}</li>
+                <mat-card-actions>
+                    <button  mat-button color="primary" (click) ="onEditDialog(primarySchool)">Edit</button>
+                    <button  mat-button color="warn" (click) = "onDelete(primarySchool._id)">Delete</button>
+                </mat-card-actions>
+            </mat-card>
+            
+    
+        </mat-expansion-panel>
+        
+    </mat-accordion>
+
+    <bR>
+
+    <!-- SECONDARY -->
+    <mat-accordion multi=true >
+        <mat-expansion-panel>
+            
+      
+            <mat-expansion-panel-header>
+                <b>Secondary</b>
+            </mat-expansion-panel-header>
+            
+            <!-- INFORMATION -->
+            <mat-card *ngFor = "let secondarySchool of secondarySchools">
+                <mat-card-title>{{secondarySchool.nameOfSchool}}</mat-card-title>
+                <mat-card-subtitle>{{secondarySchool.course}}</mat-card-subtitle>
+            
+                <li><b>From Year: </b>{{secondarySchool.fromYear}}</li>
+                <li><b>To Year: </b>{{secondarySchool.toYear}}</li>
+                <li *ngIf="secondarySchool.highestLevel"><b>Highest Level: </b>{{secondarySchool.highestLevel}}</li>
+                <li  *ngIf="secondarySchool.yearGraduated"><b>Year Graduated: </b>{{secondarySchool.yearGraduated}}</li>
+                <li  *ngIf="secondarySchool.honor"><b>Honors: </b>{{secondarySchool.honor}}</li>
+                <mat-card-actions>
+                    <button  mat-button color="primary" (click) ="onEditDialog(secondarySchool)">Edit</button>
+                    <button  mat-button color="warn">Delete</button>
+                </mat-card-actions>
+     
+            </mat-card>
+            
+           
+    
+        </mat-expansion-panel>
+        
+    </mat-accordion>
+<bR>
+       <!-- VOCATIONAL -->
+       <mat-accordion multi=true >
+        <mat-expansion-panel>
+            
+      
+            <mat-expansion-panel-header>
+                <b>Vocational</b>
+            </mat-expansion-panel-header>
+            
+            <!-- INFORMATION -->
+            <mat-card *ngFor = "let vocationalSchool of vocationalSchools">
+                <mat-card-title>{{vocationalSchool.nameOfSchool}}</mat-card-title>
+                <mat-card-subtitle>{{vocationalSchool.course}}</mat-card-subtitle>
+            
+                <li><b>From Year: </b>{{vocationalSchool.fromYear}}</li>
+                <li><b>To Year: </b>{{vocationalSchool.toYear}}</li>
+                <li  *ngIf="vocationalSchool.highestLevel"><b>Highest Level: </b>{{vocationalSchool.highestLevel}}</li>
+                <li  *ngIf="vocationalSchool.yearGraduated" ><b>Year Graduated: </b>{{vocationalSchool.yearGraduated}}</li>
+                <li  *ngIf="vocationalSchool.honor"><b>Honors: </b>{{vocationalSchool.honor}}</li>
+                <mat-card-actions>
+                    <button  mat-button color="primary">Edit</button>
+                    <button  mat-button color="warn">Delete</button>
+                </mat-card-actions>
+     
+            </mat-card>
+            
+           
+    
+        </mat-expansion-panel>
+        
+    </mat-accordion>
+<bR>
+    <!-- COLLEGE -->
+    <mat-accordion multi=true >
+        <mat-expansion-panel>
+            
+      
+            <mat-expansion-panel-header>
+                <b>College</b>
+            </mat-expansion-panel-header>
+            
+            <!-- INFORMATION -->
+            <mat-card *ngFor = "let collegeSchool of collegeSchools">
+                <mat-card-title>{{collegeSchool.nameOfSchool}}</mat-card-title>
+                <mat-card-subtitle>{{collegeSchool.course}}</mat-card-subtitle>
+            
+                <li><b>From Year: </b>{{collegeSchool.fromYear}}</li>
+                <li><b>To Year: </b>{{collegeSchool.toYear}}</li>
+                <li *ngIf="collegeSchool.highestLevel"><b>Highest Level: </b>{{collegeSchool.highestLevel}}</li>
+                <li *ngIf="collegeSchool.yearGraduated"><b>Year Graduated: </b>{{collegeSchool.yearGraduated}}</li>
+                <li *ngIf="collegeSchool.honor"><b>Honors: </b>{{collegeSchool.honor}}</li>
+                <mat-card-actions>
+                    <button  mat-button color="primary">Edit</button>
+                    <button  mat-button color="warn">Delete</button>
+                </mat-card-actions>
+     
+            </mat-card>
+            
+           
+    
+        </mat-expansion-panel>
+        
+    </mat-accordion>
+    <bR>
+
+
+         <!-- Graduate Studies -->
+    <mat-accordion multi=true >
+        <mat-expansion-panel>
+            
+      
+            <mat-expansion-panel-header>
+                <b>Graduate Studies</b>
+            </mat-expansion-panel-header>
+            
+            <!-- INFORMATION -->
+            <mat-card *ngFor = "let graduateSchool of graduateSchools">
+                <mat-card-title>{{graduateSchool.nameOfSchool}}</mat-card-title>
+                <mat-card-subtitle>{{graduateSchool.course}}</mat-card-subtitle>
+            
+                <li><b>From Year: </b>{{graduateSchool.fromYear}}</li>
+                <li><b>To Year: </b>{{graduateSchool.toYear}}</li>
+                <li  *ngIf="graduateSchool.highestLevel"><b>Highest Level: </b>{{graduateSchool.highestLevel}}</li>
+                <li  *ngIf="graduateSchool.yearGraduated"><b>Year Graduated: </b>{{graduateSchool.yearGraduated}}</li>
+                <li  *ngIf="graduateSchool.honor"><b>Honors: </b>{{graduateSchool.honor}}</li>
+                <mat-card-actions>
+                    <button  mat-button color="primary">Edit</button>
+                    <button  mat-button color="warn">Delete</button>
+                </mat-card-actions>
+     
+            </mat-card>
+            
+           
+    
+        </mat-expansion-panel>
+        
+    </mat-accordion>
+</main>
+<br><br>
+<p *ngIf="schools.length <= 0 && !isLoading"><b>*Hoot hoot* *Hoot hoot*</b> <bR>Nothing here..</p>
+  

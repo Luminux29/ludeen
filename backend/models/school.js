@@ -6,10 +6,10 @@ const schoolSchema = mongoose.Schema({
   course: {type: String, required: true},
   fromYear: {type: String, required: true},
   toYear: {type: String, required: false},
-  highestLevel: {type: String, required: true},
-  yearGraduated: {type: String, required: true},
+  highestLevel: {type: String},
+  yearGraduated: {type: String},
   type: {type: String, enum:['Elementary', 'Secondary', 'Vocational', 'College', 'Graduate Studies'], required: true},
-  honor: {type: String, required: true},
+  honor: {type: String},
   user_id: {type: mongoose.Schema.Types.ObjectId, ref: "User" ,required: true }
 
 

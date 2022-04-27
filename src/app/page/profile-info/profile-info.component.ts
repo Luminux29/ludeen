@@ -63,7 +63,7 @@ export class ProfileInfoComponent implements OnInit {
   openAddSchoolDialog(){
 
     const dialogRef = this.dialog.open(DialogAddSchoolComponent, {
-      data: this.userService.getUserId()
+     data: null
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -15,7 +15,10 @@ export class AccountCardComponent implements OnInit {
   @Input() status : string;
   public users : User[] = [];
   private userSub: Subscription = new Subscription;
+  
   isLoading = false;
+
+
   constructor(private userService: UserService, private adminService: AdminServiceService) { }
 
   ngOnInit(): void {
