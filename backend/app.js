@@ -9,7 +9,7 @@ const subjectRoutes = require('./routes/subjects');
 const app = express();
 
 
-mongoose.connect("mongodb+srv://nekko:siVlysx3r6WK4GNw@cluster0.uxoq8.mongodb.net/node-angular?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://Bugsboni:raymond24@fmis.xsjz1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 .then(() =>{
 console.log('Connected to database');
 })

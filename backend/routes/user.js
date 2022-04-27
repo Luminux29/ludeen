@@ -58,55 +58,60 @@ router.put("/changepass/:id", checkAuth, (req, res, next)=>{
 })
 
 
-router.post("/signup", multer({storage: storage}).single('e_sig'), (req,res, next) =>{
+router.post("/signup", multer({storage: storage}).single('profilePic'), (req,res, next) =>{
 
     console.log(req.body.status);
     const url = req.protocol + '://'+ req.get('host');
-
     bcrypt.hash(req.body.password, 10)
     .then(hash =>{
 
-        
-        let user;
-        //if faculty or admin
-        if(req.body.role === 'Faculty' || req.body.role === 'Admin'){
+        const faculty = new User({
 
-            user = new User({
+          // profilePic: url+ '/files/' + req.file.filename,
+           EmployeeNumber: req.body.EmployeeNumber,
+           LastName: req.body.LastName,
+           FirstName: req.body.FirstName,
+           MidInit: req.body.MidInit,
+           NameExtention: req.body.NameExtention,
+           birthdate: req.body.birthdate,
+           age: req.body.age,
+           PlaceOfBirth: req.body.PlaceOfBirth,
+           gender: req.body.gender,
+           CivilStatus: req.body.CivilStatus,
+           height: req.body.height,
+           weight: req.body.weight,
+           BloodType: req.body.BloodType,
+           gsis: req.body.gsis,
+           pagibig: req.body.pagibig,
+           sss: req.body.sss,
+           tin: req.body.tin,
+           citizenship: req.body.citizenship,
+           r_zipCode: req.body.r_zipCode,
+           r_lotNo: req.body.r_lotNo,
+           r_street: req.body.r_street,
+           r_village: req.body.r_village,
+           r_brgy: req.body.r_brgy,
+           r_city: req.body.r_city,
+           r_province: req.body.r_province,
+           p_zipCode: req.body.p_zipCode,
+           p_lotNo: req.body.p_lotNo,
+           p_street: req.body.p_street,
+           p_village: req.body.p_village,
+           p_brgy: req.body.p_brgy,
+           p_city: req.body.p_city,
+           p_province: req.body.p_province,
+           email: req.body.email,
+           altEmail: req.body.altEmail,
+           password: hash,
+           TelNo: req.body.TelNo,
+           MobileNo: req.body.MobileNo,
+           profilePic: url +'/files/'+ req.file.filename
 
-                f_name: req.body.f_name,
-                l_name: req.body.l_name,
-                email:req.body.email,
-                password: hash,
-                role: req.body.role,
-                e_sig: url+ '/files/' + req.file.filename,
-                status: req.body.status
-               
-            });
+         });
 
-        }
-        //if student
-        else{
-            
-            user = new User({
-
-                f_name: req.body.f_name,
-                l_name: req.body.l_name,
-                email:req.body.email,
-                password: hash,
-                role: req.body.role,
-                e_sig: url+ '/files/' + req.file.filename,
-                status: req.body.status,
-                course: req.body.course,
-                year: req.body.year,
-                section: req.body.section,
-                student_no: req.body.student_no
-    
-            });
-
-        }
 
         //save user
-        user.save()
+        faculty.save()
         .then(result => {
 
             res.status(201).json({
@@ -121,9 +126,8 @@ router.post("/signup", multer({storage: storage}).single('e_sig'), (req,res, nex
                 message: "Error occurred."
             });
         })
-    
-    });
 
+    });
 
 
 });

@@ -14,7 +14,7 @@
     required
     >
     <mat-option *ngFor="let student of students" [value] = "student['_id']">
-        {{ student.l_name + ", " + student.f_name}}
+        {{ student.LastName + ", " + student.FirstName}}
     </mat-option>
     </mat-select>
     <mat-error *ngIf = "form.get('student').invalid">Please choose a student.</mat-error>
@@ -47,7 +47,7 @@
   
     >
         <mat-option *ngFor="let professor of professors" [value] = "professor['_id']">
-            {{professor.l_name + ", "+professor.f_name }}
+            {{professor.LastName + ", "+professor.FirstName }}
         </mat-option>
     </mat-select>
     <mat-error *ngIf = "form.get('faculty').invalid">Please choose a professor.</mat-error>

@@ -30,62 +30,6 @@ export class UserService {
   constructor(public http: HttpClient, public router: Router, private adminService: AdminServiceService) { }
 
 
-  // // ----------CREATE USER-------------
-  // createUser(f_name: string, l_name: string, role:string, email:string, password:string, e_sig: File, pfp:File, student_no: string){
-
-  //   let _student_no : string = " ";
-    
-  //   let pfp_filename : string;
-  //   let e_sig_filename : string;
-
-  //   if(student_no){
-      
-  //     _student_no = student_no;
-
-  //   }
-
-  //   if(!pfp){
-
-  //     pfp_filename = "";
-  //   }
-  //   else{
-
-  //     pfp_filename = pfp.name;
-
-  //   }
-
-  //   if(!e_sig){
-
-  //     e_sig_filename = "";
-  //   }
-  //   else{
-
-  //     e_sig_filename = e_sig.name;
-
-  //   }
-
-
-
-  //   const authData = new FormData();
-  //   authData.append("f_name", f_name);
-  //   authData.append("l_name", l_name);
-  //   authData.append("role", role);
-  //   authData.append("email", email);
-  //   authData.append("password", password);
-  //   authData.append("student_no", student_no);
-  //   authData.append("e_sig", e_sig, e_sig_filename);
-  //   authData.append("pfp", pfp, pfp_filename);
-    
-  //     this.http.post("http://localhost:3000/api/users/signup", authData)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //       )
-  //     .subscribe(result =>{
-  //       window.alert("Success!");
-    
-  //     })  ;
-
-  // }
 
  
 
@@ -93,43 +37,97 @@ export class UserService {
 
     return this.cys;
   }
+
+
+
   //CREATE USER BY ADMIN  
-  createUserFromAdmin(f_name: string,
-    l_name: string,
-    role:string, 
-    email:string, 
-    password:string, 
-    e_sig:File, 
-    student_no: string,
-    course: string,
-    year: string,
-    section:string
+  createUserFromAdmin(
+    profilePic: File,
+    EmployeeNumber: string,
+    LastName: string,
+    FirstName: string,
+    MI: string,
+    NameExtention: string,
+    birthdate: string,
+    age: string,
+    PlaceOfBirth: string,
+    gender: string,
+    CivilStatus: string,
+    height: string,
+    weight: string,
+    BloodType: string,
+    gsis: string,
+    pagibig: string,
+    philHealth: string,
+    sss: string,
+    tin: string,
+    citizenship: string,
+    r_zipCode: string,
+    r_lotNo: string,
+    r_street: string,
+    r_village: string,
+    r_brgy: string,
+    r_city: string,
+    r_province: string,
+    p_zipCode: string,
+    p_LotNo: string,
+    p_street: string,
+    p_village: string,
+    p_brgy: string,
+    p_city: string,
+    p_province: string,
+    email: string,
+    altEmail: string,
+    password: string,
+    TelNo: string,
+    MobileNo: string
     ){
     
   
     
-
-    const authData = new FormData();
-    authData.append("f_name", f_name);
-    authData.append("l_name", l_name);
-    authData.append("role", role);
-    authData.append("email", email);
-    authData.append("password", password);
-    authData.append("e_sig", e_sig, e_sig.name);
+     const facultyDataForm = new FormData();
+    facultyDataForm.append('profilePic', profilePic , 'PFP');
+    facultyDataForm.append("emp", EmployeeNumber);
+    facultyDataForm.append('LastName', LastName);
+    facultyDataForm.append('FirstName', FirstName);
+    facultyDataForm.append('MI', MI);
+    facultyDataForm.append('NameExtention', NameExtention);
+    facultyDataForm.append('birthdate', birthdate);
+    facultyDataForm.append('age', age);
+    facultyDataForm.append('PlaceOfBirth', PlaceOfBirth);
+    facultyDataForm.append('gender', gender);
+    facultyDataForm.append('CivilStatus', CivilStatus);
+    facultyDataForm.append('height', height);
+    facultyDataForm.append('weight', weight);
+    facultyDataForm.append('BloodType', BloodType);
+    facultyDataForm.append('gsis', gsis);
+    facultyDataForm.append('pagibig', pagibig);
+    facultyDataForm.append('philHealth', philHealth);
+    facultyDataForm.append('sss', sss);
+    facultyDataForm.append('tin', tin);
+    facultyDataForm.append('citizenship', citizenship);
+    facultyDataForm.append('r_zipCode', r_zipCode);
+    facultyDataForm.append('r_lotNo', r_lotNo);
+    facultyDataForm.append('r_street', r_street);
+    facultyDataForm.append('r_village', r_village);
+    facultyDataForm.append('r_brgy', r_brgy);
+    facultyDataForm.append('r_city', r_city);
+    facultyDataForm.append('r_province', r_province);
+    facultyDataForm.append('p_zipCode', p_zipCode);
+    facultyDataForm.append('p_LotNo', p_LotNo);
+    facultyDataForm.append('p_street', p_street);
+    facultyDataForm.append('p_village', p_village);
+    facultyDataForm.append('p_brgy', p_brgy);
+    facultyDataForm.append('p_city', p_city);
+    facultyDataForm.append('p_province', p_province);
+    facultyDataForm.append('email', email);
+    facultyDataForm.append('altEmail', altEmail);
+    facultyDataForm.append('password', password);
+    facultyDataForm.append('TelNo', TelNo);
+    facultyDataForm.append('MobileNo', MobileNo);
     
-    if(role === 'Student'){
-      authData.append("student_no", student_no);
-      authData.append("course", course);
-      authData.append("year", year);
-      authData.append("section", section);
-    }
 
-    if(role === 'Faculty'){
-      authData.append("status", "Pending");
-    }
-    
-
-    return this.http.post("http://localhost:3000/api/users/signup", authData)
+    return this.http.post("http://localhost:3000/api/users/signup", facultyDataForm)
     .pipe(
       catchError(this.handleError)
       );
@@ -200,22 +198,22 @@ export class UserService {
     else{
     
     
-        userData = {
-          u_id: id,
-          f_name:   firstName,
-          l_name: lastName,
-          role: role,
-          email: email,
-          student_no:student_no,
-          e_sig:e_sig as string,
-          status: status,
-          course: course,
-          section: section,
-          year:year
+        // userData = {
+        //   u_id: id,
+        //   f_name:   firstName,
+        //   l_name: lastName,
+        //   role: role,
+        //   email: email,
+        //   student_no:student_no,
+        //   e_sig:e_sig as string,
+        //   status: status,
+        //   course: course,
+        //   section: section,
+        //   year:year
 
   
   
-        }
+        // }
 
   
 
@@ -270,7 +268,7 @@ checkPass(id:string, password: string){
 
     };
 
-    return this.http.post<{token:string, expiresIn: number, u_id: string, role:string, course: string, year: number, section: string, status: string}>("http://localhost:3000/api/users/login", loginData)
+    return this.http.post<{ token:string, expiresIn: number, u_id: string, role:string, status: string}>("http://localhost:3000/api/users/login", loginData)
     .pipe( map(response =>{
 
       const token = response.token;
@@ -278,14 +276,10 @@ checkPass(id:string, password: string){
       if(token){
 
         console.log("response.status: "+response.status);
-      this.status = response.status;
+        this.status = response.status;
         this.u_id = response.u_id;
         this.role = response.role;
-        if(this.role === 'Student'){
-          
-          this.cys = response.course+" "+response.year+response.section;
-        }
-
+      
         console.log(this.cys);
         const expiresInDuration  = response.expiresIn;
         this.setAuthTimer(expiresInDuration);
@@ -297,17 +291,18 @@ checkPass(id:string, password: string){
     
 
         console.log("Success!");
-         if(this.role === 'Admin'){
-          this.router.navigate(['/admin-dashboard']);
-        }
-        else if (this.role === 'Student'){
+        this.router.navigate(['/dashboard']);
+        //  if(this.role === 'Admin'){
+        //   this.router.navigate(['/admin-dashboard']);
+        // }
+        // else if (this.role === 'Student'){
 
-          this.router.navigate(['/dashboard']);
-        }
-        else{
+        //   this.router.navigate(['/dashboard']);
+        // }
+        // else{
 
-          this.router.navigate(['/dashboard']);
-        }
+        //   this.router.navigate(['/dashboard']);
+        // }
        }},
        catchError(this.handleError)));
     

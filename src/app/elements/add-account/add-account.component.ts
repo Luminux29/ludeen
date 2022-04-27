@@ -205,34 +205,34 @@ role : string;
 
       else{
 
-        this.isLoading = true;
-        this.userService.createUserFromAdmin(this.form.value.__first_name,
-        this.form.value.__last_name,
-        this.selectedRole,
-        this.form.value.__email,  
-        this.form.value.__password, 
-        this.form.value.__fileESig,
-        this.form.value.__student_no,
-        this.form.value.__course,
-        this.form.value.__year,
-        this.form.value.__section)
-    .subscribe(
-      (response)=>{
-        //success
-        console.log(response);
-        window.alert("Success!");
-        this.isLoading = false;
-        this.dialogRef.close('success');
-      },
+    //     this.isLoading = true;
+    //     this.userService.createUserFromAdmin(this.form.value.__first_name,
+    //     this.form.value.__last_name,
+    //     this.selectedRole,
+    //     this.form.value.__email,  
+    //     this.form.value.__password, 
+    //     this.form.value.__fileESig,
+    //     this.form.value.__student_no,
+    //     this.form.value.__course,
+    //     this.form.value.__year,
+    //     this.form.value.__section)
+    // .subscribe(
+    //   (response)=>{
+    //     //success
+    //     console.log(response);
+    //     window.alert("Success!");
+    //     this.isLoading = false;
+    //     this.dialogRef.close('success');
+    //   },
       
-      (error) =>{
+    //   (error) =>{
 
-        //error
-      window.alert(error);
-      this.isLoading = false;
-      this.dialogRef.close('failed');
+    //     //error
+    //   window.alert(error);
+    //   this.isLoading = false;
+    //   this.dialogRef.close('failed');
 
-    });
+    // });
 
       }
 
