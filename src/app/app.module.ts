@@ -54,6 +54,7 @@ import { ValidityRedirectComponent } from './page/faculty/validity-redirect/vali
 import { DialogAddSubjectComponent } from './elements/dialog-add-subject/dialog-add-subject.component';
 import { SettingsComponent } from './page/settings/settings.component';
 import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-change-pass.component';
+import { ProfileInfoComponent } from './page/profile-info/profile-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,7 +85,8 @@ import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-
     ValidityRedirectComponent,
     DialogAddSubjectComponent,
     SettingsComponent,
-    DialogChangePassComponent
+    DialogChangePassComponent,
+    ProfileInfoComponent
   ],
   imports: [
     MatDatepickerModule,

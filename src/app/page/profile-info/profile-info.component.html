@@ -1,0 +1,74 @@
+<main>
+   
+    <button mat-raised-button (click)="logout()">Logout</button>
+    
+    <mat-tab-group>
+    
+      <!-- FIRST TAB - PERSONAL INFO -->
+      <mat-tab label="personal info">
+    
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+          <div class="profileInfo" *ngIf="!isLoading">
+              <img [src]="faculty.profilePic" class="pfp">
+              
+            <h1>PERSONAL INFO</h1>
+            <p>Name: {{name}}</p>
+            <p>Employee Number: {{faculty.EmployeeNumber}}</p>
+    
+            <p>Date of Birth: {{readableDate(faculty.birthdate)}}</p>
+            <p>Age: {{age}}</p>
+            <p>place of birth: {{faculty.PlaceOfBirth}}</p>
+            <p>Sex: {{faculty.gender}}</p>
+            <p>Civil status: {{faculty.CivilStatus}}</p>
+            <p>Height : {{faculty.height}}</p>
+            <p>Weight: {{faculty.weight}}</p>
+            <p>Blood type: {{faculty.BloodType}}</p>
+            <p>citizenship: {{faculty.citizenship}}</p>
+    
+            <h1>Government</h1>
+            <p>GSIS ID No.: {{faculty.gsis}}</p>
+            <p>PAGIBIG ID No.: {{faculty.pagibig}}</p>
+            <p>PhilHealth ID No.: {{faculty.philHealth}}</p>
+            <p>SSS No.: {{faculty.sss}}</p>
+            <p>TIN No.: {{faculty.tin}}</p>
+    
+            <h1>Resident Address</h1>
+            <p>House/Block/Lot No.: {{faculty.r_lotNo}}</p>
+            <p>Street: {{faculty.r_street}}</p>
+            <p>Subdivision: {{faculty.r_village}}</p>
+            <p>Barangay: {{faculty.r_brgy}}</p>
+            <p>Municipality: {{faculty.r_city}}</p>
+            <p>Province: {{faculty.r_province}}</p>
+            <p>Zip: {{faculty.r_zipCode}}</p>
+    
+            <h1>Resident Address</h1>
+            <p>House/Block/Lot No.: {{faculty.p_LotNo}}</p>
+            <p>Street: {{faculty.p_street}}</p>
+            <p>Subdivision: {{faculty.p_village}}</p>
+            <p>Barangay: {{faculty.p_brgy}}</p>
+            <p>Municipality: {{faculty.p_city}}</p>
+            <p>Province: {{faculty.p_province}}</p>
+            <p>Zip: {{faculty.p_zipCode}}</p>
+    
+    
+            <h1>contact</h1>
+            <p>Email: {{faculty.email}}</p>
+            <p>Alternate Email: {{faculty.altEmail}}</p>
+            <p>Tel no: {{faculty.TelNo}}</p>
+            <p>Mobile no: {{faculty.MobileNo}}</p>
+    
+       </div>
+    
+      </mat-tab>
+    
+      <!-- SECOND TAB -->
+      <mat-tab label = 'Educational Background'>
+    
+        <!-- <button mat-raised-button (click)="openAddSchoolDialog()">Add School</button> -->
+    
+      </mat-tab>
+    
+    
+    </mat-tab-group>
+    </main>
+    

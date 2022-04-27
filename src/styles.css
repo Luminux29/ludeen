@@ -47,7 +47,7 @@ input[type="file"]{
   }
   
 
-  html, body {margin: 0; height: 100%; overflow: hidden;}
+  html, body {margin: 0; height: 100%;}
 
   mat-form-field.full-width {
     font-size: 14px;

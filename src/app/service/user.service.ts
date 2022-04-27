@@ -291,7 +291,7 @@ checkPass(id:string, password: string){
     
 
         console.log("Success!");
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/profile-info']);
         //  if(this.role === 'Admin'){
         //   this.router.navigate(['/admin-dashboard']);
         // }
