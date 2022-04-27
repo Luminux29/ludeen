@@ -2,14 +2,13 @@
 
 export interface User{
 
-    u_id: string;
+    id: string;
     EmployeeNumber: string;
     LastName: string;
     FirstName: string;
     MI: string;
     NameExtention: string;
     birthdate: Date;
-    age: string;
     PlaceOfBirth: string;
     gender: string;
     CivilStatus: string;

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileInfoComponent } from './profile-info.component';
+import { DialogAddSchoolComponent } from './dialog-add-school.component';
 
-describe('ProfileInfoComponent', () => {
-  let component: ProfileInfoComponent;
-  let fixture: ComponentFixture<ProfileInfoComponent>;
+describe('DialogAddSchoolComponent', () => {
+  let component: DialogAddSchoolComponent;
+  let fixture: ComponentFixture<DialogAddSchoolComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileInfoComponent ]
+      declarations: [ DialogAddSchoolComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileInfoComponent);
+    fixture = TestBed.createComponent(DialogAddSchoolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

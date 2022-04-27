@@ -1,0 +1,120 @@
+<h1 mat-dialog-title>Add Educational Background</h1>
+
+<div mat-dialog-content>
+
+    <main>
+      <form [formGroup]="form" (submit) ="onCreateSchool()">
+
+        <!--type-->
+        <mat-form-field class="full-width">
+        <mat-label>type</mat-label>
+        <mat-select
+        name = "type"
+        formControlName="type"
+        required
+        >
+        <mat-option *ngFor="let type of types" [value] = "type.value">
+        {{ type.value}}
+        </mat-option>
+        </mat-select>
+        <mat-error *ngIf = "form.get('type').invalid">Please choose a type.</mat-error>
+        </mat-form-field><br>
+
+            <!--NAMe oF schoool-->
+           <mat-form-field  class="full-width">
+            <mat-label>Name of school</mat-label>
+            <input
+             name="nameOfSchool"
+             formControlName ="nameOfSchool"
+             matInput
+             type="text"
+             required>
+            <mat-error *ngIf = "form.get('nameOfSchool').invalid">Please enter a valid name of school.</mat-error>
+        </mat-form-field>
+
+
+            <!--course-->
+        <mat-form-field  class="full-width">
+            <mat-label>course</mat-label>
+            <input
+            name="course"
+            matInput
+            formControlName ="course"
+            type="text"
+            required>
+            <mat-error *ngIf = "form.get('course').invalid">Please enter course.</mat-error>
+        </mat-form-field>
+
+          <!--fromYear-->
+          <mat-form-field class="full-width">
+            <mat-label>fromYear</mat-label>
+            <textarea
+            matInput
+            name = "fromYear"
+            formControlName ="fromYear"
+            type="text"
+            ></textarea>
+            <mat-error *ngIf = "form.get('fromYear').invalid">Please enter fromYear.</mat-error>
+        </mat-form-field><br>
+
+
+        <!--toYear-->
+        <mat-form-field class="full-width">
+            <mat-label>toYear</mat-label>
+            <textarea
+            matInput
+            name = "toYear"
+            formControlName ="toYear"
+            type="text"
+            ></textarea>
+            <mat-error *ngIf = "form.get('toYear').invalid">Please enter a toYear</mat-error>
+        </mat-form-field><br>
+
+         <!--highestLevel-->
+         <mat-form-field class="full-width">
+          <mat-label>highestLevel</mat-label>
+          <textarea
+          matInput
+          name = "highestLevel"
+          formControlName ="highestLevel"
+          type="text"
+          ></textarea>
+          <mat-error *ngIf = "form.get('highestLevel').invalid">Please enter highestLevel.</mat-error>
+      </mat-form-field><br>
+
+
+         <!--yearGraduated-->
+         <mat-form-field class="full-width">
+          <mat-label>yearGraduated</mat-label>
+          <textarea
+          matInput
+          name = "yearGraduated"
+          formControlName ="yearGraduated"
+          type="text"
+          ></textarea>
+          <mat-error *ngIf = "form.get('yearGraduated').invalid">Please enter yearGraduated.</mat-error>
+      </mat-form-field><br>
+
+             <!--honors-->
+             <mat-form-field class="full-width">
+              <mat-label>honors</mat-label>
+              <textarea
+              matInput
+              name = "honors"
+              formControlName ="honors"
+              type="text"
+              ></textarea>
+              <mat-error *ngIf = "form.get('honors').invalid">Please enter a honors.</mat-error>
+          </mat-form-field><br>
+
+
+
+        <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Create Subject</button>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <button mat-raised-button  (click)="onNoClick()" color="accent" >Cancel</button>
+
+        </form>
+
+    </main>
+
+</div>

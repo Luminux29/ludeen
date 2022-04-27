@@ -322,14 +322,14 @@ router.post("/login", (req,res,next) => {
 
 
 
-router.put("/:id", checkAuth, multer({storage: storage}).single('e_sig'), (req,res, next) =>{
+router.put("/:id", checkAuth, multer({storage: storage}).single('profilePic'), (req,res, next) =>{
 
 
-    let e_sig = req.body.e_sig;
+    let profilePic = req.body.profilePic;
+
     if(req.file){
-        
         const  url = req.protocol + "://"+req.get("host");
-        e_sig = url+"/files/"+req.file.filename;
+        profilePic = url+"/files/"+req.file.filename;
 
     }
 
@@ -337,17 +337,49 @@ router.put("/:id", checkAuth, multer({storage: storage}).single('e_sig'), (req,r
 
     const user = new User({
 
-    _id: req.body.u_id,
-    f_name: req.body.f_name,
-    l_name: req.body.l_name,
-    role: req.body.role,
-    email: req.body.email,
-    student_no: req.body.student_no,
-    e_sig: e_sig,
-    course: req.body.course,
-    year: req.body.year,
-    section: req.body.section,
-    status: req.body.status
+  
+        _id: req.body.id,
+        EmployeeNumber: req.body.EmployeeNumber,
+        LastName: req.body.LastName,
+        FirstName: req.body.FirstName,
+        MI: req.body.MI,
+        NameExtention: req.body.NameExtention,
+        birthdate: req.body.birthdate,
+        PlaceOfBirth: req.body.PlaceOfBirth,
+        gender: req.body.gender,
+        CivilStatus: req.body.CivilStatus,
+        height: req.body.height,
+        weight: req.body.weight,
+        BloodType: req.body.BloodType,
+        gsis: req.body.gsis,
+        pagibig: req.body.pagibig,
+        philHealth: req.body.philHealth,
+        sss: req.body.sss,
+        tin: req.body.tin,
+        citizenship: req.body.citizenship,
+        r_zipCode: req.body.r_zipCode,
+        r_lotNo: req.body.r_lotNo,
+        r_street: req.body.r_street,
+        r_village: req.body.r_village,
+        r_brgy: req.body.r_brgy,
+        r_city: req.body.r_city,
+        r_province: req.body.r_province,
+        p_zipCode: req.body.p_zipCode,
+        p_LotNo: req.body.p_LotNo,
+        p_street: req.body.p_street,
+        p_village: req.body.p_village,
+        p_brgy: req.body.p_brgy,
+        p_city: req.body.p_city,
+        p_province: req.body.p_province,
+        TelNo: req.body.TelNo,
+        MobileNo: req.body.MobileNo,
+        email:req.body.email,
+        altEmail: req.body.altEmail,
+        status: req.body.status,
+        role: req.body.role,
+        profilePic : profilePic
+  
+  
 
 
     });

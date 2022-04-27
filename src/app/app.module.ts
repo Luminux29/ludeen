@@ -55,6 +55,8 @@ import { DialogAddSubjectComponent } from './elements/dialog-add-subject/dialog-
 import { SettingsComponent } from './page/settings/settings.component';
 import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-change-pass.component';
 import { ProfileInfoComponent } from './page/profile-info/profile-info.component';
+import { DialogAddSchoolComponent } from './elements/dialog-add-school/dialog-add-school.component';
+import { CardSchoolComponent } from './elements/card-school/card-school.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,7 +88,9 @@ import { ProfileInfoComponent } from './page/profile-info/profile-info.component
     DialogAddSubjectComponent,
     SettingsComponent,
     DialogChangePassComponent,
-    ProfileInfoComponent
+    ProfileInfoComponent,
+    DialogAddSchoolComponent,
+    CardSchoolComponent
   ],
   imports: [
     MatDatepickerModule,

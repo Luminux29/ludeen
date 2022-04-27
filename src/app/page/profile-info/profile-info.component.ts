@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AddAccountComponent } from 'src/app/elements/add-account/add-account.component';
+import { DialogAddSchoolComponent } from 'src/app/elements/dialog-add-school/dialog-add-school.component';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -46,18 +48,60 @@ export class ProfileInfoComponent implements OnInit {
 
   }
 
-  emptyStringIfNull(name:string){
+  emptyStringIfNull(name:any){
 
-    if(name){
+    if (name === undefined || name === null) {
 
+     return "";
+     }
+    else{
       return name;
     }
-    else{
 
-      return "";
+  }
 
-    }
+  openAddSchoolDialog(){
 
+    const dialogRef = this.dialog.open(DialogAddSchoolComponent, {
+      data: this.userService.getUserId()
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //after closing dialog, refresh the table
+      if(result){
+
+        window.location.reload();
+
+
+      }
+    });
+
+
+  }
+
+  getAge(bday: Date){
+
+    let timeDiff = Math.abs(Date.now() - new Date(bday).getTime());
+    let age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    return age;
+
+  }
+
+  onEditDialog(id : string){
+
+    const dialogRef = this.dialog.open(AddAccountComponent, {
+      data: id
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //after closing dialog, refresh the table
+      if(result){
+
+          window.location.reload();
+
+      }
+    });
+  
   }
 
   // openAddSchoolDialog(){
