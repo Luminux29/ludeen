@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddAccountComponent } from 'src/app/elements/add-account/add-account.component';
+import { DialogAddCivilComponent } from 'src/app/elements/dialog-add-civil/dialog-add-civil.component';
 import { DialogAddSchoolComponent } from 'src/app/elements/dialog-add-school/dialog-add-school.component';
+import { DialogAddTrainingComponent } from 'src/app/elements/dialog-add-training/dialog-add-training.component';
+import { DialogAddWorkComponent } from 'src/app/elements/dialog-add-work/dialog-add-work.component';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -76,6 +79,63 @@ export class ProfileInfoComponent implements OnInit {
       }
     });
 
+
+  }
+
+  
+  openAddWorkDialog(){
+
+    const dialogRef = this.dialog.open(DialogAddWorkComponent, {
+     data: null
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //after closing dialog, refresh the table
+      if(result){
+
+        window.location.reload();
+
+
+      }
+    });
+
+
+  }
+
+  openAddTrainingDialog(){
+
+    const dialogRef = this.dialog.open(DialogAddTrainingComponent, {
+      data: null
+     });
+ 
+     dialogRef.afterClosed().subscribe(result => {
+       //after closing dialog, refresh the table
+       if(result){
+ 
+         window.location.reload();
+ 
+ 
+       }
+     });
+
+  }
+
+
+  openAddCivilDialog(){
+
+    const dialogRef = this.dialog.open(DialogAddCivilComponent, {
+      data: null
+     });
+ 
+     dialogRef.afterClosed().subscribe(result => {
+       //after closing dialog, refresh the table
+       if(result){
+ 
+         window.location.reload();
+ 
+ 
+       }
+     });
 
   }
 

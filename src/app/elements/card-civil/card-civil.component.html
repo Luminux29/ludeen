@@ -1,0 +1,44 @@
+<!--SHOW THIS IF LOADING-->
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<!--ELSE SHOW THIS-->
+<main  *ngIf="civils.length > 0 && !isLoading">
+
+
+    <mat-accordion multi=true  >
+        <mat-expansion-panel>
+            
+            <mat-expansion-panel-header>
+                <b>Civil Service Eligibility</b>
+            </mat-expansion-panel-header>
+            
+            <!-- INFORMATION -->
+            <mat-card *ngFor = "let civil of civils">
+                <mat-card-title>{{civil.nameOfCivilServiceEligibility}}</mat-card-title>
+          
+            
+              
+                <li *ngIf="civil.rating"><b>Rating: </b>{{civil.rating}}</li>
+                <li><b>Date of examination: </b>{{readableDate(civil.dateOfExamination)}}</li>
+                <li><b>Place of examination: </b>{{civil.placeOfExamination}}</li>
+               s
+                <li *ngIf="civil.licenseNo"><b>License No: </b>{{civil.licenseNo}}</li>
+                <li  *ngIf="civil.dateOfValidity"><b>Date of validity: </b>{{readableDate(civil.dateOfValidity)}}</li>
+
+
+                <mat-card-actions>
+                    <button  mat-button color="primary" (click) ="onEditDialog(civil)">Edit</button>
+                    <button  mat-button color="warn" (click) = "onDelete(civil._id)">Delete</button>
+                </mat-card-actions>
+            </mat-card>
+            
+    
+        </mat-expansion-panel>
+        
+    </mat-accordion>
+
+   
+</main>
+<br><br>
+<p *ngIf="civils.length <= 0 && !isLoading"><b>*Hoot hoot* *Hoot hoot*</b> <bR>Nothing here..</p>
+  

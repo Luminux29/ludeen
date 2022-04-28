@@ -25,7 +25,7 @@ export class DialogAddSchoolComponent implements OnInit {
   isLoading = false;
   
   id:string;
-    mode : string;
+  mode : string;
   form: FormGroup;
   constructor( public dialogRef: MatDialogRef<DialogAddSchoolComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -98,10 +98,11 @@ export class DialogAddSchoolComponent implements OnInit {
       return;
     }
     
-    if(this.mode === 'create'){
+    if(this.mode === 'create'){ 
       
 
-      this.schoolService.addSchool(this.form.value.nameOfSchool,
+      this.schoolService.addSchool(
+        this.form.value.nameOfSchool,
         this.form.value.course,
         this.form.value.fromYear,
         this.form.value.toYear,

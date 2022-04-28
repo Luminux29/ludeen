@@ -1,0 +1,104 @@
+<h1 mat-dialog-title>Create Subject</h1>
+
+<div mat-dialog-content>
+
+    <main>
+        <form [formGroup]="form" (submit) ="onCreateTraining()">
+
+                
+            <!--title-->
+           <mat-form-field  class="full-width">
+            <mat-label>title</mat-label>
+            <input  
+             name="title" 
+             formControlName ="title"
+             matInput 
+             type="text" 
+             required>
+            <mat-error *ngIf = "form.get('title').invalid">Please enter a unique subject code.</mat-error>
+        </mat-form-field>
+
+        
+            <!--StypeOfLearningDevelopment-->
+        <mat-form-field  class="full-width">
+            <mat-label>typeOfLearningDevelopment</mat-label>
+            <input  
+            name="typeOfLearningDevelopment" 
+            matInput 
+            formControlName ="typeOfLearningDevelopment"
+            type="text" 
+            required>
+            <mat-error *ngIf = "form.get('typeOfLearningDevelopment').invalid">Please enter the subject name.</mat-error>
+        </mat-form-field>
+
+        <!--conductor-->
+        <mat-form-field class="full-width">
+            <mat-label>conductor</mat-label>
+            <textarea 
+            matInput 
+            name = "conductor" 
+            formControlName ="conductor"
+            type="text" 
+            ></textarea>
+            <mat-error *ngIf = "form.get('conductor').invalid">Please enter a a subject description.</mat-error>
+        </mat-form-field><br>
+
+           <!--toDate-->
+           <mat-form-field>
+            <mat-label>fromDate</mat-label>
+            <input class="txtInput" matInput [matDatepicker]="picker2"
+            formControlName="fromDate" name="fromDate"
+            placeholder="MM/DD/YYYY"   (focus)="picker2.open()">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+           </mat-form-field>
+
+            <!--toDate-->
+            <mat-form-field>
+            <mat-label>toDate</mat-label>
+            <input class="txtInput" matInput [matDatepicker]="picker"
+            formControlName="toDate" name="toDate"
+            placeholder="MM/DD/YYYY"   (focus)="picker.open()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+              <!--noOfHours-->
+            <mat-form-field class="full-width">
+                <mat-label>noOfHours</mat-label>
+                <textarea 
+                matInput 
+                name = "noOfHours" 
+                formControlName ="noOfHours"
+                type="number" 
+                ></textarea>
+                <mat-error *ngIf = "form.get('noOfHours').invalid">Please enter a a noOfHours.</mat-error>
+            </mat-form-field><br>
+
+
+     
+            <div style="margin-bottom: 2rem">
+  
+                <!-- preview  -->
+                <div class= "sig-preview" *ngIf = "fileTitlePrev !== '' && fileTitlePrev">
+                  <p>{{fileTitlePrev}}</p>
+                </div>
+          
+                <!-- makikita -->
+                <button mat-button type="button" (click)="filePicker.click()">Upload your certificate</button>
+          
+                <!-- invi -->
+                <input type="file" #filePicker (change) = "onFilePicked($event)" accept="application/pdf,application/vnd.ms-excel">
+          
+              </div>
+
+
+        <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Create Subject</button>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <button mat-raised-button  (click)="onNoClick()" color="accent" >Cancel</button>
+
+        </form>
+
+    </main>
+
+</div>

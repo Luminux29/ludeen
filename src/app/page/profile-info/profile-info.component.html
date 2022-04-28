@@ -69,6 +69,27 @@
         <button mat-raised-button (click)="openAddSchoolDialog()">Add School</button>    
         <app-card-school></app-card-school>
       </mat-tab>
+
+        <!-- 3rd TAB -->
+        <mat-tab label = 'Civil Service Eligibility'>
+    
+          <button mat-raised-button (click)="openAddCivilDialog()">Add Civil</button>    
+          <app-card-civil></app-card-civil>
+        </mat-tab>
+
+           <!-- 4th TAB -->
+           <mat-tab label = 'Work Experience'>
+    
+            <button mat-raised-button (click)="openAddWorkDialog()">Add Work</button>    
+            <app-card-work></app-card-work>
+            </mat-tab>
+         <!-- 5th TAB -->
+         <mat-tab label = 'Training'>
+    
+          <button mat-raised-button (click)="openAddTrainingDialog()">Add Training</button>    
+          <app-card-training></app-card-training>
+          </mat-tab>
+    
     
     
     </mat-tab-group>

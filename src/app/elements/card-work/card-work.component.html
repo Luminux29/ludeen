@@ -1,0 +1,52 @@
+<!--SHOW THIS IF LOADING-->
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<!--ELSE SHOW THIS-->
+<main  *ngIf="works.length > 0 && !isLoading">
+
+
+    <mat-accordion multi=true  >
+        <mat-expansion-panel>
+            
+            <mat-expansion-panel-header>
+                <b>Work Expeirence</b>
+            </mat-expansion-panel-header>
+            
+            <!-- INFORMATION -->
+            <mat-card *ngFor = "let work of works">
+                <mat-card-title>{{work.position}}</mat-card-title>
+                <mat-card-subtitle>{{work.dept}}</mat-card-subtitle>
+          
+                <mat-divider></mat-divider>
+                <h3>Inclusive Dates</h3>
+                <li ><b>From: </b>{{readableDate(work.fromDate)}}</li>
+                <li *ngIf="work.toYear"><b>To: </b>{{readableDate(work.toYear)}}</li>
+                <li *ngIf="!work.toYear"><b>To: </b>Present</li>
+                <mat-divider></mat-divider>
+
+                <!-- CONTINUE HEREEEEEEEEEEEEEEEEEEEEEEEE -->
+
+                <li><b>Monthly Salary: </b>{{convertToPhp(work.monthlySalary)}}</li>
+               
+                <li *ngIf="work.salaryGrade"><b>Salary Grade: </b>{{work.salaryGrade}}</li>
+                <li><b>Status of appointment: </b>{{work.status}}</li>
+                <li ><b>Government Service: </b>{{convertBool(work.government)}}</li>
+
+
+
+                <mat-card-actions>
+                    <button  mat-button color="primary" (click) ="onEditDialog(work)">Edit</button>
+                    <button  mat-button color="warn" (click) = "onDelete(work._id)">Delete</button>
+                </mat-card-actions>
+            </mat-card>
+            
+    
+        </mat-expansion-panel>
+        
+    </mat-accordion>
+
+   
+</main>
+<br><br>
+<p *ngIf="works.length <= 0 && !isLoading"><b>*Hoot hoot* *Hoot hoot*</b> <bR>Nothing here..</p>
+  

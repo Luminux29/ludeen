@@ -59,6 +59,12 @@ import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-
 import { ProfileInfoComponent } from './page/profile-info/profile-info.component';
 import { DialogAddSchoolComponent } from './elements/dialog-add-school/dialog-add-school.component';
 import { CardSchoolComponent } from './elements/card-school/card-school.component';
+import { DialogAddCivilComponent } from './elements/dialog-add-civil/dialog-add-civil.component';
+import { CardCivilComponent } from './elements/card-civil/card-civil.component';
+import { DialogAddWorkComponent } from './elements/dialog-add-work/dialog-add-work.component';
+import { CardWorkComponent } from './elements/card-work/card-work.component';
+import { DialogAddTrainingComponent } from './elements/dialog-add-training/dialog-add-training.component';
+import { CardTrainingComponent } from './elements/card-training/card-training.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,7 +98,13 @@ import { CardSchoolComponent } from './elements/card-school/card-school.componen
     DialogChangePassComponent,
     ProfileInfoComponent,
     DialogAddSchoolComponent,
-    CardSchoolComponent
+    CardSchoolComponent,
+    DialogAddCivilComponent,
+    CardCivilComponent,
+    DialogAddWorkComponent,
+    CardWorkComponent,
+    DialogAddTrainingComponent,
+    CardTrainingComponent
   ],
   imports: [
     MatDatepickerModule,

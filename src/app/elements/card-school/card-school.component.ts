@@ -24,6 +24,8 @@ export class CardSchoolComponent implements OnInit {
   constructor(private schoolService : SchoolService, private userService: UserService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+
     this.isLoading = true;
 
     this.schoolService.getSchools();

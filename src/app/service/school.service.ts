@@ -76,11 +76,7 @@ getSchools(){
 
 }
 
-getSschoolsUpdateListener(
-
-  
-
-){
+getSschoolsUpdateListener(){
   return this.schoolsUpdated.asObservable();
 }
 
