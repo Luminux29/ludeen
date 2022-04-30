@@ -76,6 +76,12 @@ getSchools(){
 
 }
 
+getSchoolByUserId(user_id : string){
+  return this.http.get("http://localhost:3000/api/schools/" + user_id)
+  .pipe(catchError(this.handleError));
+
+}
+
 getSschoolsUpdateListener(){
   return this.schoolsUpdated.asObservable();
 }

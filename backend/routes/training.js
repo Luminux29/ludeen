@@ -145,78 +145,75 @@ router.get('',checkAuth ,(req,res,next) =>{
 //     });
 // })
 
-// router.delete("/:id",checkAuth, (req,res,next) => {
+router.delete("/:id",checkAuth, (req,res,next) => {
 
-//     Request.deleteOne({_id: req.params.id})
-//     .then((result)=>{
-//         res.status(200).json({
-//             message: "Request deleted!"
-//         });
+    Training.deleteOne({_id: req.params.id})
+    .then((result)=>{
+        res.status(200).json({
+            message: "Request deleted!"
+        });
 
-//     })
-//     .catch(err=>{
+    })
+    .catch(err=>{
 
-//         res.status(500).json({
+        res.status(500).json({
 
-//             message: 'An error occurred while deleting. check logs',
-//             error:err
+            message: 'An error occurred while deleting. check logs',
+            error:err
 
-//         });
+        });
 
-//     });
+    });
     
-// });
+});
 
 
 
-// router.put("/:id",  multer({storage: storage}).single('request_form'), (req,res, next) =>{
+router.put("/:id",  multer({storage: storage}).single('certificate'), (req,res, next) =>{
 
-//     console.log("backend: " + req.body.dateAccepted);
-//    var request_form = req.body.request_form;
-   
-//     if(req.file){
-//         console.log("req file is existing!");     
-//         const  url = req.protocol + "://"+req.get("host");
-//         request_form = url+"/files/"+req.file.filename;
-
-//     }
-//    console.log("final rquest form: "+request_form);
-
-//     const request = new Request({
-
-//         _id: req.body.request_id,
-//         subject: req.body.subject,
-//         user_id: req.body.user_id,
-//         faculty_id: req.body.faculty_id,
-//         status: req.body.status,
-//         creator: req.body.creator,
-//         desc: req.body.desc,
-//         semester: req.body.semester,
-//         year: req.body.year,
-//         note: req.body.note,
-//         cys: req.body.cys,
-//         request_form: request_form,
-//         dateAccepted : req.body.dateAccepted
-
-//     });
  
-//     Request.updateOne({_id: req.params.id}, request )
-//     .then(result =>{
-//         res.status(200).json({message:'update successful'});
-//     })
-//     .catch(err=>{
+   var certificate = req.body.certificate;
+   
+    if(req.file){
+        console.log("req file is existing!");     
+        const  url = req.protocol + "://"+req.get("host");
+        certificate = url+"/files/"+req.file.filename;
 
-//         console.log(JSON.stringify(err));
+    }
+
+
+    const training = new Training({
+
+
+        _id : req.params.id,
+        title: req.body.title ,
+        fromDate:  req.body.fromDate,
+        toDate:  req.body.toDate,
+        noOfHours: req.body.noOfHours,
+        typeOfLearningDevelopment: req.body.typeOfLearningDevelopment,
+        conductor: req.body.conductor,
+        certificate: certificate,
+        user_id: req.body.user_id
+
+    });
+ 
+    Training.updateOne({_id: req.params.id}, training )
+    .then(result =>{
+        res.status(200).json({message:'update successful'});
+    })
+    .catch(err=>{
+
+        console.log(JSON.stringify(err));
         
-//         res.status(500).json({
+        res.status(500).json({
 
-//             error: err,
-//             message: "Something went wrong!"
-//         })
+            error: err,
+            message: "Something went wrong!"
+        })
 
-//     })
+    })
 
-// })
+})
 
 
 

@@ -49,6 +49,7 @@ export class DialogAddTrainingComponent implements OnInit {
       this.form.patchValue({fromDate : this.data.fromDate});
       this.form.patchValue({noOfHours : this.data.noOfHours});
       this.form.patchValue({certificate : this.data.certificate});
+      this.fileTitlePrev = this.data.certificate;
     }
   
 
@@ -94,6 +95,35 @@ export class DialogAddTrainingComponent implements OnInit {
 
     }
     else{
+
+      this.trainingService.updateTraining(
+        this.data._id,
+        this.form.value.title,
+        this.form.value.fromDate,
+        this.form.value.toDate,
+        this.form.value.noOfHours,
+        this.form.value.typeOfLearningDevelopment,
+        this.form.value.conductor,
+        this.form.value.certificate,
+        this.userService.getUserId()
+      )
+      .subscribe(
+        res=>{
+
+
+          window.alert('Success Edit!');
+          this.dialogRef.close("success");
+
+
+        },
+        err=>{
+          window.alert('Edit FAiled!');
+          this.dialogRef.close();
+          
+
+
+        }
+      )
 
 
     }

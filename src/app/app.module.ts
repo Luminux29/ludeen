@@ -22,6 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,6 +66,8 @@ import { DialogAddWorkComponent } from './elements/dialog-add-work/dialog-add-wo
 import { CardWorkComponent } from './elements/card-work/card-work.component';
 import { DialogAddTrainingComponent } from './elements/dialog-add-training/dialog-add-training.component';
 import { CardTrainingComponent } from './elements/card-training/card-training.component';
+import { SideNavComponent } from './elements/side-nav/side-nav.component';
+import { PersonalInfoComponent } from './elements/personal-info/personal-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,9 +107,12 @@ import { CardTrainingComponent } from './elements/card-training/card-training.co
     DialogAddWorkComponent,
     CardWorkComponent,
     DialogAddTrainingComponent,
-    CardTrainingComponent
+    CardTrainingComponent,
+    SideNavComponent,
+    PersonalInfoComponent
   ],
   imports: [
+    MatSidenavModule,
     MatDatepickerModule,
     MatDividerModule,
     BrowserModule,

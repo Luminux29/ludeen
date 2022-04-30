@@ -1,10 +1,10 @@
 export interface School{
-    nameOfSchool: String;
-    course: String;
+    nameOfSchool: string;
+    course: string;
     fromYear: string;
-    toYear: String;
-    highestLevel:String;
-    yearGraduated: String;
+    toYear: string;
+    highestLevel:string;
+    yearGraduated: string;
     honors: string;
     type: string;
     user_id:string;

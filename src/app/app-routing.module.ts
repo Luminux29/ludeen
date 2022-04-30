@@ -21,12 +21,17 @@ import { FacultyRequestComponent } from './page/faculty/faculty-request/faculty-
 import { ProfileInfoComponent } from './page/profile-info/profile-info.component';
 import { FacultyProfileComponent } from './page/faculty/faculty-profile/faculty-profile.component'
 import { ValidityRedirectComponent } from './page/faculty/validity-redirect/validity-redirect.component';
+import { CardSchoolComponent } from './elements/card-school/card-school.component';
+import { CardWorkComponent } from './elements/card-work/card-work.component';
+import { CardTrainingComponent } from './elements/card-training/card-training.component';
+import { CardCivilComponent } from './elements/card-civil/card-civil.component';
+import { ReverseAuthGuard } from './service/reverse-auth-guard';
 const routes: Routes = [
 
 
   {path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-  {path : 'sign-in', component: SignInComponent},
-  {path : 'sign-up', component: SignupComponent},
+  {path : 'sign-in', component: SignInComponent, canActivate:[ReverseAuthGuard]},
+  {path : 'sign-up', component: SignupComponent, canActivate:[ReverseAuthGuard]},
   
   
   
@@ -50,13 +55,18 @@ const routes: Routes = [
 
 
   //RAYMOND GUARDS
-  {path : 'profile-info', component: ProfileInfoComponent, canActivate: [AuthGuard]}
+  {path : 'profile-info', component: ProfileInfoComponent, canActivate: [AuthGuard]},
+  {path : 'school', component: CardSchoolComponent, canActivate: [AuthGuard]},
+  {path : 'work', component: CardWorkComponent, canActivate: [AuthGuard]},
+  {path : 'training', component: CardTrainingComponent, canActivate: [AuthGuard]},
+  {path : 'civil', component: CardCivilComponent, canActivate: [AuthGuard]}
+
   
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers:[AuthGuard]
+  providers:[AuthGuard, ReverseAuthGuard, FacultyGuard, AdminGuard]
 })
 export class AppRoutingModule { }

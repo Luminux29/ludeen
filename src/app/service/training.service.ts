@@ -71,6 +71,67 @@ private trainingUpdated = new Subject<{trainings: Training[]}>();
 
   }
 
+  updateTraining(
+    id: string,
+    title: string,
+    fromDate:Date,
+    toDate:Date,
+    noOfHours: number,
+    typeOfLearningDevelopment:string,
+    conductor: string,
+    certificate: File | string,
+    user_id: string
+  ){
+
+    let trainingData : FormData|Training;
+
+    if(typeof(certificate) == 'object'){
+      trainingData = new FormData();
+      trainingData.append('id', id);
+      trainingData.append('title', title);
+      trainingData.append('fromDate', new Date(fromDate).toISOString());
+      trainingData.append('toDate', new Date(toDate).toISOString());
+      trainingData.append('noOfHours', noOfHours.toString());
+      trainingData.append('typeOfLearningDevelopment', typeOfLearningDevelopment);
+      trainingData.append('conductor', conductor);
+      trainingData.append('certificate', certificate, certificate.name);
+      trainingData.append('user_id', user_id);
+
+
+
+    }
+    else{
+
+
+      trainingData = {
+
+        title: title,
+        fromDate : fromDate,
+        toDate : toDate,
+        noOfHours : noOfHours,
+        typeOfLearningDevelopment : typeOfLearningDevelopment,
+        conductor : conductor,
+        certificate : certificate,
+        user_id : user_id,
+
+      }
+
+
+    }
+
+    return this.http
+    .put("http://localhost:3000/api/trainings/" + id, trainingData)
+    .pipe(catchError(this.handleError));
+
+
+  }
+
+  deleteTraining(id: string)
+  {
+      return this.http.delete("http://localhost:3000/api/trainings/" + id);
+  }
+  
+  
   
 private handleError(error: HttpErrorResponse) {
   if (error.status === 0) {

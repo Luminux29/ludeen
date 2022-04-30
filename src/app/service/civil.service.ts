@@ -44,6 +44,12 @@ export class CivilService {
 
   }
 
+  getCivilByUserId(user_id:string){
+
+    return this.http.get("http://localhost:3000/api/civils/" + user_id)
+    .pipe(catchError(this.handleError));
+  }
+
   
 getCivils(){
 

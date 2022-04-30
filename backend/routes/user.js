@@ -299,7 +299,9 @@ router.post("/login", (req,res,next) => {
                 course: fetchedUser.course,
                 year: fetchedUser.year, 
                 section: fetchedUser.section,
-                status: fetchedUser.status
+                status: fetchedUser.status,
+                pfp : fetchedUser.profilePic,
+                name: fetchedUser.FirstName + " " + fetchedUser.LastName
     
             });
         

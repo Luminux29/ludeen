@@ -101,6 +101,25 @@ export class CardCivilComponent implements OnInit {
 
   }
 
+  openAddCivilDialog(){
+
+    const dialogRef = this.dialog.open(DialogAddCivilComponent, {
+      data: null
+     });
+ 
+     dialogRef.afterClosed().subscribe(result => {
+       //after closing dialog, refresh the table
+       if(result){
+ 
+         window.location.reload();
+ 
+ 
+       }
+     });
+
+  }
+
+
 
 
 

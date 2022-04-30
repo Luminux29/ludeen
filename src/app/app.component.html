@@ -1,1 +1,68 @@
-<router-outlet></router-outlet>
+<mat-toolbar>
+
+    Raymond Information System
+  
+</mat-toolbar>
+  
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+  <mat-sidenav-container *ngIf="!isLoading && userService.getAuth()">
+  
+    <mat-sidenav mode ="side" opened class="mat-elevation-z8">
+  
+    <img class="avatar mat-elevation-z8" [src]="userService.getPFP()"/>
+  
+    <h4 class="name">{{userService.getName()}}</h4>
+  
+  <mat-divider></mat-divider>
+  
+    <button mat-button class="menu-button" routerLink="profile-info" routerLinkActive="mat-accent">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+    </button>
+    
+    <button mat-button class="menu-button" routerLink="school" routerLinkActive="mat-accent">
+        <mat-icon>school</mat-icon>
+        <span>Education</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="work" routerLinkActive="mat-accent">
+        <mat-icon>work</mat-icon>
+        <span>Work History</span>
+    </button>
+  
+  
+    <button mat-button class="menu-button" routerLink="civil" routerLinkActive="mat-accent">
+        <mat-icon>build</mat-icon>
+        <span>Civil Eligibility</span>
+    </button>
+  
+    <button mat-button class="menu-button" routerLink="training" routerLinkActive="mat-accent">
+      <mat-icon>mic</mat-icon>
+      <span>Training</span>
+  </button>
+
+  <button mat-button class="menu-button" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+</button>
+
+
+  
+    </mat-sidenav >
+  
+    <mat-sidenav-content>
+  
+       <div class="content mat-elevation-z8">
+
+        <router-outlet *ngIf="userService.getAuth()"></router-outlet>
+
+       </div>
+    
+    
+    
+    </mat-sidenav-content>
+
+
+
+</mat-sidenav-container>
+
+<router-outlet *ngIf="!userService.getAuth()"></router-outlet>

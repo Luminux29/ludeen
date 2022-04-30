@@ -221,7 +221,11 @@ export class AddAccountComponent implements OnInit {
         .subscribe(
           response =>{
   
-            window.alert("User edited!");
+            console.log(response);
+            this.userService.setPFP(this.fileTitleProfilePicPrev);
+            this.userService.setName(this.mainForm.value.FirstName + " " +this.mainForm.value.LastName  );
+
+            window.alert("Success!");
             this.isLoading = false;
             this.dialogRef.close('success');
           },

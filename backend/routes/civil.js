@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const checkAuth = require('../middleware/check-auth');
+const civil = require('../models/civil');
 const Civil = require('../models/civil');
 
 //CREATE CIVIL SERVICE ELIGIBILITY INFO
@@ -132,6 +133,32 @@ router.get('',checkAuth ,(req,res,next) =>{
 });
 
 
+router.get('/:user_id',checkAuth ,(req,res,next) =>{
+
+    Civil.find({user_id: req.params.user_id})
+    .then( civil =>{
+       
+            res.status(200).json( {
+
+                message:"Success!",
+                civils: civil
+
+      }); 
+     })
+    .catch(err=>{
+
+        res.status(500).json({
+
+            message: "An error occured",
+            error: err
+
+        });
+
+    });
+
+
+
+});
 
 
 module.exports = router;

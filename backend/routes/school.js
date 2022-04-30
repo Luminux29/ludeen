@@ -136,6 +136,32 @@ router.get('',checkAuth ,(req,res,next) =>{
 });
 
 
+router.get('/:user_id',checkAuth ,(req,res,next) =>{
+
+    School.find({user_id: req.params.user_id})
+    .then( school =>{
+       
+            res.status(200).json( {
+
+                message:"Success!",
+                schools: school
+
+      }); 
+     })
+    .catch(err=>{
+
+        res.status(500).json({
+
+            message: "An error occured",
+            error: err
+
+        });
+
+    });
+
+
+
+});
 
 
 module.exports = router;

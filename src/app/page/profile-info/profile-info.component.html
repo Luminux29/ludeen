@@ -1,97 +1,88 @@
-<main>
-   
-    <button mat-raised-button (click)="logout()">Logout</button>
-    
-    <mat-tab-group>
-    
-      <!-- FIRST TAB - PERSONAL INFO -->
-      <mat-tab label="personal info">
-    
-        <mat-spinner *ngIf="isLoading"></mat-spinner>
-          <div class="profileInfo" *ngIf="!isLoading">
-              <img [src]="faculty.profilePic" class="pfp">
-              
-            <h1>PERSONAL INFO</h1>
-            <p>Name: {{name}}</p>
-            <p>Employee Number: {{emptyStringIfNull(faculty.EmployeeNumber)}}</p>
-    
-            <p>Date of Birth: {{readableDate(faculty.birthdate)}}</p>
-            <p>Age: {{getAge(faculty.birthdate)}}</p>
-            <p>place of birth: {{emptyStringIfNull(faculty.PlaceOfBirth)}}</p>
-            <p>Sex: {{emptyStringIfNull(faculty.gender)}}</p>
-            <p>Civil status: {{emptyStringIfNull(faculty.CivilStatus)}}</p>
-            <p>Height : {{emptyStringIfNull(faculty.height)}}</p>
-            <p>Weight: {{emptyStringIfNull(faculty.weight)}}</p>
-            <p>Blood type: {{emptyStringIfNull(faculty.BloodType)}}</p>
-            <p>citizenship: {{emptyStringIfNull(faculty.citizenship)}}</p>
-    
-            <h1>Government</h1>
-            <p>GSIS ID No.: {{emptyStringIfNull(faculty.gsis)}}</p>
-            <p>PAGIBIG ID No.: {{emptyStringIfNull(faculty.pagibig)}}</p>
-            <p>PhilHealth ID No.: {{emptyStringIfNull(faculty.philHealth)}}</p>
-            <p>SSS No.: {{emptyStringIfNull(faculty.sss)}}</p>
-            <p>TIN No.: {{emptyStringIfNull(faculty.tin)}}</p>
-    
-            <h1>Resident Address</h1>
-            <p>House/Block/Lot No.: {{emptyStringIfNull(faculty.r_lotNo)}}</p>
-            <p>Street: {{emptyStringIfNull(faculty.r_street)}}</p>
-            <p>Subdivision: {{emptyStringIfNull(faculty.r_village)}}</p>
-            <p>Barangay: {{emptyStringIfNull(faculty.r_brgy)}}</p>
-            <p>Municipality: {{emptyStringIfNull(faculty.r_city)}}</p>
-            <p>Province: {{emptyStringIfNull(faculty.r_province)}}</p>
-            <p>Zip: {{emptyStringIfNull(faculty.r_zipCode)}}</p>
-    
-            <h1>Permanent Address</h1>
-            <p>House/Block/Lot No.: {{emptyStringIfNull(faculty.p_LotNo)}}</p>
-            <p>Street: {{emptyStringIfNull(faculty.p_street)}}</p>
-            <p>Subdivision: {{emptyStringIfNull(faculty.p_village)}}</p>
-            <p>Barangay: {{emptyStringIfNull(faculty.p_brgy)}}</p>
-            <p>Municipality: {{emptyStringIfNull(faculty.p_city)}}</p>
-            <p>Province: {{emptyStringIfNull(faculty.p_province)}}</p>
-            <p>Zip: {{emptyStringIfNull(faculty.p_zipCode)}}</p>
-    
-    
-            <h1>contact</h1>
-            <p>Email: {{emptyStringIfNull(faculty.email)}}</p>
-            <p>Alternate Email: {{emptyStringIfNull(faculty.altEmail)}}</p>
-            <p>Tel no: {{emptyStringIfNull(faculty.TelNo)}}</p>
-            <p>Mobile no: {{emptyStringIfNull(faculty.MobileNo)}}</p>
+  <button (click) ="printPDF()" mat-raised-button color="accent">Print PDF</button>
 
-            <button mat-raised-button (click)="onEditDialog(faculty._id)">Edit</button>
-    
-       </div>
-    
-      </mat-tab>
-    
-      <!-- SECOND TAB -->
-      <mat-tab label = 'Educational Background'>
-    
-        <button mat-raised-button (click)="openAddSchoolDialog()">Add School</button>    
-        <app-card-school></app-card-school>
-      </mat-tab>
 
-        <!-- 3rd TAB -->
-        <mat-tab label = 'Civil Service Eligibility'>
-    
-          <button mat-raised-button (click)="openAddCivilDialog()">Add Civil</button>    
-          <app-card-civil></app-card-civil>
-        </mat-tab>
+  <!-- FIRST TAB - PERSONAL INFO -->
+  <h1>Personal Info</h1>
 
-           <!-- 4th TAB -->
-           <mat-tab label = 'Work Experience'>
-    
-            <button mat-raised-button (click)="openAddWorkDialog()">Add Work</button>    
-            <app-card-work></app-card-work>
-            </mat-tab>
-         <!-- 5th TAB -->
-         <mat-tab label = 'Training'>
-    
-          <button mat-raised-button (click)="openAddTrainingDialog()">Add Training</button>    
-          <app-card-training></app-card-training>
-          </mat-tab>
-    
-    
-    
-    </mat-tab-group>
-    </main>
-    
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+      <div class="profileInfo" *ngIf="!isLoading">
+
+        <!-- <img [src]="faculty.profilePic" class="pfp">   -->
+        <h1>PERSONAL INFO</h1>
+        <p>Name: {{name}}</p>
+        <p>Employee Number: {{emptyStringIfNull(faculty.EmployeeNumber)}}</p>
+
+        <p>Date of Birth: {{readableDate(faculty.birthdate)}}</p>
+        <p>Age: {{getAge(faculty.birthdate)}}</p>
+        <p>place of birth: {{emptyStringIfNull(faculty.PlaceOfBirth)}}</p>
+        <p>Sex: {{emptyStringIfNull(faculty.gender)}}</p>
+        <p>Civil status: {{emptyStringIfNull(faculty.CivilStatus)}}</p>
+        <p>Height : {{emptyStringIfNull(faculty.height)}}</p>
+        <p>Weight: {{emptyStringIfNull(faculty.weight)}}</p>
+        <p>Blood type: {{emptyStringIfNull(faculty.BloodType)}}</p>
+        <p>citizenship: {{emptyStringIfNull(faculty.citizenship)}}</p>
+
+        <h1>Government</h1>
+        <p>GSIS ID No.: {{emptyStringIfNull(faculty.gsis)}}</p>
+        <p>PAGIBIG ID No.: {{emptyStringIfNull(faculty.pagibig)}}</p>
+        <p>PhilHealth ID No.: {{emptyStringIfNull(faculty.philHealth)}}</p>
+        <p>SSS No.: {{emptyStringIfNull(faculty.sss)}}</p>
+        <p>TIN No.: {{emptyStringIfNull(faculty.tin)}}</p>
+
+        <h1>Resident Address</h1>
+        <p>House/Block/Lot No.: {{emptyStringIfNull(faculty.r_lotNo)}}</p>
+        <p>Street: {{emptyStringIfNull(faculty.r_street)}}</p>
+        <p>Subdivision: {{emptyStringIfNull(faculty.r_village)}}</p>
+        <p>Barangay: {{emptyStringIfNull(faculty.r_brgy)}}</p>
+        <p>Municipality: {{emptyStringIfNull(faculty.r_city)}}</p>
+        <p>Province: {{emptyStringIfNull(faculty.r_province)}}</p>
+        <p>Zip: {{emptyStringIfNull(faculty.r_zipCode)}}</p>
+
+        <h1>Permanent Address</h1>
+        <p>House/Block/Lot No.: {{emptyStringIfNull(faculty.p_LotNo)}}</p>
+        <p>Street: {{emptyStringIfNull(faculty.p_street)}}</p>
+        <p>Subdivision: {{emptyStringIfNull(faculty.p_village)}}</p>
+        <p>Barangay: {{emptyStringIfNull(faculty.p_brgy)}}</p>
+        <p>Municipality: {{emptyStringIfNull(faculty.p_city)}}</p>
+        <p>Province: {{emptyStringIfNull(faculty.p_province)}}</p>
+        <p>Zip: {{emptyStringIfNull(faculty.p_zipCode)}}</p>
+
+
+        <h1>contact</h1>
+        <p>Email: {{emptyStringIfNull(faculty.email)}}</p>
+        <p>Alternate Email: {{emptyStringIfNull(faculty.altEmail)}}</p>
+        <p>Tel no: {{emptyStringIfNull(faculty.TelNo)}}</p>
+        <p>Mobile no: {{emptyStringIfNull(faculty.MobileNo)}}</p>
+
+        <button mat-raised-button (click)="onEditDialog(faculty._id)">Edit</button>
+
+      </div>
+
+
+
+  <!-- SECOND TAB -->
+  <!-- <mat-tab label = 'Educational Background'>
+
+    <button mat-raised-button (click)="openAddSchoolDialog()">Add School</button>    
+    <app-card-school></app-card-school>
+  </mat-tab> -->
+
+    <!-- 3rd TAB -->
+    <!-- <mat-tab label = 'Civil Service Eligibility'>
+
+      <button mat-raised-button (click)="openAddCivilDialog()">Add Civil</button>    
+      <app-card-civil></app-card-civil>
+    </mat-tab> -->
+
+        <!-- 4th TAB -->
+        <!-- <mat-tab label = 'Work Experience'>
+
+        <button mat-raised-button (click)="openAddWorkDialog()">Add Work</button>    
+        <app-card-work></app-card-work>
+        </mat-tab> -->
+      <!-- 5th TAB -->
+      <!-- <mat-tab label = 'Training'>
+
+      <button mat-raised-button (click)="openAddTrainingDialog()">Add Training</button>    
+      <app-card-training></app-card-training>
+      </mat-tab> -->

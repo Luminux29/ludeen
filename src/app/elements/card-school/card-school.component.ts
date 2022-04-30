@@ -25,6 +25,65 @@ export class CardSchoolComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.refreshSchoolData();
+
+  }
+
+  onDelete(id:string){
+
+    let willDelete = window.confirm("Are you sure you want to delete?");
+
+    if(willDelete){
+
+      this.schoolService.deleteSchool(id)
+      .subscribe(
+        res=>{
+  
+      
+          window.alert("Success!");
+         window.location.reload();
+  
+        },
+        err=>{
+  
+          console.log(err);
+          window.alert(err);
+  
+        }
+      );
+
+    }
+
+  }
+
+
+
+  onEditDialog(obj: any){
+
+    const dialogRef = this.dialog.open(DialogAddSchoolComponent, {
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res){
+
+        window.location.reload();
+
+      }
+    });
+
+
+
+  }
+
+  refreshSchoolData(){
+
+    this.schools.splice(0);
+    this.primarySchools.splice(0);
+    this.secondarySchools.splice(0);
+    this.collegeSchools.splice(0);
+    this.vocationalSchools.splice(0);
+    this.graduateSchools.splice(0);
 
     this.isLoading = true;
 
@@ -79,48 +138,32 @@ export class CardSchoolComponent implements OnInit {
 
   }
 
-  onDelete(id:string){
 
-    let willDelete = window.confirm("Are you sure you want to delete?");
+  presentIfStringIfNull(temp:any){
 
-    if(willDelete){
-
-      this.schoolService.deleteSchool(id)
-      .subscribe(
-        res=>{
-  
-        
-          window.alert("Success!");
-          window.location.reload();
-  
-        },
-        err=>{
-  
-          console.log(err);
-          window.alert(err);
-  
-        }
-      );
-
+    if (temp === undefined || temp === null || temp === '' || temp === 'null') {
+     return "Present";
+     }
+    else{
+      return temp;
     }
 
   }
 
-
-
-  onEditDialog(obj: any){
-
+  openAddSchoolDialog(){
     const dialogRef = this.dialog.open(DialogAddSchoolComponent, {
-      data: obj
+      data: null
     });
 
-    dialogRef.afterClosed().subscribe((res) => {
-    
-      if(res){
+    dialogRef.afterClosed().subscribe(result => {
+      //after closing dialog, refresh the table
+      if(result){
+
         window.location.reload();
-      }
-    });
 
+      }
+
+    });
 
 
   }

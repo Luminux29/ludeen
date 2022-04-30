@@ -42,5 +42,6 @@ export interface User{
     altEmail:string;
     status:string;
     role:string;
+    profilePic: string;
 
 }
