@@ -11,7 +11,7 @@ mat-card{
     max-width: 500px;
     width: 100%;
 }
-  
+
 .full-width {
     width: 100%;
     padding: 0px;
@@ -56,8 +56,8 @@ object-fit: contain;
  }
 
 .sig-preview img{
-  height: 50px;
-  width:200px;
+  height: 200px;
+  width: 200px;
 }
 
 mat-spinner {
@@ -66,4 +66,4 @@ mat-spinner {
 
 
 
-   
+
