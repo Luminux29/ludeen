@@ -623,7 +623,7 @@ export class ProfileInfoComponent implements OnInit {
 
   emptyStringIfNull(name:any){
 
-    if (name === undefined || name === null || name === '' || name === 'null') {
+    if (name === undefined || name === null || name === '' || name === 'null' || name === 'undefined') {
 
      return "";
      }
