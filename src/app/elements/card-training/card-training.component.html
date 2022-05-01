@@ -1,13 +1,13 @@
 <!--SHOW THIS IF LOADING-->
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
+<button mat-raised-button (click)="openAddTrainingDialog()">Add School</button>
 <!--ELSE SHOW THIS-->
 <main  *ngIf="trainings.length > 0 && !isLoading">
 
 
     
                 <h1>Training</h1>
-<button mat-raised-button (click)="openAddTrainingDialog()">Add School</button>
             
             <!-- INFORMATION -->
             <div *ngFor = "let training of trainings">
@@ -25,6 +25,8 @@
     
                     <button  mat-button color="primary" (click) ="onEditDialog(training)">Edit</button>
                     <button  mat-button color="warn" (click) = "onDelete(training._id)">Delete</button>
+
+                    <mat-divider></mat-divider>
          
             </div>
             

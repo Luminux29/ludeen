@@ -29,7 +29,7 @@ export class CardTrainingComponent implements OnInit {
 
         for(let i = 0; i < res.trainings.length; i++){
 
-          if(res.trainings[i].user_id){
+          if(res.trainings[i].user_id === this.userService.getUserId()){
 
             this.trainings.push(res.trainings[i]);
 

@@ -42,6 +42,33 @@ router.post("", checkAuth, (req,res,next) =>{
 
 });
 
+router.get('/:user_id',checkAuth ,(req,res,next) =>{
+
+    Work.find({user_id: req.params.user_id})
+    .then( work =>{
+       
+            res.status(200).json( {
+
+                message:"Success!",
+                works: work
+
+      }); 
+     })
+    .catch(err=>{
+
+        res.status(500).json({
+
+            message: "An error occured",
+            error: err
+
+        });
+
+    });
+
+
+
+});
+
 
 
 router.delete("/:id",checkAuth, (req,res,next) => {

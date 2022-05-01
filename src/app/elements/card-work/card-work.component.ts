@@ -87,6 +87,25 @@ export class CardWorkComponent implements OnInit {
 
   }
 
+    openAddWorkDialog(){
+
+    const dialogRef = this.dialog.open(DialogAddWorkComponent, {
+     data: null
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //after closing dialog, refresh the table
+      if(result){
+
+        window.location.reload();
+
+
+      }
+    });
+
+
+  }
+
   convertToPhp(temp: any){
 
     return "Php "+temp+".00"

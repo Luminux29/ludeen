@@ -64,6 +64,13 @@ getWorkUpdateListener(){
   return this.workUpdated.asObservable();
 }
 
+getWorksByUserId(user_id:string){
+
+  return this.http.get("http://localhost:3000/api/works/" + user_id)
+  .pipe(catchError(this.handleError));
+}
+
+
 
 updateWork(   id: string,
   toDate: Date,

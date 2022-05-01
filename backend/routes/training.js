@@ -167,6 +167,33 @@ router.delete("/:id",checkAuth, (req,res,next) => {
     
 });
 
+router.get('/:user_id',checkAuth ,(req,res,next) =>{
+
+    Training.find({user_id: req.params.user_id})
+    .then( training =>{
+       
+            res.status(200).json( {
+
+                message:"Success!",
+                trainings: training
+
+      }); 
+     })
+    .catch(err=>{
+
+        res.status(500).json({
+
+            message: "An error occured",
+            error: err
+
+        });
+
+    });
+
+
+
+});
+
 
 
 router.put("/:id",  multer({storage: storage}).single('certificate'), (req,res, next) =>{

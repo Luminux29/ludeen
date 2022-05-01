@@ -1,9 +1,9 @@
 export interface Civil{
-    nameOfCivilServiceEligibility: String;
-    rating: String;
+    nameOfCivilServiceEligibility: string;
+    rating: string;
     dateOfExamination: Date;
-    placeOfExamination: String;
-    licenseNo:String;
+    placeOfExamination: string;
+    licenseNo:string;
     user_id: string;
     dateOfValidity: Date
 

@@ -7,8 +7,6 @@
     <mat-spinner *ngIf="isLoading"></mat-spinner>
       <div class="profileInfo" *ngIf="!isLoading">
 
-        <!-- <img [src]="faculty.profilePic" class="pfp">   -->
-        <h1>PERSONAL INFO</h1>
         <p>Name: {{name}}</p>
         <p>Employee Number: {{emptyStringIfNull(faculty.EmployeeNumber)}}</p>
 

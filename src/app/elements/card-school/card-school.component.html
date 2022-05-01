@@ -1,6 +1,7 @@
 <!--SHOW THIS IF LOADING-->
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
+<button mat-raised-button (click)="openAddSchoolDialog()">Add School</button>
 <!--ELSE SHOW THIS-->
 <main  *ngIf="schools.length > 0 && !isLoading">
 
@@ -12,7 +13,6 @@
        
                 <h1>Elementary</h1>
       
-<button mat-raised-button (click)="openAddSchoolDialog()">Add School</button>
             
             <!-- INFORMATION -->
             <div *ngFor = "let primarySchool of primarySchools">

@@ -81,7 +81,9 @@
   
                 <!-- preview  -->
                 <div class= "sig-preview" *ngIf = "fileTitlePrev !== '' && fileTitlePrev">
-                    <a [href]="fileTitlePrev" target="_blank" rel="noopener noreferrer">Certificate File</a>
+                    <a *ngIf="mode ==='edit'" [href]="fileTitlePrev" target="_blank" rel="noopener noreferrer">Certificate File</a>
+                    <p *ngIf="mode ==='create'"  >{{fileTitle}}</p>
+
                 </div>
           
                 <!-- makikita -->

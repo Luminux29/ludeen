@@ -131,6 +131,11 @@ private trainingUpdated = new Subject<{trainings: Training[]}>();
       return this.http.delete("http://localhost:3000/api/trainings/" + id);
   }
   
+  getTrainingsByUserId(user_id:string){
+
+    return this.http.get("http://localhost:3000/api/trainings/" + user_id)
+    .pipe(catchError(this.handleError));
+  }
   
   
 private handleError(error: HttpErrorResponse) {
