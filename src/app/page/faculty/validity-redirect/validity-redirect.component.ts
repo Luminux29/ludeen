@@ -17,27 +17,33 @@ export class ValidityRedirectComponent implements OnInit {
 
 
     //get logged in user
-    // this.userService.getUser(this.userService.getUserId())
-    // .subscribe(res=>{
+    this.userService.getUser(this.userService.getUserId())
+    .subscribe(res=>{
 
 
-    //   this.user = res as User;
+      this.user = res as User;
 
-    //   this.status = this.user.status;
-    //   if(this.status === "Accepted"){
+      this.status = this.user.status;
+      if(this.status === "Accepted"){
 
-    //     this.router.navigate(['/faculty-dashboard']);
+      this.router.navigate(['/profile-info']);
 
-    //   }
-    // },
-    // err =>{
+      }
+    },
+    err =>{
 
   
     
 
 
-    // });
+    });
 
+
+  }
+
+  logout(){
+
+    this.userService.logout();
 
   }
 

@@ -25,7 +25,7 @@ export class UserService {
   private u_id: string;
   private role:string;
   public users: User[]=[];
-  private usersUpdated = new Subject<{users: User [], userCount: number}>();
+  private usersUpdated = new Subject<{users: User []}>();
 
 
   constructor(public http: HttpClient, public router: Router, private adminService: AdminServiceService) { }
@@ -52,6 +52,43 @@ export class UserService {
 
   }
 
+  getUsers(){
+
+    
+    this.http
+    .get<{message: string, users: User[]}>("http://localhost:3000/api/users")
+    .subscribe((userData) => {
+
+  
+        this.users = userData.users;
+        this.usersUpdated.next({
+          users : [...this.users]
+        });
+    });
+
+  }
+
+  updateFacultyStatus(id: string, status: string){
+
+    let data = {
+      status: status
+    }
+
+    return this.http
+    .put("http://localhost:3000/api/users/updatestatus/" + id, data)
+    .pipe(catchError(this.handleError));
+  
+
+  }
+
+  geUsersUpdateListener(){
+    return this.usersUpdated.asObservable();
+  }
+
+  deleteUser(u_id: string)
+  {
+      return this.http.delete("http://localhost:3000/api/users/" + u_id);
+  }
 
 
   //CREATE USER BY ADMIN  
@@ -139,7 +176,9 @@ export class UserService {
     facultyDataForm.append('password', password);
     facultyDataForm.append('TelNo', TelNo);
     facultyDataForm.append('MobileNo', MobileNo);
-    
+    facultyDataForm.append('status', "Pending");
+    facultyDataForm.append('role', "Faculty");
+
 
     return this.http.post("http://localhost:3000/api/users/signup", facultyDataForm)
     .pipe(

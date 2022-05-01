@@ -5,15 +5,14 @@
 </mat-toolbar>
   
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <mat-sidenav-container *ngIf="!isLoading && userService.getAuth()">
-  
+  <mat-sidenav-container *ngIf="!isLoading && userService.getAuth() && userService.getRole() !== 'Admin' && userService.getStatus() !== 'Pending'">  
     <mat-sidenav mode ="side" opened class="mat-elevation-z8">
   
     <img class="avatar mat-elevation-z8" [src]="userService.getPFP()"/>
   
     <h4 class="name">{{userService.getName()}}</h4>
   
-  <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
   
     <button mat-button class="menu-button" routerLink="profile-info" routerLinkActive="mat-accent">
         <mat-icon>person</mat-icon>
@@ -68,4 +67,4 @@
 
 </mat-sidenav-container>
 
-<router-outlet *ngIf="!userService.getAuth()"></router-outlet>
+<router-outlet *ngIf="!userService.getAuth() || userService.getStatus() === 'Pending' || userService.getRole() === 'Admin'"></router-outlet>

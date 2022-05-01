@@ -29,10 +29,7 @@ export class FacultyGuard implements CanActivate {
     
 
     }
-    else if(this.userService.getRole() ==='Student'){
-      this.router.navigate(['/dashboard']);
-      return false;
-    }
+
     else{
         this.router.navigate(['/admin-dashboard']);
         return false;

@@ -71,20 +71,20 @@ export class AccountCardComponent implements OnInit {
       }
     
  
-    //   this.userService.updateUser(user._id, user.f_name, user.l_name, user.email, user.role, user.e_sig, user.student_no, verdict, user.course, user.year, user.section)
-    //   .subscribe(
-    //     res=>{
+      this.userService.updateFacultyStatus(user._id, verdict)
+      .subscribe(
+        res=>{
 
-    //       window.alert("Faculty successfully updated!");
-    //       window.location.reload();
+          window.alert("Faculty successfully updated!");
+          window.location.reload();
 
-    //     },
-    //     err=>{
+        },
+        err=>{
 
-    //       window.alert("Error! " + err);
+          window.alert("Error! " + err);
 
-    //     }
-    //   )
+        }
+      )
 
 
   }

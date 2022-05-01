@@ -57,6 +57,35 @@ router.put("/changepass/:id", checkAuth, (req, res, next)=>{
 
 })
 
+router.put("/updatestatus/:id", checkAuth, (req, res, next)=>{
+    
+    
+    
+
+        User.updateOne({_id: req.params.id}, {
+
+            status: req.body.status
+
+        })
+        .then(result =>{
+            res.status(200).json({
+                message:'update successful',
+                result: result
+            });
+        })
+        .catch(err =>{
+    
+            res.status(500).json({
+                message: 'Something went wrong',
+                error: err
+            });
+        })
+
+
+
+
+})
+
 
 router.post("/signup", multer({storage: storage}).single('profilePic'), (req,res, next) =>{
 

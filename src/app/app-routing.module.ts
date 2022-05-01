@@ -40,7 +40,6 @@ const routes: Routes = [
   {path : 'myrequest', component: MyrequestComponent ,  canActivate: [AuthGuard, StudentGuard]},
   
   //ADMIN GUARDS
-  {path : 'admin-dashboard', component: AdminDashboardComponent,  canActivate: [AuthGuard, AdminGuard] },
   {path : 'accounts', component: AccountsComponent,  canActivate: [AuthGuard, AdminGuard] },
   {path : 'admin-request', component: AdminRequestComponent,  canActivate: [AuthGuard, AdminGuard] },
   {path : 'admin-settings', component: AdminSettingsComponent,  canActivate: [AuthGuard, AdminGuard] },
@@ -55,11 +54,12 @@ const routes: Routes = [
 
 
   //RAYMOND GUARDS
-  {path : 'profile-info', component: ProfileInfoComponent, canActivate: [AuthGuard]},
-  {path : 'school', component: CardSchoolComponent, canActivate: [AuthGuard]},
-  {path : 'work', component: CardWorkComponent, canActivate: [AuthGuard]},
-  {path : 'training', component: CardTrainingComponent, canActivate: [AuthGuard]},
-  {path : 'civil', component: CardCivilComponent, canActivate: [AuthGuard]}
+  {path : 'profile-info', component: ProfileInfoComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'school', component: CardSchoolComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'work', component: CardWorkComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'training', component: CardTrainingComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'civil', component: CardCivilComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'admin-dashboard', component: AdminDashboardComponent,  canActivate: [AuthGuard, AdminGuard]}
 
   
 ];
