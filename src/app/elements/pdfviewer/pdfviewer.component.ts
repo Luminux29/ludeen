@@ -151,6 +151,12 @@ export class PdfviewerComponent implements OnInit {
 
   }
 
+  onNoClick(){
+
+    this.dialogRef.close();
+
+  }
+
   async generatePDF(){
 
     //load Personal Form

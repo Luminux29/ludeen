@@ -62,8 +62,8 @@ export class AdminDashboardComponent implements OnInit {
   view(id:string){
 
     const dialogRef = this.dialog.open(PdfviewerComponent, {
-      height: '100%',
-      width: '40%',
+
+      disableClose: false,
       data: id
     });
 

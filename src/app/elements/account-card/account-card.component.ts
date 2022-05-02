@@ -18,6 +18,8 @@ export class AccountCardComponent implements OnInit {
   
   isLoading = false;
 
+  p_address: string;
+  r_address: string;
 
   constructor(private userService: UserService, private adminService: AdminServiceService) { }
 
@@ -30,6 +32,7 @@ export class AccountCardComponent implements OnInit {
       this.isLoading = false;
       console.log(userData['users']);
       this.users = userData['users'];
+      
     },
     err =>{
       console.log(err);
@@ -88,6 +91,82 @@ export class AccountCardComponent implements OnInit {
 
 
   }
+
+  }
+
+  
+  presentRequiredDate(date: Date){
+   
+    if(date){
+
+      return this.readableDate(date);
+
+    }
+
+    return "Present";
+
+
+  }
+
+  nullDateNotRequired(date: Date){
+
+    if(date){
+
+      return this.readableDate(date);
+
+    }
+
+    return "N/A";
+
+  }
+
+
+
+  readableDate(date : any){
+
+    let _date = new Date(date);
+
+    if(date){
+
+      return new Date(_date).toLocaleDateString();;
+
+    }
+    else{
+      return "Present"
+    }
+
+  }
+
+  noAssignmentStringIfNull(name:any){
+
+    if (name === undefined || name === null || name === '' || name === 'null') {
+
+     return "N/A";
+     }
+    else{
+      return name.toString();;
+    }
+
+  }
+
+  emptyStringIfNull(name:any){
+
+    if (name === undefined || name === null || name === '' || name === 'null' || name === 'undefined') {
+
+     return "";
+     }
+    else{
+      return name.toString();
+    }
+
+  }
+
+
+  getAge(bday: Date){
+
+    let timeDiff = Math.abs(Date.now() - new Date(bday).getTime());
+    let age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    return age;
 
   }
 

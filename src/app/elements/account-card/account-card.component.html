@@ -11,8 +11,36 @@
         </mat-expansion-panel-header>
            
         <!-- INFORMATION -->
-        <li><b>email: </b>{{user.email}}</li>
-        <li><b>status: </b>{{user.status}}</li>
+        <li><img [src]="user.profilePic"></li>
+        <li><b>EmployeeNumber: </b>{{noAssignmentStringIfNull(user.EmployeeNumber)}}</li>
+        <li><b>LastName: </b>{{user.LastName}}</li>
+        <li><b>FirstName: </b>{{user.FirstName}}</li>
+        <li><b>MI: </b>{{noAssignmentStringIfNull(user.MI)}}</li>
+        <li><b>birthdate: </b>{{readableDate(user.birthdate)}}</li>
+        <li><b>age: </b>{{getAge(user.birthdate)}}</li>
+        <li><b>gender: </b>{{noAssignmentStringIfNull(user.gender)}}</li>
+        <li><b>CivilStatus: </b>{{noAssignmentStringIfNull(user.CivilStatus)}}</li>
+        <li><b>height: </b>{{noAssignmentStringIfNull(user.height)}}</li>
+        <li><b>weight: </b>{{noAssignmentStringIfNull(user.weight)}}</li>
+        <li><b>BloodType: </b>{{noAssignmentStringIfNull(user.BloodType)}}</li>
+        <li><b>gsis: </b>{{noAssignmentStringIfNull(user.gsis)}}</li>
+        <li><b>pagibig: </b>{{noAssignmentStringIfNull(user.pagibig)}}</li>
+        <li><b>philHealth: </b>{{noAssignmentStringIfNull(user.philHealth)}}</li>
+        <li><b>sss: </b>{{noAssignmentStringIfNull(user.sss)}}</li>
+        <li><b>tin: </b>{{noAssignmentStringIfNull(user.tin)}}</li>
+        <li><b>citizenship: </b>{{noAssignmentStringIfNull(user.citizenship)}}</li>
+        <li><b>permanent address: </b>{{emptyStringIfNull(user.p_zipCode) + " "+ emptyStringIfNull(user.p_LotNo) + " "+ emptyStringIfNull(user.p_street) + " "+ emptyStringIfNull(user.p_village)  + " "+ emptyStringIfNull(user.p_brgy)   + " "+ emptyStringIfNull(user.p_city)+ " "+ emptyStringIfNull(user.p_province)}}</li>
+        <li><b>resident address: </b>{{emptyStringIfNull(user.r_zipCode) + " "+ emptyStringIfNull(user.r_lotNo) + " "+ emptyStringIfNull(user.r_street) + " "+ emptyStringIfNull(user.r_village)  + " "+ emptyStringIfNull(user.r_brgy)   + " "+ emptyStringIfNull(user.r_city)+ " "+ emptyStringIfNull(user.r_province)}}</li>
+        <li><b>TelNo: </b>{{noAssignmentStringIfNull(user.TelNo)}}</li>
+        <li><b>MobileNo: </b>{{noAssignmentStringIfNull(user.MobileNo)}}</li>
+        <li><b>email: </b>{{noAssignmentStringIfNull(user.email)}}</li>
+        <li><b>altEmail: </b>{{noAssignmentStringIfNull(user.altEmail)}}</li>
+        <li><b>gsis: </b>{{noAssignmentStringIfNull(user.gsis)}}</li>
+      
+
+
+      
+
         <!-- ACTION ROW -->
         <mat-action-row *ngIf="user.status !== 'Accepted'">
             <button  *ngIf = "user.status === 'Pending'"  mat-button color="primary" (click) = "acceptFaculty(user, 'Accept')">Accept</button>

@@ -27,6 +27,7 @@ import { CardTrainingComponent } from './elements/card-training/card-training.co
 import { CardCivilComponent } from './elements/card-civil/card-civil.component';
 import { ReverseAuthGuard } from './service/reverse-auth-guard';
 import { PdfviewerComponent } from './elements/pdfviewer/pdfviewer.component';
+import { CreateAdminComponent } from './page/create-admin/create-admin.component';
 const routes: Routes = [
 
 
@@ -60,8 +61,8 @@ const routes: Routes = [
   {path : 'work', component: CardWorkComponent, canActivate: [AuthGuard, FacultyGuard]},
   {path : 'training', component: CardTrainingComponent, canActivate: [AuthGuard, FacultyGuard]},
   {path : 'civil', component: CardCivilComponent, canActivate: [AuthGuard, FacultyGuard]},
-  {path : 'admin-dashboard', component: AdminDashboardComponent,  canActivate: [AuthGuard, AdminGuard]}
-
+  {path : 'admin-dashboard', component: AdminDashboardComponent,  canActivate: [AuthGuard, AdminGuard]},
+  {path : 'create-admin', component: CreateAdminComponent,  canActivate: [ReverseAuthGuard]}
   
 ];
 
