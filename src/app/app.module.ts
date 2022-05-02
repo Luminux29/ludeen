@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core'
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -57,7 +58,7 @@ import { ValidityRedirectComponent } from './page/faculty/validity-redirect/vali
 import { DialogAddSubjectComponent } from './elements/dialog-add-subject/dialog-add-subject.component';
 import { SettingsComponent } from './page/settings/settings.component';
 import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-change-pass.component';
-import { ProfileInfoComponent } from './page/profile-info/profile-info.component';
+import { ProfileInfoComponent } from './elements/profile-info/profile-info.component';
 import { DialogAddSchoolComponent } from './elements/dialog-add-school/dialog-add-school.component';
 import { CardSchoolComponent } from './elements/card-school/card-school.component';
 import { DialogAddCivilComponent } from './elements/dialog-add-civil/dialog-add-civil.component';
@@ -68,6 +69,9 @@ import { DialogAddTrainingComponent } from './elements/dialog-add-training/dialo
 import { CardTrainingComponent } from './elements/card-training/card-training.component';
 import { SideNavComponent } from './elements/side-nav/side-nav.component';
 import { PersonalInfoComponent } from './elements/personal-info/personal-info.component';
+import { PdfviewerComponent } from './elements/pdfviewer/pdfviewer.component';
+import { CreateAdminComponent } from './page/create-admin/create-admin.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,11 +113,14 @@ import { PersonalInfoComponent } from './elements/personal-info/personal-info.co
     DialogAddTrainingComponent,
     CardTrainingComponent,
     SideNavComponent,
-    PersonalInfoComponent
+    PersonalInfoComponent,
+    PdfviewerComponent,
+    CreateAdminComponent
   ],
   imports: [
     MatSidenavModule,
     MatDatepickerModule,
+    PdfViewerModule,
     MatDividerModule,
     BrowserModule,
     AppRoutingModule,
@@ -139,7 +146,7 @@ import { PersonalInfoComponent } from './elements/personal-info/personal-info.co
     MatSortModule,
     MatDialogModule,
     MatTabsModule,
-    PdfViewerModule
+    NgxExtendedPdfViewerModule
     
    
   ],

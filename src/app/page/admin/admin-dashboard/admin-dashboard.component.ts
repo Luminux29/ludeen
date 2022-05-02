@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { PdfviewerComponent } from 'src/app/elements/pdfviewer/pdfviewer.component';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
 
@@ -57,8 +59,18 @@ export class AdminDashboardComponent implements OnInit {
   }
 
 
-  view(){
+  view(id:string){
 
+    const dialogRef = this.dialog.open(PdfviewerComponent, {
+      height: '100%',
+      width: '40%',
+      data: id
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      //after closing dialog, refresh the table
+      this.refreshTable();
+    });
 
   }
 
@@ -73,7 +85,7 @@ export class AdminDashboardComponent implements OnInit {
 
   noAssignmentStringIfNull(name:any){
 
-    if (name === undefined || name === null || name === '' || name === 'null') {
+    if (name === undefined || name === null || name === '' || name === 'null' || name === 'undefined') {
 
      return "N/A";
      }
@@ -115,6 +127,7 @@ export class AdminDashboardComponent implements OnInit {
       .subscribe(res=>{
 
         window.alert("Success!");
+        this.refreshTable();
 
       },
       err =>{

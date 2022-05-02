@@ -134,6 +134,50 @@ router.post("/signup", multer({storage: storage}).single('profilePic'), (req,res
            password: hash,
            TelNo: req.body.TelNo,
            MobileNo: req.body.MobileNo,
+           profilePic: url +'/files/'+ req.file.filename,
+           role: 'Faculty',
+           status: 'Pending'
+
+         });
+
+
+        //save user
+        faculty.save()
+        .then(result => {
+
+            res.status(201).json({
+                message: 'User created',
+                result: result
+            });
+
+        })
+        .catch(err => {
+            res.status(500).json({
+                error:err,
+                message: "Error occurred."
+            });
+        })
+
+    });
+
+
+});
+
+
+router.post("/createadmin", multer({storage: storage}).single('profilePic'), (req,res, next) =>{
+
+    const url = req.protocol + '://'+ req.get('host');
+    bcrypt.hash(req.body.password, 10)
+    .then(hash =>{
+
+        const faculty = new User({
+
+          // profilePic: url+ '/files/' + req.file.filename,
+           LastName: req.body.LastName,
+           FirstName: req.body.FirstName,
+           email: req.body.email,
+           password: hash,
+           role: req.body.role,
            profilePic: url +'/files/'+ req.file.filename
 
          });
@@ -160,6 +204,7 @@ router.post("/signup", multer({storage: storage}).single('profilePic'), (req,res
 
 
 });
+
 
 router.get('/faculty/:status', checkAuth ,(req,res,next) =>{
 

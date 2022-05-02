@@ -27,8 +27,8 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "./node_modules/pspdfkit/dist/pspdfkit-lib/",
-                "output": "./assets/pspdfkit-lib/"
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "./assets/assets"
                 }
             ],
             "styles": [

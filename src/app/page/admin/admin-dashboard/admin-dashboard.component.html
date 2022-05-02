@@ -195,7 +195,7 @@
                         <th mat-header-cell *matHeaderCellDef>Actions</th>
                         <td mat-cell *matCellDef="let row">
                             <button mat-raised-button color="warn" (click)="deleteUser(row._id)">Delete</button>
-                            <button mat-raised-button color="primary" (click)="view()">View</button>
+                            <button mat-raised-button color="primary" (click)="view(row._id)">View</button>
 
                         </td>
                     </ng-container>

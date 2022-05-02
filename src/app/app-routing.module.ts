@@ -18,7 +18,7 @@ import { AdminRequestComponent } from './page/admin/admin-request/admin-request.
 import { MyrequestComponent } from './user/myrequest/myrequest.component';
 import { SubjectsComponent } from './page/admin/subjects/subjects.component';
 import { FacultyRequestComponent } from './page/faculty/faculty-request/faculty-request.component'
-import { ProfileInfoComponent } from './page/profile-info/profile-info.component';
+import { ProfileInfoComponent } from './elements/profile-info/profile-info.component';
 import { FacultyProfileComponent } from './page/faculty/faculty-profile/faculty-profile.component'
 import { ValidityRedirectComponent } from './page/faculty/validity-redirect/validity-redirect.component';
 import { CardSchoolComponent } from './elements/card-school/card-school.component';
@@ -26,6 +26,7 @@ import { CardWorkComponent } from './elements/card-work/card-work.component';
 import { CardTrainingComponent } from './elements/card-training/card-training.component';
 import { CardCivilComponent } from './elements/card-civil/card-civil.component';
 import { ReverseAuthGuard } from './service/reverse-auth-guard';
+import { PdfviewerComponent } from './elements/pdfviewer/pdfviewer.component';
 const routes: Routes = [
 
 

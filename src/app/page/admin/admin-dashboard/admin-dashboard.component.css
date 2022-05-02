@@ -5,6 +5,7 @@ table{
     border-spacing: 0;
     width: 100%;
     border: 1px solid #ddd;
+    height: 100%;
 
 }
 th, td {
@@ -14,5 +15,7 @@ th, td {
 
   .example-table-container{
 
-    overflow-x:auto
+    overflow-x:auto;
+    overflow-y:auto;
+
   }

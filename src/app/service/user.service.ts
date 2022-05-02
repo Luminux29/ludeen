@@ -14,6 +14,7 @@ import { AdminServiceService } from './admin-service.service';
 })
 export class UserService {
 
+  private _passcode = 'siVlysx3r6WK4GNw';
   private name : string; 
   private pfp: string;
   private status: string;
@@ -33,6 +34,11 @@ export class UserService {
 
 
  
+  getPassCode(){
+
+    return this._passcode;
+
+  }
 
   getCYS(){
 
@@ -88,6 +94,27 @@ export class UserService {
   deleteUser(u_id: string)
   {
       return this.http.delete("http://localhost:3000/api/users/" + u_id);
+  }
+
+  createAdmin(FirstName: string,
+    LastName: string,
+    email: string,
+    password: string,
+    profilePic: File){
+
+      const facultyDataForm = new FormData();
+      facultyDataForm.append('profilePic', profilePic, profilePic.name);
+    
+      facultyDataForm.append('password', password);
+      facultyDataForm.append("FirstName", FirstName);
+      facultyDataForm.append('LastName', LastName);
+      facultyDataForm.append('email', email);
+      facultyDataForm.append('role', 'Admin')
+
+      return this.http.post("http://localhost:3000/api/users/createadmin", facultyDataForm)
+      .pipe(
+        catchError(this.handleError)
+        );
   }
 
 
@@ -177,7 +204,6 @@ export class UserService {
     facultyDataForm.append('TelNo', TelNo);
     facultyDataForm.append('MobileNo', MobileNo);
     facultyDataForm.append('status', "Pending");
-    facultyDataForm.append('role', "Faculty");
 
 
     return this.http.post("http://localhost:3000/api/users/signup", facultyDataForm)

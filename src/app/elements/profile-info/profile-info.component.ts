@@ -7,6 +7,7 @@ import { DialogAddTrainingComponent } from 'src/app/elements/dialog-add-training
 import { DialogAddWorkComponent } from 'src/app/elements/dialog-add-work/dialog-add-work.component';
 import { UserService } from 'src/app/service/user.service';
 import { PDFDocument, StandardFonts, rgb, PDFFont, PDFForm } from 'pdf-lib'
+
 import { Font, FontNames, Encodings } from '@pdf-lib/standard-fonts';
 import { User } from 'src/app/models/user';
 import { SchoolService } from 'src/app/service/school.service';
