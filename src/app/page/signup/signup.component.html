@@ -1,5 +1,5 @@
 
-
+.
 
   <form [formGroup] = "mainForm" (submit) = "onRegister()">
 
@@ -10,354 +10,482 @@
 
       <mat-card-content>
 
+      <div class="container">
+
         <!-- ESIG -->
       <div style="margin-bottom: 2rem">
 
-        <!-- preview  -->
-        <div class= "sig-preview" *ngIf = "fileTitleProfilePicPrev !== '' && fileTitleProfilePicPrev">
-          <img [src] = "fileTitleProfilePicPrev" >
+
+
+
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4 center">
+            <!-- preview  -->
+            <div class= "profile-preview" *ngIf = "fileTitleProfilePicPrev !== '' && fileTitleProfilePicPrev">
+              <img [src] = "fileTitleProfilePicPrev" >
+            </div>
+          </div>
+          <div class="col-sm-4"></div>
+
         </div>
 
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4 center">
+            <button mat-flat-button class="btnUpload" color="primary" type="button" (click)="filePickerESig.click()">Upload Profile
+              <mat-icon>upload</mat-icon>
+            </button>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
         <!-- makikita -->
-        <button mat-button type="button" (click)="filePickerESig.click()">Upload your Profil Picture</button>
 
         <!-- invi -->
         <input type="file" #filePickerESig (change) = "onFilePickedProfilePic($event)" accept="image/png">
 
       </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Employee Number</mat-label>
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field class="txtField"  appearance="outline">
+            <mat-label>Employee Number</mat-label>
 
-          <input class="txtInput" type="text" matInput
-                formControlName="EmployeeNumber" name="EmployeeNumber"
-                placeholder="Employee Number" >
+            <input  type="text" matInput
+                  formControlName="EmployeeNumber" name="EmployeeNumber"
+                  placeholder="Employee Number" >
 
-        </mat-form-field>
+          </mat-form-field>
+        </div>
+      </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Last Name</mat-label>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field  class="txtField" appearance="outline">
+            <mat-label>Last Name</mat-label>
 
-          <input class="txtInput" type="text" matInput
-                formControlName="LastName" name="LastName"
-                placeholder="Last name" >
+            <input type="text" matInput
+                  formControlName="LastName" name="LastName"
+                  placeholder="Last name" >
 
-        </mat-form-field>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>First Name</mat-label>
 
-        <mat-form-field appearance="outline">
-          <mat-label>First Name</mat-label>
+            <input  type="text" matInput
+                  formControlName="FirstName" name="FirstName"
+                  placeholder="First name" >
 
-          <input class="txtInput" type="text" matInput
-                formControlName="FirstName" name="FirstName"
-                placeholder="First name" >
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Middle Initial</mat-label>
 
-        </mat-form-field>
+            <input type="text" matInput
+                  formControlName="MidInit" name="MidInit"
+                  placeholder="M.I." >
 
-        <mat-form-field appearance="outline">
-          <mat-label>Middle Initial</mat-label>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Name Extension</mat-label>
 
-          <input class="txtInput" type="text" matInput
-                formControlName="MidInit" name="MidInit"
-                placeholder="M.I." >
+            <input type="text" matInput
+            formControlName="NameExtention" name="NameExtention"
+                   placeholder="Name Extension" >
 
-        </mat-form-field>
+          </mat-form-field>
+        </div>
+      </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Name Extension</mat-label>
+      <div class="row">
+        <div class="col-sm-3">
+          <mat-form-field class="txtField" appearance="outline">
 
-          <input class="txtInput" type="text" matInput
-          formControlName="NameExtention" name="NameExtention"
-                 placeholder="Name Extension" >
+            <mat-label>Birthdate</mat-label>
+            <input  matInput [matDatepicker]="picker"
+            formControlName="birthdate" name="birthdate"
+            placeholder="MM/DD/YYYY"   (focus)="picker.open()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
 
-        </mat-form-field>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <!-- <mat-form-field  class="txtField" appearance="outline">
+            <mat-label>Age</mat-label>
 
-        <mat-form-field appearance="outline">
+            <input type="text" matInput
+            formControlName="age" name="age"
+                   placeholder="Age" >
 
-          <mat-label>Birthdate</mat-label>
-          <input class="txtInput" matInput [matDatepicker]="picker"
-          formControlName="birthdate" name="birthdate"
-          placeholder="MM/DD/YYYY"   (focus)="picker.open()">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field> -->
 
-        </mat-form-field>
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Citizenship</mat-label>
+            <input  matInput
+            formControlName="citizenship" name="citizenship"
+                   placeholder="Ex. xxx-xxx" >
+          </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Age</mat-label>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Place of Birth</mat-label>
 
-          <input class="txtInput" type="text" matInput
-          formControlName="age" name="age"
-                 placeholder="Age" >
+            <input type="text" matInput
+            formControlName="PlaceOfBirth" name="PlaceOfBirth"
+                   placeholder="Place of Birth" >
 
-        </mat-form-field>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender" name="gender">
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Place of Birth</mat-label>
+      <div class="row">
 
-          <input class="txtInput" type="text" matInput
-          formControlName="PlaceOfBirth" name="PlaceOfBirth"
-                 placeholder="Place of Birth" >
+        <div class="col-sm-3">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Civil Status</mat-label>
+              <mat-select formControlName="CivilStatus" name="CivilStatus">
+                <mat-option value="Single">Single</mat-option>
+                <mat-option value="Married">Married</mat-option>
+                <mat-option value="Divorced">Divorced</mat-option>
+                <mat-option value="Separated">Separated</mat-option>
+                <mat-option value="Widowed">Widowed</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
 
-        </mat-form-field>
+        <div class="col-sm-3">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Height</mat-label>
 
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Gender</mat-label>
-          <mat-select formControlName="gender" name="gender">
-              <mat-option value="Male">Male</mat-option>
-              <mat-option value="Female">Female</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <input type="text" matInput
+            formControlName="height" name="height"
+                   placeholder="Height" >
 
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Civil Status</mat-label>
-            <mat-select formControlName="CivilStatus" name="CivilStatus">
-              <mat-option value="Single">Single</mat-option>
-              <mat-option value="Married">Married</mat-option>
-              <mat-option value="Divorced">Divorced</mat-option>
-              <mat-option value="Separated">Separated</mat-option>
-              <mat-option value="Widowed">Widowed</mat-option>
-            </mat-select>
-        </mat-form-field>
+          </mat-form-field>
+        </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Height</mat-label>
+        <div class="col-sm-3">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Weight</mat-label>
 
-          <input class="txtInput" type="text" matInput
-          formControlName="height" name="height"
-                 placeholder="Height" >
+            <input type="text" matInput
+            formControlName="weight" name="weight"
+                   placeholder="Weight">
 
-        </mat-form-field>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Blood Type</mat-label>
+              <mat-select formControlName="BloodType" name="BloodType">
+                <mat-option value="A">A</mat-option>
+                <mat-option value="B">B</mat-option>
+                <mat-option value="AB">AB</mat-option>
+                <mat-option value="O">O</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Weight</mat-label>
 
-          <input class="txtInput" type="text" matInput
-          formControlName="weight" name="weight"
-                 placeholder="Weight">
-
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Blood Type</mat-label>
-            <mat-select formControlName="BloodType" name="BloodType">
-              <mat-option value="A">A</mat-option>
-              <mat-option value="B">B</mat-option>
-              <mat-option value="AB">AB</mat-option>
-              <mat-option value="O">O</mat-option>
-            </mat-select>
-        </mat-form-field>
 
         <mat-form-field class="txtField" appearance="outline">
           <mat-label>GSIS ID No.</mat-label>
-          <input class="txtInput" matInput
+          <input  matInput
           formControlName="gsis" name="gsis"
                  placeholder="Ex. xxx-xxx" >
         </mat-form-field>
 
         <mat-form-field class="txtField" appearance="outline">
           <mat-label>PAG-IBIG ID No.</mat-label>
-          <input class="txtInput" matInput
+          <input  matInput
           formControlName="pagibig" name="pagibig"
                  placeholder="Ex. xxx-xxx"  >
         </mat-form-field>
 
         <mat-form-field class="txtField" appearance="outline">
           <mat-label>PHILHEALTH No.</mat-label>
-          <input class="txtInput" matInput
+          <input  matInput
           formControlName="philHealth" name="philHealth"
                  placeholder="Ex. xxx-xxx" >
         </mat-form-field>
 
         <mat-form-field class="txtField" appearance="outline">
           <mat-label>SSS No.</mat-label>
-          <input class="txtInput" matInput
+          <input  matInput
           formControlName="sss" name="sss"
                  placeholder="Ex. xxx-xxx"  >
         </mat-form-field>
 
         <mat-form-field class="txtField" appearance="outline">
           <mat-label>TIN No.</mat-label>
-          <input class="txtInput" matInput
+          <input  matInput
           formControlName="tin" name="tin"
                  placeholder="Ex. xxx-xxx"  >
         </mat-form-field>
 
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Citizenship</mat-label>
-          <input class="txtInput" matInput
-          formControlName="citizenship" name="citizenship"
-                 placeholder="Ex. xxx-xxx" >
-        </mat-form-field><br>
+
+        <!-- <div class="row">
+          <div class="col-sm-12">
+            <mat-accordion>
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Resident Address
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+              </mat-expansion-panel>
+              </mat-accordion>
+          </div>
+        </div> -->
+
+
+
+          <mat-divider></mat-divider>
+          <br><h4>Resident Address</h4>
 
         <!--Resident Address-->
 
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Zip code</mat-label>
-          <input class="txtInput" matInput
-          formControlName="r_zipCode" name="r_zipCode"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>House/Block/Lot No.</mat-label>
-          <input class="txtInput" matInput
-          formControlName="r_lotNo" name="r_lotNo"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Street</mat-label>
-          <input class="txtInput" matInput
-          formControlName="r_street" name="r_street"
-                 placeholder="Ex. xxx-xxx">
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Subdivision/Village</mat-label>
-          <input class="txtInput" matInput
-          formControlName="r_village" name="r_village"
-                 placeholder="Ex. xxx-xxx">
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Barangay</mat-label>
-          <input class="txtInput" matInput
-          formControlName="r_brgy" name="r_brgy"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>City/Municipality</mat-label>
-          <input class="txtInput" matInput
-          formControlName="r_city" name="r_city"
-                 placeholder="Ex. xxx-xxx">
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Province</mat-label>
-          <input class="txtInput" matInput
-          formControlName="r_province" name="r_province"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field><br>
-
-        <!--Permanent Address-->
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Zip code</mat-label>
-          <input class="txtInput" matInput
-          formControlName="p_zipCode" name="p_zipCode"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>House/Block/Lot No.</mat-label>
-          <input class="txtInput" matInput
-          formControlName="p_LotNo" name="p_LotNo"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Street</mat-label>
-          <input class="txtInput" matInput
-          formControlName="p_street" name="p_street"
-                 placeholder="Ex. xxx-xxx">
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Subdivision/Village</mat-label>
-          <input class="txtInput" matInput
-          formControlName="p_village" name="p_village"
-                 placeholder="Ex. xxx-xxx">
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Barangay</mat-label>
-          <input class="txtInput" matInput
-          formControlName="p_brgy" name="p_brgy"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>City/Municipality</mat-label>
-          <input class="txtInput" matInput
-          formControlName="p_city" name="p_city"
-                 placeholder="Ex. xxx-xxx">
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Province</mat-label>
-          <input class="txtInput" matInput
-          formControlName="p_province" name="p_province"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field><br>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Telephone No.</mat-label>
-          <input class="txtInput" matInput
-          formControlName="TelNo" name="TelNo"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field><br>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Mobile No.</mat-label>
-          <input class="txtInput" matInput
-          formControlName="MobileNo" name="MobileNo"
-                 placeholder="Ex. xxx-xxx">
-
-        </mat-form-field><br>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Email</mat-label>
-          <input class="txtInput" type="email" matInput
-          formControlName="email" name="email"
-                 placeholder="Ex. pat@example.com">
-
-        </mat-form-field>
-
-        <mat-form-field class="txtField" appearance="outline">
-          <mat-label>Alternate Email</mat-label>
-          <input class="txtInput" type="email" matInput
-          formControlName="altEmail" name="altEmail"
-                 placeholder="Ex. pat@example.com">
-
-        </mat-form-field>
-
-        <mat-form-field class="loginField" appearance="outline">
-          <mat-label>Password</mat-label>
-          <input class="loginInput" matInput
-          formControlName="password" name="password"
-          [type]="hide ? 'password' : 'text'" placeholder="Password"  >
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <!--<mat-icon matSuffix>email</mat-icon>-->
-        </mat-form-field>
-
-        <mat-form-field class="loginField" appearance="outline">
-          <mat-label>Re-enter Password</mat-label>
-          <input class="loginInput" matInput
-          formControlName="reEnterPassword" name="reEnterPassword"
-          [type]="hide ? 'password' : 'text'" placeholder="Password" >
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <!--<mat-icon matSuffix>email</mat-icon>-->
-        </mat-form-field>
 
 
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Zip code</mat-label>
+                <input matInput
+                formControlName="r_zipCode" name="r_zipCode"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>House/Block/Lot No.</mat-label>
+                <input  matInput
+                formControlName="r_lotNo" name="r_lotNo"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Street</mat-label>
+                <input  matInput
+                formControlName="r_street" name="r_street"
+                       placeholder="Ex. xxx-xxx">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Subdivision/Village</mat-label>
+                <input  matInput
+                formControlName="r_village" name="r_village"
+                       placeholder="Ex. xxx-xxx">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Barangay</mat-label>
+                <input  matInput
+                formControlName="r_brgy" name="r_brgy"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>City/Municipality</mat-label>
+                <input  matInput
+                formControlName="r_city" name="r_city"
+                       placeholder="Ex. xxx-xxx">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Province</mat-label>
+                <input  matInput
+                formControlName="r_province" name="r_province"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <mat-divider></mat-divider>
+          <br><h4>Permanent Address</h4>
+          <!--Permanent Address-->
+
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Zip code</mat-label>
+                <input  matInput
+                formControlName="p_zipCode" name="p_zipCode"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>House/Block/Lot No.</mat-label>
+                <input  matInput
+                formControlName="p_LotNo" name="p_LotNo"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Street</mat-label>
+                <input  matInput
+                formControlName="p_street" name="p_street"
+                       placeholder="Ex. xxx-xxx">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Subdivision/Village</mat-label>
+                <input  matInput
+                formControlName="p_village" name="p_village"
+                       placeholder="Ex. xxx-xxx">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Barangay</mat-label>
+                <input  matInput
+                formControlName="p_brgy" name="p_brgy"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>City/Municipality</mat-label>
+                <input  matInput
+                formControlName="p_city" name="p_city"
+                       placeholder="Ex. xxx-xxx">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Province</mat-label>
+                <input  matInput
+                formControlName="p_province" name="p_province"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider><br>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Telephone No.</mat-label>
+                <input  matInput
+                formControlName="TelNo" name="TelNo"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+              <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Mobile No.</mat-label>
+                <input  matInput
+                formControlName="MobileNo" name="MobileNo"
+                       placeholder="Ex. xxx-xxx">
+
+              </mat-form-field>
+            </div>
+          </div>
+
+
+
+
+
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="txtField" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input  type="email" matInput
+              formControlName="email" name="email"
+                     placeholder="Ex. pat@example.com">
+
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field class="txtField" appearance="outline">
+              <mat-label>Alternate Email</mat-label>
+              <input  type="email" matInput
+              formControlName="altEmail" name="altEmail"
+                     placeholder="Ex. pat@example.com">
+
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="txtField" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input class="loginInput" matInput
+                formControlName="password" name="password"
+                [type]="hide ? 'password' : 'text'" placeholder="Password"  >
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <!--<mat-icon matSuffix>email</mat-icon>-->
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+            <mat-form-field class="txtField" appearance="outline">
+              <mat-label>Re-enter Password</mat-label>
+              <input class="loginInput" matInput
+                formControlName="reEnterPassword" name="reEnterPassword"
+                [type]="hide ? 'password' : 'text'" placeholder="Password" >
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            <!--<mat-icon matSuffix>email</mat-icon>-->
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="rows">
+          <button class="btn positive" mat-flat-button color="primary" type="submit">Register</button>
+          <button class="btn negative" mat-flat-button color="primary"  routerLink="/sign-in">Back</button>
+          </div>
+      </div>
       </mat-card-content>
+
+
       <mat-card-actions>
-        <button mat-flat-button color="primary" type="submit">Register</button>
-        <button mat-flat-button color="accent"  routerLink="/sign-in">Back</button>
 
       </mat-card-actions>
     </mat-card>

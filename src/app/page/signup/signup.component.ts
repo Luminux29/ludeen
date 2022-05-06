@@ -20,58 +20,14 @@ export class SignupComponent implements OnInit {
   imagePreviewESig: string;
   isLoading = false;
   selectedRole: string;
-  public roles: any = [
-    {value : "Student"}, 
-    {value: "Faculty"}, 
-    {value: "Admin"}];
 
-    public years: any = [
-      {value : 1},
-      {value : 2},
-      {value : 3},
-      {value : 4}
-    ];
-
-    public courses: any = [
-      {value : 'BSIT'},
-      {value : 'BLIS'}
-    ];
-
-    public sections: any = [
-      {value : 'A'},
-      {value : 'B'},
-      {value : 'C'},
-      {value : 'D'},
-      {value : 'E'},
-      {value : 'F'},
-      {value : 'G'},
-      {value : 'H'},
-      {value : 'I'},
-      {value : 'J'},
-      {value : 'K'},
-      {value : 'L'},
-      {value : 'M'},
-      {value : 'N'},
-      {value : 'O'},
-      {value : 'P'},
-      {value : 'Q'},
-      {value : 'R'},
-      {value : 'S'},
-      {value : 'T'},
-      {value : 'U'},
-      {value : 'V'},
-      {value : 'W'},
-      {value : 'X'},
-      {value : 'Y'},
-      {value : 'Z'}
-    ];
 
 
 
 
   constructor(private userService: UserService, private router: Router) { }
 
-  
+
   ngOnInit(): void {
 
     this.mainForm = new FormGroup({
@@ -124,7 +80,7 @@ export class SignupComponent implements OnInit {
   }
 
   onRegister(){
-    
+
 
     if(this.mainForm.invalid){
       console.log("Invalid yung mainForm");
@@ -184,13 +140,13 @@ export class SignupComponent implements OnInit {
     },
     error=>{
       window.alert('Error! ' +error.error['message']);
-      
+
       console.log(error)
     });
 
   }
 
-  
+
   onFilePickedProfilePic(event: Event){
 
     const file = (event.target as HTMLInputElement).files[0];
@@ -205,8 +161,6 @@ export class SignupComponent implements OnInit {
 
   }
 
-  
-
 
   public findInvalidControls() {
     const invalid = [];
@@ -220,7 +174,7 @@ export class SignupComponent implements OnInit {
   }
 
 
-  
+
 
 
 }

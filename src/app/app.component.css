@@ -9,9 +9,9 @@
 
 .avatar{
 
-    margin-top: 16px;
-    width: 100px;
-    height: 100px;
+    margin-top: 50px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
 
 }
@@ -33,24 +33,17 @@ mat-divider {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-mat-toolbar {
-    background: #004a9f;
-    color: white;
-}
 
 mat-sidenav {
-    margin: 16px;
-    width: 200px;
+    width: 20%;
     border-right: none;
-    background: #002b5c;
+    background: #1c253d;
     color: white;
-    border-radius: 10px;
-    padding: 16px;
     text-align: center;
 }
 
 .content {
-   
+
     border-radius: 10px;
     margin: 16px;
     margin-left: 32px;
@@ -62,7 +55,7 @@ mat-sidenav {
 }
 
 mat-sidenav-container {
-    height: calc(100vh - 65px);
+    height: 100%;
 }
 
 .menu-button {
@@ -70,9 +63,15 @@ mat-sidenav-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    padding-left: 15%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
 }
 mat-icon {
-    margin-right: 8px;
+    margin-right: 10px;
+}
+
+mat-accent{
+  background-color: #5a68f0;
 }

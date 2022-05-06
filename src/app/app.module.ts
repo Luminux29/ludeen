@@ -23,7 +23,6 @@ import { MatNativeDateModule } from '@angular/material/core'
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -146,9 +145,9 @@ import { CreateAdminComponent } from './page/create-admin/create-admin.component
     MatSortModule,
     MatDialogModule,
     MatTabsModule,
-    NgxExtendedPdfViewerModule
-    
-   
+
+
+
   ],
   providers: [{provide: HTTP_INTERCEPTORS , useClass : AuthInterceptor, multi:true}],
   bootstrap: [AppComponent]
