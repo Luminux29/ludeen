@@ -1,11 +1,10 @@
 
-.
 
   <form [formGroup] = "mainForm" (submit) = "onRegister()">
 
-    <mat-card>
+    <mat-card class="mat-elevation-z8">
       <mat-card-header>
-        <mat-card-title>Personal Information</mat-card-title>
+        <mat-card-title>Sign Up</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
@@ -25,6 +24,7 @@
             <div class= "profile-preview" *ngIf = "fileTitleProfilePicPrev !== '' && fileTitleProfilePicPrev">
               <img [src] = "fileTitleProfilePicPrev" >
             </div>
+
           </div>
           <div class="col-sm-4"></div>
 

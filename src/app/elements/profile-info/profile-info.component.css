@@ -1,0 +1,53 @@
+.profileInfo{
+  padding: 50px;
+}
+p{
+  color: white;
+}
+mat-icon{
+  transform: scale(1.2);
+}
+
+.edit-button{
+  color: #fff;
+  position:fixed;
+
+	bottom:15%;
+	right:4%;
+}
+.print-button{
+  position:fixed;
+
+	bottom:5%;
+	right:4%;
+  background-color: #5a68f0;
+}
+.col-sm-3{
+  font-weight: 500;
+
+}
+.col-sm-9{
+  font-family: 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+
+}
+h1{
+  font-weight: 600;
+  color: #fff;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  padding-left: 100px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.row{
+  margin-left: 20%;
+}
+
+mat-spinner{
+  margin:0 auto;
+
+}
+mat-divider{
+  margin-top: 50px;
+}
+

@@ -31,10 +31,10 @@ mat-form-field.txtField {
    margin-top: 30px;
 }
 .positive{
-  background-color: #2ba9c8;
+  background-color: #5a68f0;
 }
 .negative{
-  background-color: #2b79c8;
+  background-color: #f05a5a;
 }
 
 
@@ -48,7 +48,7 @@ mat-form-field.txtField {
 
 .signUpLink{
   font-weight: bold;
-  color: #2ba9c8;
+  color: #f05a5a;
   cursor: pointer;
 
 }

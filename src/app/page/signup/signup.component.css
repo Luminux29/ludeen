@@ -44,11 +44,12 @@ mat-card-title{
   margin-bottom: 10px;
 }
 .positive{
-  background-color: #2ba9c8;
+  background-color: #5a68f0;
 }
 .negative{
-  background-color: #2b79c8;
+  background-color: #f05a5a;
 }
+
 mat-form-field.full-width {
   font-size: 12px;
   margin: 0px;

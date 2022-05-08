@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = mongoose.Schema({
-   
+
     email: { type: String, required: true, unique: true },
     password: {type: String, required: true},
     status: {type: String, enum: ['Pending', 'Rejected', 'Accepted'], required: false, default:"Pending"},
     rejectedReason  : {type: String, required: false, default: null},
-    
+
   profilePic: {type: String, required: false},
   EmployeeNumber: {type: String, required: false},
   LastName: {type: String, required: false},
@@ -46,10 +46,10 @@ const userSchema = mongoose.Schema({
   TelNo: {type: String, required: false},
   MobileNo: {type: String, required: false},
   status: {type: String, default:"Pending"},
-  role: {type: String, required: true, default:"Admin"}
+  role: {type: String, required: true}
 
 
-    
+
 });
 
 userSchema.plugin(uniqueValidator);

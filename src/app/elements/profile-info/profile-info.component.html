@@ -1,58 +1,196 @@
-  <button (click) ="printPDF()" mat-raised-button color="accent">Print PDF</button>
+<mat-spinner [diameter]="30"
+
+style="
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);"
+
+*ngIf="isLoading"></mat-spinner>
+
+
+<div class="float-buttons">
+  <button class="print-button" (click) ="printPDF()" mat-fab color="primary"
+    matTooltip="Print PDF"
+        matTooltipPosition="left">
+    <mat-icon>print</mat-icon></button>
+    <button mat-fab (click)="onEditDialog(faculty._id)" class="edit-button" color="accent"
+    matTooltip="Edit Profile"
+        matTooltipPosition="left">
+      <mat-icon>edit</mat-icon>
+    </button>
+</div>
+
 
 
   <!-- FIRST TAB - PERSONAL INFO -->
-  <h1>Personal Info</h1>
 
-    <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+
       <div class="profileInfo" *ngIf="!isLoading">
 
-        <p>Name: {{name}}</p>
-        <p>Employee Number: {{emptyStringIfNull(faculty.EmployeeNumber)}}</p>
+        <h1>Personal Info</h1>
 
-        <p>Date of Birth: {{readableDate(faculty.birthdate)}}</p>
-        <p>Age: {{getAge(faculty.birthdate)}}</p>
-        <p>place of birth: {{emptyStringIfNull(faculty.PlaceOfBirth)}}</p>
-        <p>Sex: {{emptyStringIfNull(faculty.gender)}}</p>
-        <p>Civil status: {{emptyStringIfNull(faculty.CivilStatus)}}</p>
-        <p>Height : {{emptyStringIfNull(faculty.height)}}</p>
-        <p>Weight: {{emptyStringIfNull(faculty.weight)}}</p>
-        <p>Blood type: {{emptyStringIfNull(faculty.BloodType)}}</p>
-        <p>citizenship: {{emptyStringIfNull(faculty.citizenship)}}</p>
+        <div class="row">
+          <div class="col-sm-3"><p>Name: </p></div>
+          <div class="col-sm-9"><p>{{name}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Employee Number: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.EmployeeNumber)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Date of Birth: </p></div>
+          <div class="col-sm-9"><p>{{readableDate(faculty.birthdate)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Age: </p></div>
+          <div class="col-sm-9"><p>{{getAge(faculty.birthdate)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Place of birth: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.PlaceOfBirth)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Sex: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.gender)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Civil status: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.CivilStatus)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Height: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.height)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Weight: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.weight)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Blood type: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.BloodType)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Citizenship: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.citizenship)}}</p></div>
+        </div>
+        <mat-divider></mat-divider>
 
         <h1>Government</h1>
-        <p>GSIS ID No.: {{emptyStringIfNull(faculty.gsis)}}</p>
-        <p>PAGIBIG ID No.: {{emptyStringIfNull(faculty.pagibig)}}</p>
-        <p>PhilHealth ID No.: {{emptyStringIfNull(faculty.philHealth)}}</p>
-        <p>SSS No.: {{emptyStringIfNull(faculty.sss)}}</p>
-        <p>TIN No.: {{emptyStringIfNull(faculty.tin)}}</p>
+        <div class="row">
+          <div class="col-sm-3"><p>GSIS ID No.: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.gsis)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>PAGIBIG ID No.: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.pagibig)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>PhilHealth ID No.: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.philHealth)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>SSS No.: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.sss)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>TIN No.: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.tin)}}</p></div>
+        </div>
+        <mat-divider></mat-divider>
+
 
         <h1>Resident Address</h1>
-        <p>House/Block/Lot No.: {{emptyStringIfNull(faculty.r_lotNo)}}</p>
-        <p>Street: {{emptyStringIfNull(faculty.r_street)}}</p>
-        <p>Subdivision: {{emptyStringIfNull(faculty.r_village)}}</p>
-        <p>Barangay: {{emptyStringIfNull(faculty.r_brgy)}}</p>
-        <p>Municipality: {{emptyStringIfNull(faculty.r_city)}}</p>
-        <p>Province: {{emptyStringIfNull(faculty.r_province)}}</p>
-        <p>Zip: {{emptyStringIfNull(faculty.r_zipCode)}}</p>
+
+        <div class="row">
+          <div class="col-sm-3"><p>House/Block/Lot No.: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.r_lotNo)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Street: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.r_street)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Subdivision: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.r_village)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Barangay: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.r_brgy)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>City/Municipality: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.r_city)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Province: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.r_province)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Zip: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.r_zipCode)}}</p></div>
+        </div>
+        <mat-divider></mat-divider>
+
 
         <h1>Permanent Address</h1>
-        <p>House/Block/Lot No.: {{emptyStringIfNull(faculty.p_LotNo)}}</p>
-        <p>Street: {{emptyStringIfNull(faculty.p_street)}}</p>
-        <p>Subdivision: {{emptyStringIfNull(faculty.p_village)}}</p>
-        <p>Barangay: {{emptyStringIfNull(faculty.p_brgy)}}</p>
-        <p>Municipality: {{emptyStringIfNull(faculty.p_city)}}</p>
-        <p>Province: {{emptyStringIfNull(faculty.p_province)}}</p>
-        <p>Zip: {{emptyStringIfNull(faculty.p_zipCode)}}</p>
+        <div class="row">
+          <div class="col-sm-3"><p>House/Block/Lot No.: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.p_LotNo)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Street: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.p_street)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Subdivision: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.p_village)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Barangay: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.p_brgy)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>City/Municipality: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.p_city)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Province: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.p_province)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Zip: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.p_zipCode)}}</p></div>
+        </div>
+        <mat-divider></mat-divider>
 
 
-        <h1>contact</h1>
-        <p>Email: {{emptyStringIfNull(faculty.email)}}</p>
-        <p>Alternate Email: {{emptyStringIfNull(faculty.altEmail)}}</p>
-        <p>Tel no: {{emptyStringIfNull(faculty.TelNo)}}</p>
-        <p>Mobile no: {{emptyStringIfNull(faculty.MobileNo)}}</p>
 
-        <button mat-raised-button (click)="onEditDialog(faculty._id)">Edit</button>
+        <h1>Contacts</h1>
+
+
+        <div class="row">
+          <div class="col-sm-3"><p>Email: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.email)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Alternate Email: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.altEmail)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Tel no: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.TelNo)}}</p></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3"><p>Mobile no: </p></div>
+          <div class="col-sm-9"><p>{{emptyStringIfNull(faculty.MobileNo)}}</p></div>
+        </div>
+        <mat-divider></mat-divider>
+
+
 
       </div>
 
@@ -61,26 +199,26 @@
   <!-- SECOND TAB -->
   <!-- <mat-tab label = 'Educational Background'>
 
-    <button mat-raised-button (click)="openAddSchoolDialog()">Add School</button>    
+    <button mat-raised-button (click)="openAddSchoolDialog()">Add School</button>
     <app-card-school></app-card-school>
   </mat-tab> -->
 
     <!-- 3rd TAB -->
     <!-- <mat-tab label = 'Civil Service Eligibility'>
 
-      <button mat-raised-button (click)="openAddCivilDialog()">Add Civil</button>    
+      <button mat-raised-button (click)="openAddCivilDialog()">Add Civil</button>
       <app-card-civil></app-card-civil>
     </mat-tab> -->
 
         <!-- 4th TAB -->
         <!-- <mat-tab label = 'Work Experience'>
 
-        <button mat-raised-button (click)="openAddWorkDialog()">Add Work</button>    
+        <button mat-raised-button (click)="openAddWorkDialog()">Add Work</button>
         <app-card-work></app-card-work>
         </mat-tab> -->
       <!-- 5th TAB -->
       <!-- <mat-tab label = 'Training'>
 
-      <button mat-raised-button (click)="openAddTrainingDialog()">Add Training</button>    
+      <button mat-raised-button (click)="openAddTrainingDialog()">Add Training</button>
       <app-card-training></app-card-training>
       </mat-tab> -->
