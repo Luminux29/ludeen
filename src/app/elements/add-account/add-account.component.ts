@@ -117,7 +117,6 @@ export class AddAccountComponent implements OnInit {
           this.mainForm.patchValue({gender : this.user.gender});
           this.mainForm.patchValue({CivilStatus : this.user.CivilStatus});
           this.mainForm.patchValue({height : this.user.height});
-          this.mainForm.patchValue({height : this.user.CivilStatus});
           this.mainForm.patchValue({weight : this.user.weight});
           this.mainForm.patchValue({BloodType : this.user.BloodType});
           this.mainForm.patchValue({gsis : this.user.gsis});
@@ -215,8 +214,8 @@ export class AddAccountComponent implements OnInit {
          this.mainForm.value.altEmail,
          this.mainForm.value.TelNo,
          this.mainForm.value.MobileNo,
-         this.mainForm.value.status,
-         this.mainForm.value.role)
+         this.user.status,
+         this.user.role)
          
         .subscribe(
           response =>{

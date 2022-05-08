@@ -46,7 +46,7 @@ const userSchema = mongoose.Schema({
   TelNo: {type: String, required: false},
   MobileNo: {type: String, required: false},
   status: {type: String, default:"Pending"},
-  role: {type: String, required: true}
+  role: {type: String, enum: ['Admin','Faculty'],required: true}
 
 
 
