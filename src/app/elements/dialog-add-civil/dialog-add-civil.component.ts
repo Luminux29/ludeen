@@ -10,7 +10,7 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./dialog-add-civil.component.css']
 })
 export class DialogAddCivilComponent implements OnInit {
-  
+
   //VARIABLES
   isLoading = false;
   mode : string;
@@ -19,17 +19,17 @@ export class DialogAddCivilComponent implements OnInit {
   //INJECT SERVICES
   constructor(
     public dialogRef: MatDialogRef<DialogAddCivilComponent>,
-    private civilService: CivilService, 
+    private civilService: CivilService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private userService: UserService) { }
 
   //CHECK IF MODE IS EDIT OR CREATE
   ngOnInit(): void {
 
-    
-    //create form 
+
+    //create form
     this.form = new FormGroup({
-      
+
       'nameOfCivilServiceEligibility' : new FormControl(null, {validators:[Validators.required]}),
       'rating' : new FormControl(null),
       'dateOfExamination' : new FormControl(null, {validators:[Validators.required]}),
@@ -37,7 +37,7 @@ export class DialogAddCivilComponent implements OnInit {
       'licenseNo' : new FormControl(null),
       'dateOfValidity' : new FormControl(null)
     })
-    
+
     //if data is null, mode is create, else it is edit
     this.mode = 'create';
 
@@ -60,13 +60,11 @@ export class DialogAddCivilComponent implements OnInit {
     if(this.form.invalid){
       return;
     }
-
-    if(this.mode === 'create'){ 
-
-      //to create 
-      this.civilService.addCivil(  this.form.value.nameOfCivilServiceEligibility,
+    if(this.mode === 'create'){
+        //to create
+        this.civilService.addCivil(  this.form.value.nameOfCivilServiceEligibility,
         this.form.value.rating,
-      this.form.value.dateOfExamination,
+        this.form.value.dateOfExamination,
         this.form.value.placeOfExamination,
         this.form.value.licenseNo,
         this.userService.getUserId(),
@@ -85,10 +83,8 @@ export class DialogAddCivilComponent implements OnInit {
             window.alert("Error!");
 
           });
-
-
-
     }
+
     else {
         //to edit
         this.civilService.updateCivil(

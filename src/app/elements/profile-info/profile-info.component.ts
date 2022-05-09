@@ -42,7 +42,7 @@ export class ProfileInfoComponent implements OnInit {
   trainings: Training[]=[];
 
   constructor(private userService: UserService,
-    private dialog : MatDialog, 
+    private dialog : MatDialog,
     private schoolService: SchoolService,
     private civilService: CivilService,
     private workService: WorkService,
@@ -62,7 +62,7 @@ export class ProfileInfoComponent implements OnInit {
 
       this.faculty = res;
 
-      this.name = this.faculty.LastName + ", "+this.faculty.FirstName+ " "+ this.emptyStringIfNull(this.faculty.NameExtention) + " " + this.emptyStringIfNull(this.faculty.MI); 
+      this.name = this.faculty.LastName + ", "+this.faculty.FirstName+ " "+ this.emptyStringIfNull(this.faculty.NameExtention) + " " + this.emptyStringIfNull(this.faculty.MI);
       this.profilePicPath = this.faculty.profilePic;
 
       //get user's school information
@@ -72,7 +72,7 @@ export class ProfileInfoComponent implements OnInit {
         let mySchools = res['schools'];
 
 
-        //push schools according to type 
+        //push schools according to type
         for(let i = 0; i < mySchools.length; i++){
 
           if(mySchools[i].type === 'Elementary' ){
@@ -103,7 +103,7 @@ export class ProfileInfoComponent implements OnInit {
 
         }
 
-        
+
         for(let i = 0; i < mySchools.length; i++){
 
           if(mySchools[i].type === 'College' ){
@@ -129,7 +129,7 @@ export class ProfileInfoComponent implements OnInit {
         this.civilService.getCivilByUserId(this.userService.getUserId())
         .subscribe(res=>{
 
-      
+
 
           this.civils = res['civils'];
           //get work experience
@@ -149,7 +149,7 @@ export class ProfileInfoComponent implements OnInit {
             })
 
           })
-          
+
 
         },
         err=>{
@@ -160,7 +160,7 @@ export class ProfileInfoComponent implements OnInit {
 
 
       })
-      
+
 
     })
 
@@ -184,7 +184,7 @@ export class ProfileInfoComponent implements OnInit {
     //get bold font
     const fontBold = await personalDoc.embedFont(StandardFonts.HelveticaBold);
 
-  
+
     //get fields
     const pfpField = form.getButton('pfp')
     const nameField = form.getTextField('Name')
@@ -281,10 +281,10 @@ export class ProfileInfoComponent implements OnInit {
     form.flatten();
 
 
-    //create main document 
+    //create main document
     const pdfDoc = await PDFDocument.create();
 
-    //copy created form to main document 
+    //copy created form to main document
     const [existingPage1] = await pdfDoc.copyPages(personalDoc, [0])
     const [existingPage2] = await pdfDoc.copyPages(personalDoc, [1])
     pdfDoc.addPage(existingPage1)
@@ -298,14 +298,14 @@ export class ProfileInfoComponent implements OnInit {
 
       //loop education entry
       for(let i = 0; i < this.schools.length; i++){
-        
+
         //load educational from pdf from assets/files folder
         const educationalFormUrl = 'assets/files/Educational_Background_Form.pdf';
         const educationFormPdfBytes = await fetch(educationalFormUrl).then(res => res.arrayBuffer());
         const educationDoc = await PDFDocument.load(educationFormPdfBytes);
         const fontBold = await educationDoc.embedFont(StandardFonts.HelveticaBold);
-        
-        
+
+
         //get form
         const educForm = educationDoc.getForm();
 
@@ -339,12 +339,12 @@ export class ProfileInfoComponent implements OnInit {
         if (type === "PDFTextField"){
           educForm.getTextField(name).updateAppearances(fontBold);
       }})
-      
+
 
       //flatten form
       educForm.flatten();
 
-      //add education form to main document 
+      //add education form to main document
       const [educPage] = await pdfDoc.copyPages(educationDoc, [0]);
       pdfDoc.addPage(educPage)
 
@@ -353,7 +353,7 @@ export class ProfileInfoComponent implements OnInit {
       }
     }
 
-  
+
     //load Civil Background Form Url
 
     //if there are civil entry, proceed
@@ -367,11 +367,11 @@ export class ProfileInfoComponent implements OnInit {
           const civilFormPdfBytes = await fetch(civilFormUrl).then(res => res.arrayBuffer());
           const civilDoc = await PDFDocument.load(civilFormPdfBytes);
         const fontBold = await civilDoc.embedFont(StandardFonts.HelveticaBold);
-          
-          
+
+
           //get form
           const civilForm = civilDoc.getForm();
-  
+
           //get form fields
           const nameField = civilForm.getTextField('name');
           const ratingField = civilForm.getTextField('rating');
@@ -379,7 +379,7 @@ export class ProfileInfoComponent implements OnInit {
           const placeOfExamField = civilForm.getTextField('place_of_exam');
           const licenseField = civilForm.getTextField('license');
           const dateOfValidField = civilForm.getTextField('date_of_valid');
-         
+
           //set form fields
           nameField.setText(this.civils[i].nameOfCivilServiceEligibility);
           ratingField.setText(this.noAssignmentStringIfNull(this.civils[i].rating));
@@ -387,9 +387,9 @@ export class ProfileInfoComponent implements OnInit {
           placeOfExamField.setText(this.noAssignmentStringIfNull(this.civils[i].placeOfExamination));
           licenseField.setText(this.noAssignmentStringIfNull(this.civils[i].licenseNo));
           dateOfValidField.setText(this.nullDateNotRequired(this.civils[i].dateOfValidity));
-              
+
           //set form field's font to bold
-          
+
           const fields = civilForm.getFields();
           fields.forEach((field) => {
             const type = field.constructor.name;
@@ -397,11 +397,11 @@ export class ProfileInfoComponent implements OnInit {
             if (type === "PDFTextField"){
               civilForm.getTextField(name).updateAppearances(fontBold);
           }});
-          
+
           //flatten form
           civilForm.flatten();
 
-          //add education form to main document 
+          //add education form to main document
           const [civilPage] = await pdfDoc.copyPages(civilDoc, [0]);
           pdfDoc.addPage(civilPage);
 
@@ -423,8 +423,8 @@ export class ProfileInfoComponent implements OnInit {
         const workFormPdfBytes = await fetch(workFormUrl).then(res => res.arrayBuffer());
         const workDoc = await PDFDocument.load(workFormPdfBytes);
         const fontBold = await workDoc.embedFont(StandardFonts.HelveticaBold);
-          
-          
+
+
         //get form
         const workForm = workDoc.getForm();
 
@@ -437,7 +437,7 @@ export class ProfileInfoComponent implements OnInit {
         const salaryGradeField = workForm.getTextField('salary_grade');
         const appointmentField = workForm.getTextField('appointment');
         const checkBoxField = workForm.getCheckBox('checkbox');
-         
+
         //set form fields
         positionField.setText(this.works[i].position);
         companyField.setText(this.noAssignmentStringIfNull(this.works[i].dept));
@@ -446,17 +446,17 @@ export class ProfileInfoComponent implements OnInit {
         monthlySalaryField.setText(this.noAssignmentStringIfNull(this.works[i].monthlySalary));
         salaryGradeField.setText(this.noAssignmentStringIfNull(this.works[i].salaryGrade));
         appointmentField.setText(this.noAssignmentStringIfNull(this.works[i].status));
-          
+
           if(this.works[i].government){
 
             checkBoxField.check();
 
           }
-          
-          
-              
+
+
+
           //set form field's font to bold
-          
+
           const fields = workForm.getFields();
           fields.forEach((field) => {
             const type = field.constructor.name;
@@ -464,11 +464,11 @@ export class ProfileInfoComponent implements OnInit {
             if (type === "PDFTextField"){
               workForm.getTextField(name).updateAppearances(fontBold);
           }});
-          
+
           //flatten form
           workForm.flatten();
 
-          //add education form to main document 
+          //add education form to main document
           const [workPage] = await pdfDoc.copyPages(workDoc, [0]);
           pdfDoc.addPage(workPage);
 
@@ -491,8 +491,8 @@ export class ProfileInfoComponent implements OnInit {
         const trainingFormPdfBytes = await fetch(trainingFormUrl).then(res => res.arrayBuffer());
         const trainingDoc = await PDFDocument.load(trainingFormPdfBytes);
         const fontBold = await trainingDoc.embedFont(StandardFonts.HelveticaBold);
-          
-          
+
+
         //get training form
         const trainingForm = trainingDoc.getForm();
 
@@ -504,7 +504,7 @@ export class ProfileInfoComponent implements OnInit {
         const toField = trainingForm.getTextField('to');
         const noHoursField = trainingForm.getTextField('no_hours');
 ;
-         
+
         //set form fields
         trainingField.setText(this.trainings[i].title);
         typeField.setText(this.noAssignmentStringIfNull(this.trainings[i].typeOfLearningDevelopment));
@@ -512,12 +512,12 @@ export class ProfileInfoComponent implements OnInit {
         fromField.setText(this.readableDate(this.trainings[i].fromDate));
         toField.setText(this.presentRequiredDate(this.trainings[i].toDate));
         noHoursField.setText(this.noAssignmentStringIfNull(this.trainings[i].noOfHours));
-     
-          
-          
-              
+
+
+
+
           //set form field's font to bold
-          
+
           const fields = trainingForm.getFields();
           fields.forEach((field) => {
             const type = field.constructor.name;
@@ -525,7 +525,7 @@ export class ProfileInfoComponent implements OnInit {
             if (type === "PDFTextField"){
               trainingForm.getTextField(name).updateAppearances(fontBold);
           }});
-          
+
           //flatten form
           trainingForm.flatten();
 
@@ -535,7 +535,7 @@ export class ProfileInfoComponent implements OnInit {
         const certPdfBytes = await fetch(certFormUrl).then(res => res.arrayBuffer());
         const certDoc = await PDFDocument.load(certPdfBytes);
 
-          //add training form to main document 
+          //add training form to main document
           const [certPage] = await pdfDoc.copyPages(trainingDoc, [0]);
           const [certPage2] = await pdfDoc.copyPages(certDoc, [0]);
 
@@ -554,8 +554,8 @@ export class ProfileInfoComponent implements OnInit {
 
 
 
-  
-    //save main pdf 
+
+    //save main pdf
     const pdfBytes = await pdfDoc.save()
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
 
@@ -569,7 +569,7 @@ export class ProfileInfoComponent implements OnInit {
   }
 
   presentRequiredDate(date: Date){
-   
+
     if(date){
 
       return this.readableDate(date);
@@ -645,7 +645,7 @@ export class ProfileInfoComponent implements OnInit {
 
   onEditDialog(id : string){
 
-    const dialogRef = this.dialog.open(AddAccountComponent, {
+    const dialogRef = this.dialog.open(AddAccountComponent, {width: '60%',
       data: id
     });
 
@@ -657,7 +657,7 @@ export class ProfileInfoComponent implements OnInit {
 
       }
     });
-  
+
   }
 
 

@@ -70,16 +70,18 @@ mat-form-field.full-width {
 max-height: 100px;
 height: 100%;
 width:100%;
-object-fit: contain;
- }
+}
 
 .profile-preview img{
 
-  height: 200px;
-  width: 200px;
-  margin-bottom: 20px;
+  object-fit: cover;
+  margin-top: 50px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  border: 5px solid #93cddb;
+  padding: 10px;
+  border: 2px;
+  background-color: rgb(63, 83, 104);
 }
 
 mat-spinner {

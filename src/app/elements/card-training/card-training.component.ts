@@ -50,7 +50,7 @@ export class CardTrainingComponent implements OnInit {
   }
 
 
-  
+
   readableDate(date : Date){
 
 
@@ -60,16 +60,18 @@ export class CardTrainingComponent implements OnInit {
 
   onEditDialog(obj: any){
     const dialogRef = this.dialog.open(DialogAddTrainingComponent, {
+
+      width: '450px',
       data: obj
      });
- 
+
      dialogRef.afterClosed().subscribe(result => {
        //after closing dialog, refresh the table
        if(result){
- 
+
          window.location.reload();
 
- 
+
        }
      });
 
@@ -83,17 +85,17 @@ export class CardTrainingComponent implements OnInit {
       this.trainingService.deleteTraining(id)
       .subscribe(
         res=>{
-  
-      
+
+
           window.alert("Success!");
          window.location.reload();
-  
+
         },
         err=>{
-  
+
           console.log(err);
           window.alert(err);
-  
+
         }
       );
 
@@ -102,20 +104,21 @@ export class CardTrainingComponent implements OnInit {
 
   }
 
-  
+
   openAddTrainingDialog(){
 
     const dialogRef = this.dialog.open(DialogAddTrainingComponent, {
+      width: '450px',
       data: null
      });
- 
+
      dialogRef.afterClosed().subscribe(result => {
        //after closing dialog, refresh the table
        if(result){
- 
+
          window.location.reload();
 
- 
+
        }
      });
 

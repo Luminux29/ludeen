@@ -38,17 +38,17 @@ export class CardSchoolComponent implements OnInit {
       this.schoolService.deleteSchool(id)
       .subscribe(
         res=>{
-  
-      
+
+
           window.alert("Success!");
          window.location.reload();
-  
+
         },
         err=>{
-  
+
           console.log(err);
           window.alert(err);
-  
+
         }
       );
 
@@ -61,6 +61,7 @@ export class CardSchoolComponent implements OnInit {
   onEditDialog(obj: any){
 
     const dialogRef = this.dialog.open(DialogAddSchoolComponent, {
+      width: '450px',
       data: obj
     });
 
@@ -100,31 +101,31 @@ export class CardSchoolComponent implements OnInit {
           if(this.schools[i].user_id === this.userService.getUserId()){
 
             if(this.schools[i].type === 'Elementary'){
-  
+
               this.primarySchools.push(this.schools[i]);
             }
-  
+
             if(this.schools[i].type === 'Secondary'){
-  
+
               this.secondarySchools.push(this.schools[i]);
             }
-            
+
             if(this.schools[i].type === 'Vocational'){
-  
+
               this.vocationalSchools.push(this.schools[i]);
             }
             if(this.schools[i].type === 'College'){
-  
+
               this.collegeSchools.push(this.schools[i]);
             }
             if(this.schools[i].type === 'Graduate Studies'){
-  
+
               this.graduateSchools.push(this.schools[i]);
             }
 
           }
 
-          
+
 
         }
     this.isLoading = false;
@@ -133,7 +134,7 @@ export class CardSchoolComponent implements OnInit {
 
       }
     )
-    
+
 
 
   }
@@ -152,7 +153,8 @@ export class CardSchoolComponent implements OnInit {
 
   openAddSchoolDialog(){
     const dialogRef = this.dialog.open(DialogAddSchoolComponent, {
-      data: null
+      width: '450px',
+      data: null,
     });
 
     dialogRef.afterClosed().subscribe(result => {

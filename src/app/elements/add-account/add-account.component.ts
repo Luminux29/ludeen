@@ -30,7 +30,7 @@ export class AddAccountComponent implements OnInit {
     private userService: UserService) { }
 
   ngOnInit(): void {
-    
+
     console.log(this.data);
     this.id = this.data;
     this.isLoading= true;
@@ -49,7 +49,7 @@ export class AddAccountComponent implements OnInit {
 
    // this.role = this.userService.getRole();
 
-  
+
     this.mainForm = new FormGroup({
 
       'profilePic': new FormControl(null,{validators: [Validators.required]}),
@@ -97,7 +97,7 @@ export class AddAccountComponent implements OnInit {
 
     if(this.mode === 'edit'){
 
-      //get user 
+      //get user
 
       this.userService.getUser(this.id)
       .subscribe(
@@ -118,6 +118,9 @@ export class AddAccountComponent implements OnInit {
           this.mainForm.patchValue({CivilStatus : this.user.CivilStatus});
           this.mainForm.patchValue({height : this.user.height});
           this.mainForm.patchValue({weight : this.user.weight});
+
+          // null
+          this.mainForm.patchValue({citizenship : this.user.citizenship});
           this.mainForm.patchValue({BloodType : this.user.BloodType});
           this.mainForm.patchValue({gsis : this.user.gsis});
           this.mainForm.patchValue({pagibig : this.user.pagibig});
@@ -151,14 +154,14 @@ export class AddAccountComponent implements OnInit {
 
         }
       );
-      
+
 
 
 
 
     }
 
- 
+
 
 }
 
@@ -216,10 +219,10 @@ export class AddAccountComponent implements OnInit {
          this.mainForm.value.MobileNo,
          this.user.status,
          this.user.role)
-         
+
         .subscribe(
           response =>{
-  
+
             console.log(response);
             this.userService.setPFP(this.fileTitleProfilePicPrev);
             this.userService.setName(this.mainForm.value.FirstName + " " +this.mainForm.value.LastName  );
@@ -229,7 +232,7 @@ export class AddAccountComponent implements OnInit {
             this.dialogRef.close('success');
           },
           error =>{
-  
+
             window.alert(error);
             this.isLoading = false;
           }
@@ -237,7 +240,7 @@ export class AddAccountComponent implements OnInit {
 
       }
 
-      //if create new 
+      //if create new
 
       else{
 
@@ -245,8 +248,8 @@ export class AddAccountComponent implements OnInit {
     //     this.userService.createUserFromAdmin(this.form.value.__first_name,
     //     this.form.value.__last_name,
     //     this.selectedRole,
-    //     this.form.value.__email,  
-    //     this.form.value.__password, 
+    //     this.form.value.__email,
+    //     this.form.value.__password,
     //     this.form.value.__fileESig,
     //     this.form.value.__student_no,
     //     this.form.value.__course,
@@ -260,7 +263,7 @@ export class AddAccountComponent implements OnInit {
     //     this.isLoading = false;
     //     this.dialogRef.close('success');
     //   },
-      
+
     //   (error) =>{
 
     //     //error
@@ -286,9 +289,9 @@ export class AddAccountComponent implements OnInit {
           this.fileTitleProfilePicPrev = reader.result as string;
       }
       reader.readAsDataURL(file);
-  
+
     }
-  
+
 
 
     public findInvalidControls() {
@@ -301,5 +304,5 @@ export class AddAccountComponent implements OnInit {
       }
       return invalid;
     }
-  
+
 }

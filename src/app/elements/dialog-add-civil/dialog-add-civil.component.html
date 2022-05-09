@@ -1,14 +1,13 @@
-<h1 mat-dialog-title>Add Civil Background</h1>
+<h1 mat-dialog-title>Civil Service Eligibility</h1>
 
 <div mat-dialog-content>
 
     <main>
+
       <form [formGroup]="form" (submit) ="onCreateCivil()">
 
-     
-
         <!--NAMe of civil elgibiility-->
-        <mat-form-field  class="full-width">
+        <mat-form-field class="txtField" appearance="outline">
             <mat-label>Name of Civil Eligibility</mat-label>
             <input
                 name="nameOfCivilServiceEligibility"
@@ -19,9 +18,8 @@
             <mat-error *ngIf = "form.get('nameOfCivilServiceEligibility').invalid">Please enter a valid nameOfCivilServiceEligibility.</mat-error>
         </mat-form-field>
 
-
-            <!--rating-->
-        <mat-form-field  class="full-width">
+        <!--rating-->
+        <mat-form-field class="txtField" appearance="outline">
             <mat-label>rating (if applicable)</mat-label>
             <input
             name="rating"
@@ -32,37 +30,32 @@
             <mat-error *ngIf = "form.get('rating').invalid">Please enter rating.</mat-error>
         </mat-form-field>
 
-
-
-          <!--dateOfExamination-->
-          <mat-form-field>
-          <mat-label>dateOfExamination</mat-label>
-          <input class="txtInput" matInput [matDatepicker]="picker"
-          formControlName="dateOfExamination" name="dateOfExamination"
-          placeholder="MM/DD/YYYY"   (focus)="picker.open()" required="">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-  
-         </mat-form-field>
+        <!--dateOfExamination-->
+        <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Date Of examination</mat-label>
+            <input class="txtInput" matInput [matDatepicker]="picker"
+            formControlName="dateOfExamination" name="dateOfExamination"
+            placeholder="MM/DD/YYYY"   (focus)="picker.open()" required="">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
 
         <!--placeOfExamination-->
-        <mat-form-field class="full-width">
-            <mat-label>placeOfExamination</mat-label>
+        <mat-form-field class="txtField" appearance="outline">
+            <mat-label>Place of examination</mat-label>
             <input
             matInput
             name = "placeOfExamination"
             formControlName ="placeOfExamination"
             type="text"
-            required
-            >
+            required>
             <mat-error *ngIf = "form.get('placeOfExamination').invalid">Please enter a placeOfExamination</mat-error>
-        </mat-form-field><br>
+        </mat-form-field>
 
-        <mat-divider></mat-divider>
             <h1>LICENSE</h1>
            <!--licenseNo-->
-           <mat-form-field class="full-width">
-            <mat-label>licenseNo</mat-label>
+           <mat-form-field class="txtField" appearance="outline">
+            <mat-label>License No.</mat-label>
             <input
             matInput
             name = "licenseNo"
@@ -70,24 +63,29 @@
             type="text"
             >
             <mat-error *ngIf = "form.get('licenseNo').invalid">Please enter a licenseNo</mat-error>
-        </mat-form-field><br>
+          </mat-form-field>
 
             <!--dateOfValidity-->
-            <mat-form-field>
-                <mat-label>dateOfValidity</mat-label>
+            <mat-form-field class="txtField" appearance="outline">
+                <mat-label>Date of validity</mat-label>
                 <input class="txtInput" matInput [matDatepicker]="picker2"
                 formControlName="dateOfValidity" name="dateOfValidity"
                 placeholder="MM/DD/YYYY"   (focus)="picker2.open()">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
-               </mat-form-field>
+            </mat-form-field>
 
-<br>
-        <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Create Civil Service</button>
-        <mat-spinner *ngIf="isLoading"></mat-spinner>
-        
+        <button class="btn positive" mat-flat-button color="primary"  type="submit" *ngIf="!isLoading">Create Civil Service</button>
+        <mat-spinner *ngIf="isLoading"
+            [diameter]="30"
+            style="margin: 0; position: absolute; top: 50%; left: 50%;
+              -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);">
+
+        </mat-spinner>
+
     </form>
-    <button mat-raised-button  (click)="onNoClick()" color="accent" >Cancel</button>
+    <button class="btn negative" mat-flat-button color="primary" (click)="onNoClick()" >Cancel</button>
 
     </main>
 

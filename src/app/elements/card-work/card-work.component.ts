@@ -20,7 +20,7 @@ export class CardWorkComponent implements OnInit {
     //get user id
     this.user_id = this.userService.getUserId();
 
-    //get work 
+    //get work
     this.isLoading=true;
     this.workService.getWorks();
     this.workService.getWorkUpdateListener()
@@ -29,16 +29,16 @@ export class CardWorkComponent implements OnInit {
 
         console.log("Succecss!");
         for(let i = 0; i < res.works.length; i++){
-      
+
           //only get user's civil service eligibility
           if(res.works[i].user_id === this.user_id){
-  
-  
+
+
             this.works.push(res.works[i]);
-  
+
           }
-  
-  
+
+
         }
 
         this.isLoading=false;
@@ -52,7 +52,7 @@ export class CardWorkComponent implements OnInit {
     )
   }
 
-  
+
   readableDate(date : Date){
 
 
@@ -61,7 +61,7 @@ export class CardWorkComponent implements OnInit {
   }
 
   onDelete(id: string){
-   
+
     let willDelete = window.confirm("Are you sure you want to delete?");
 
     if(willDelete){
@@ -69,17 +69,17 @@ export class CardWorkComponent implements OnInit {
       this.workService.deleteWork(id)
       .subscribe(
         res=>{
-  
-        
+
+
           window.alert("Success!");
           window.location.reload();
-  
+
         },
         err=>{
-  
+
           console.log(err);
           window.alert(err);
-  
+
         }
       );
 
@@ -90,7 +90,9 @@ export class CardWorkComponent implements OnInit {
     openAddWorkDialog(){
 
     const dialogRef = this.dialog.open(DialogAddWorkComponent, {
+    width: '450px',
      data: null
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -125,11 +127,12 @@ export class CardWorkComponent implements OnInit {
 
   onEditDialog(obj : any){
     const dialogRef = this.dialog.open(DialogAddWorkComponent, {
-      data: obj
+      width: '450px',
+      data: obj,
     });
 
     dialogRef.afterClosed().subscribe((res) => {
-    
+
       if(res){
         window.location.reload();
       }

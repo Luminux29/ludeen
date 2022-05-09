@@ -1,14 +1,14 @@
-<h1 mat-dialog-title>Add Work Experience</h1>
+<h1 mat-dialog-title>Work Experience</h1>
 
 <div mat-dialog-content>
 
     <main>
       <form [formGroup]="form" (submit) ="onCreateWork()">
 
-     
+
 
         <!--Name of Company-->
-        <mat-form-field  class="full-width">
+        <mat-form-field  class="txtField" appearance="outline">
             <mat-label>Name of Company</mat-label>
             <input
                 name="dept"
@@ -21,7 +21,7 @@
 
 
             <!--position-->
-        <mat-form-field  class="full-width">
+        <mat-form-field  class="txtField" appearance="outline">
             <mat-label>position</mat-label>
             <input
             name="position"
@@ -33,37 +33,43 @@
         </mat-form-field>
 
 
-        <mat-divider></mat-divider>
-        <h1>Inclusive Date</h1>
 
-          <!--fromDate-->
-          <mat-form-field>
-          <mat-label>fromDate</mat-label>
-          <input required class="txtInput" matInput [matDatepicker]="picker"
-          formControlName="fromDate" name="fromDate"
-          placeholder="MM/DD/YYYY"   (focus)="picker.open()" required="">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-  
-         </mat-form-field>
+        <div class="row">
+          <div class="col-sm-4"><p>Inclusive Date</p></div>
+          <div class="col-sm-4">
+                      <!--fromDate-->
+            <mat-form-field class="txtField" appearance="outline">
+            <mat-label>From:</mat-label>
+            <input required  matInput [matDatepicker]="picker"
+            formControlName="fromDate" name="fromDate"
+            placeholder="MM/DD/YYYY"   (focus)="picker.open()" required="">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
 
-             <!--toDate-->
-             <mat-form-field>
-                <mat-label>toDate</mat-label>
-                <input class="txtInput" matInput [matDatepicker]="picker2"
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+                         <!--toDate-->
+             <mat-form-field class="txtField" appearance="outline">
+                <mat-label>To: </mat-label>
+                <input  matInput [matDatepicker]="picker2"
                 formControlName="toDate" name="toDate"
                 placeholder="MM/DD/YYYY"   (focus)="picker2.open()">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
-               </mat-form-field>
+              </mat-form-field>
+          </div>
+        </div>
 
 
-               <mat-divider></mat-divider>
+
+
+
 
                <!-- status of employment -->
-        <mat-form-field class="full-width">
+        <mat-form-field class="txtField" appearance="outline">
             <mat-label>Choose a status</mat-label>
-            <mat-select 
+            <mat-select
             name = "status"
             formControlName="status"
             required
@@ -76,7 +82,7 @@
         </mat-form-field><br>
 
         <!--monthlySalary-->
-        <mat-form-field class="full-width">
+        <mat-form-field class="txtField" appearance="outline">
             <mat-label>monthlySalary (php)</mat-label>
             <input
             matInput
@@ -88,9 +94,9 @@
             <mat-error *ngIf = "form.get('monthlySalary').invalid">Please enter a monthlySalary</mat-error>
         </mat-form-field><br>
 
-        
+
            <!--salaryGrade-->
-           <mat-form-field class="full-width">
+           <mat-form-field class="txtField" appearance="outline">
             <mat-label>salaryGrade</mat-label>
             <input
             matInput
@@ -102,20 +108,23 @@
             type="text"
             >
             <mat-error *ngIf = "form.get('salaryGrade').invalid">Please enter a valid salaryGrade</mat-error>
-        </mat-form-field><br>
+        </mat-form-field>
 
-        <mat-checkbox formControlName = "government">Gov Service?</mat-checkbox><br>
+        <mat-checkbox formControlName = "government">Government Service?</mat-checkbox><br><br>
 
 
-        
 
-<br>
-        <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Create Civil Service</button>
-        <mat-spinner *ngIf="isLoading"></mat-spinner>
-        
+        <button class="btn positive" mat-flat-button color="primary" type="submit" *ngIf="!isLoading">Confirm</button>
+        <mat-spinner *ngIf="isLoading"
+        [diameter]="30"
+        style="margin: 0; position: absolute; top: 50%; left: 50%;
+              -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);"
+        ></mat-spinner>
+
     </form>
-    <button mat-raised-button  (click)="onNoClick()" color="accent" >Cancel</button>
-    
+    <button class="btn negative" mat-flat-button color="primary"  (click)="onNoClick()" >Cancel</button>
+
     </main>
 
 </div>
