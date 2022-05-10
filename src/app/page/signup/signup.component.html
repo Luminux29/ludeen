@@ -21,9 +21,15 @@
           <div class="col-sm-4"></div>
           <div class="col-sm-4 center">
             <!-- preview  -->
-            <div class= "profile-preview" *ngIf = "fileTitleProfilePicPrev !== '' && fileTitleProfilePicPrev">
+            <div class= "profile-preview" *ngIf = "fileTitleProfilePicPrev !== '' && fileTitleProfilePicPrev else defaultPic">
               <img [src] = "fileTitleProfilePicPrev" >
             </div>
+            <ng-template #defaultPic>
+              <div class= "profile-preview">
+                <img src="\assets\images\user.png" >
+              </div>
+             </ng-template>
+
 
           </div>
           <div class="col-sm-4"></div>

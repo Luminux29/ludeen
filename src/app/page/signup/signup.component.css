@@ -18,8 +18,6 @@ mat-card-title{
     width: 100%;
 }
 
-
-
 .txtField {
   width: 100%;
   padding: 0px;
@@ -27,11 +25,10 @@ mat-card-title{
   margin: 3px;
 }
 
-
-
 .btnUpload{
   background-color: #12aa82;
 }
+
 .btn {
    width: 100%;
    height: 45px;
@@ -75,7 +72,7 @@ width:100%;
 .profile-preview img{
 
   object-fit: cover;
-  margin-top: 50px;
+  margin-bottom: 20px;
   width: 180px;
   height: 180px;
   border-radius: 50%;

@@ -11,10 +11,11 @@ transform: translate(-50%, -50%);"
 
 *ngIf="isLoading"></mat-spinner>
 
-<button class="add-button" (click)="openAddSchoolDialog()" mat-fab color="accent"
-matTooltip="Add Content"
+<button class="add-button" (click)="openAddSchoolDialog()"
+    mat-fab color="accent"
+    matTooltip="Add Content"
     matTooltipPosition="left">
-  <mat-icon>add</mat-icon>
+    <mat-icon>add</mat-icon>
   </button>
 <!--ELSE SHOW THIS-->
 <main class="educationalBackground" *ngIf="schools.length > 0 && !isLoading">

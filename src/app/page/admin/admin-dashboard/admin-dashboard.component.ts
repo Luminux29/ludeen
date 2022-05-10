@@ -19,34 +19,15 @@ export class AdminDashboardComponent implements OnInit {
   _filter :string = '';
   isLoading = false;
   public users : User[] = [];
-  displayedColumns: string[] = [ 
-  'EmployeeNumber', 
-  'LastName', 
-  'MI', 
-  'FirstName', 
-  'NameExtention', 
-  'birthdate', 
-  'PlaceOfBirth', 
-  'gender',  
-  'CivilStatus', 
-  'height', 
-  'weight', 
-  'BloodType',
-  'gsis',
-  'pagibig',
-  'philHealth',
-  'sss',
-  'tin',
-  'citizenship',
-  'r_zipCode',
-  'p_zipCode', 
-  'TelNo',
-  'MobileNo',
+  displayedColumns: string[] = [
+
+  'EmployeeNumber',
+  'Name',
   'email',
-  'altEmail',
   'status',
   'role',
-  'action'
+  'action',
+
 ];
   pageSizeOptions : number[];
   dataSource: any;
@@ -158,24 +139,24 @@ export class AdminDashboardComponent implements OnInit {
     this.userService.getUsers();
     this.userService.geUsersUpdateListener()
     .subscribe((userData) => {
-    
+
       this.isLoading = false;
       this.users = userData.users;
       this.dataSource = new MatTableDataSource(this.users);
       this.setPageSizeOption();
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-    
+
     },
     err =>{
 
       console.log(err);
     });
-    
+
   }
 
   presentRequiredDate(date: Date) : string{
-   
+
     if(date){
 
       return this.readableDate(date);
@@ -207,12 +188,12 @@ export class AdminDashboardComponent implements OnInit {
 
       return new Date(date).toLocaleDateString();
 
- 
-  
+
+
 
   }
 
-  
+
   setPageSizeOption(){
 
     if( this.dataSource.data.length > 10){

@@ -4,29 +4,48 @@
   <form [formGroup] = "mainForm" (submit) = "onRegister()">
 
     <mat-card>
-      <mat-card-header>
-        <mat-card-title>ADMIN</mat-card-title>
-      </mat-card-header>
 
       <mat-card-content>
 
         <!-- pfp -->
       <div style="margin-bottom: 2rem">
 
-        <!-- preview  -->
-        <div class= "sig-preview" *ngIf = "fileTitleProfilePicPrev !== '' && fileTitleProfilePicPrev">
-          <img [src] = "fileTitleProfilePicPrev" >
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4 center">
+            <!-- preview  -->
+            <div class= "profile-preview" *ngIf = "fileTitleProfilePicPrev !== '' && fileTitleProfilePicPrev else defaultPic">
+              <img [src] = "fileTitleProfilePicPrev" >
+            </div>
+            <ng-template #defaultPic>
+              <div class= "profile-preview">
+                <img src="\assets\images\user.png" >
+              </div>
+             </ng-template>
+
+
+          </div>
+          <div class="col-sm-4"></div>
+
         </div>
 
+        <div class="row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4 center">
+            <button mat-flat-button class="btnUpload" color="primary" type="button" (click)="filePickerESig.click()">Upload
+              <mat-icon>upload</mat-icon>
+            </button>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
         <!-- makikita -->
-        <button mat-button type="button" (click)="filePickerESig.click()">Upload your Profil Picture</button>
 
         <!-- invi -->
         <input type="file" #filePickerESig (change) = "onFilePickedProfilePic($event)" accept="image/png">
 
       </div>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="txtField"  appearance="outline">
           <mat-label>First Name</mat-label>
 
           <input class="txtInput" type="text" matInput
@@ -36,7 +55,7 @@
 
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="txtField"  appearance="outline">
           <mat-label>Last Name</mat-label>
 
           <input class="txtInput" type="text" matInput
@@ -46,44 +65,49 @@
 
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field class="txtField"  appearance="outline">
             <mat-label>Email</mat-label>
-  
+
             <input class="txtInput" type="text" matInput
                   formControlName="Email" name="Email"
                   placeholder="e.g. juandelacruz@email.com"
                   required email >
-  
+
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field class="txtField"  appearance="outline">
             <mat-label>Password</mat-label>
-  
+
             <input class="txtInput" type="text" matInput
                   formControlName="Password" name="Password"
                   type='password'
                   required >
-  
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field class="txtField"  appearance="outline">
             <mat-label>Confirm Password</mat-label>
-  
+
             <input class="txtInput" type="text" matInput
                   formControlName="ConfirmPassword" name="ConfirmPassword"
                   type='password'
                   required >
-  
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+
           </mat-form-field>
 
+          <button class="btn positive" mat-flat-button color="primary"  type="submit">Register as Admin</button>
+          <button class="btn negative" mat-flat-button color="primary"   routerLink="/sign-in">Back</button>
 
-       
+
+
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-flat-button color="primary" type="submit">Register as Admin</button>
-        <button mat-flat-button color="accent"  routerLink="/sign-in">Back</button>
 
-      </mat-card-actions>
     </mat-card>
 
   </form>
