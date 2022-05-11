@@ -62,7 +62,7 @@ export class ProfileInfoComponent implements OnInit {
 
       this.faculty = res;
 
-      this.name = this.faculty.LastName + ", "+this.faculty.FirstName+ " "+ this.emptyStringIfNull(this.faculty.NameExtention) + " " + this.emptyStringIfNull(this.faculty.MI);
+      this.name = this.faculty.LastName + ", "+this.faculty.FirstName+ " "+ this.emptyStringIfNull(this.faculty.NameExtention) + " " + this.emptyStringIfNull(this.faculty.MidInit);
       this.profilePicPath = this.faculty.profilePic;
 
       //get user's school information

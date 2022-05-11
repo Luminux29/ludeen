@@ -184,7 +184,7 @@ export class AddAccountComponent implements OnInit {
          this.mainForm.value.EmployeeNumber,
          this.mainForm.value.LastName,
          this.mainForm.value.FirstName,
-         this.mainForm.value.MI,
+         this.mainForm.value.MidInit,
          this.mainForm.value.NameExtention,
          this.mainForm.value.birthdate,
          this.mainForm.value.PlaceOfBirth,

@@ -6,7 +6,7 @@ export interface User{
     EmployeeNumber: string;
     LastName: string;
     FirstName: string;
-    MI: string;
+    MidInit: string;
     NameExtention: string;
     birthdate: Date;
     PlaceOfBirth: string;

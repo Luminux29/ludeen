@@ -124,7 +124,7 @@ export class UserService {
     EmployeeNumber: string,
     LastName: string,
     FirstName: string,
-    MI: string,
+    MidInit: string,
     NameExtention: string,
     birthdate: Date,
     age: string,
@@ -168,7 +168,7 @@ export class UserService {
     facultyDataForm.append("emp", EmployeeNumber);
     facultyDataForm.append('LastName', LastName);
     facultyDataForm.append('FirstName', FirstName);
-    facultyDataForm.append('MI', MI);
+    facultyDataForm.append('MidInit', MidInit);
     facultyDataForm.append('NameExtention', NameExtention);
     facultyDataForm.append('birthdate', new Date(birthdate).toISOString());
     facultyDataForm.append('age', age);
@@ -258,7 +258,7 @@ export class UserService {
     EmployeeNumber: string,
     LastName: string,
     FirstName: string,
-    MI: string,
+    MidInit: string,
     NameExtention: string,
     birthdate: Date,
     PlaceOfBirth: string,
@@ -309,7 +309,7 @@ export class UserService {
       facultyDataForm.append("emp", EmployeeNumber);
       facultyDataForm.append('LastName', LastName);
       facultyDataForm.append('FirstName', FirstName);
-      facultyDataForm.append('MI', MI);
+      facultyDataForm.append('MidInit', MidInit);
       facultyDataForm.append('NameExtention', NameExtention);
       facultyDataForm.append('birthdate', new Date(birthdate).toISOString());
       facultyDataForm.append('PlaceOfBirth', PlaceOfBirth);
@@ -356,7 +356,7 @@ export class UserService {
       EmployeeNumber: EmployeeNumber,
       LastName: LastName,
       FirstName: FirstName,
-      MI: MI,
+      MidInit: MidInit,
       NameExtention: NameExtention,
       birthdate: birthdate,
       PlaceOfBirth: PlaceOfBirth,

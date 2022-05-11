@@ -410,6 +410,8 @@ router.put("/:id", checkAuth, multer({storage: storage}).single('profilePic'), (
     }
 
 
+    console.log(req.body.MI);
+
 
     const user = new User({
 
@@ -418,7 +420,7 @@ router.put("/:id", checkAuth, multer({storage: storage}).single('profilePic'), (
         EmployeeNumber: req.body.EmployeeNumber,
         LastName: req.body.LastName,
         FirstName: req.body.FirstName,
-        MI: req.body.MI,
+        MidInit: req.body.MI,
         NameExtention: req.body.NameExtention,
         birthdate: req.body.birthdate,
         PlaceOfBirth: req.body.PlaceOfBirth,
