@@ -560,7 +560,7 @@ export class ProfileInfoComponent implements OnInit {
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
 
     //saveAs from file-saver
-    saveAs(blob, 'My-Information.pdf');
+    //saveAs(blob, 'My-Information.pdf');
 
     //open file in new tab
     const url= window.URL.createObjectURL(blob);

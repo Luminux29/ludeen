@@ -8,7 +8,7 @@ import { User } from '../models/user';
 import { map } from 'rxjs/operators';
 import {serializeError} from 'serialize-error';
 import { AdminServiceService } from './admin-service.service';
-
+import Swal from 'sweetalert2';
 @Injectable({
   providedIn: 'root'
 })

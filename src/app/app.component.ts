@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './models/user';
 import { UserService } from './service/user.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -38,11 +38,29 @@ export class AppComponent implements OnInit {
 
   logout(){
 
-    let willLogout = window.confirm('Are you sure you want to logout?');
-    if(willLogout){
+   // let willLogout = window.confirm('Are you sure you want to logout?');
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You want to logout",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Logout'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.logout();
+        // Swal.fire(
+        //   'Deleted!',
+        //   'Your file has been deleted.',
+        //   'success'
+        // )
+      }
+    })
+    // if(willLogout){
 
-      this.userService.logout();
-    }    
+    //   this.userService.logout();
+    // }    
 
   }
 

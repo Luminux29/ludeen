@@ -543,7 +543,7 @@ export class PdfviewerComponent implements OnInit {
     //save main pdf 
     const pdfBytes = await pdfDoc.save()
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-    this.pdfSrc = 'blob';
+    //this.pdfSrc = 'blob';
     this.isLoading=false;
     //saveAs from file-saver
     //saveAs(blob, 'My-Information.pdf');
