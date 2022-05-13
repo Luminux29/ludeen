@@ -1,0 +1,125 @@
+<h1 mat-dialog-title>Educational Background</h1>
+
+<div mat-dialog-content>
+
+    <main>
+      <form [formGroup]="form" (submit) ="onCreateSchool()">
+
+        <!--type-->
+        <mat-form-field class="txtField" appearance="outline">
+        <mat-label>Level</mat-label>
+        <mat-select
+        name = "type"
+        formControlName="type"
+        required
+        >
+
+        <mat-option *ngFor="let type of types" [value] = "type.value">
+        {{ type.value}}
+        </mat-option>
+        </mat-select>
+        <mat-error *ngIf = "form.get('type').invalid">Please choose a type.</mat-error>
+        </mat-form-field><br>
+
+            <!--NAMe oF schoool-->
+           <mat-form-field  class="txtField" appearance="outline">
+            <mat-label>Name of school</mat-label>
+            <input
+             name="nameOfSchool"
+             formControlName ="nameOfSchool"
+             matInput
+             type="text"
+             required>
+            <mat-error *ngIf = "form.get('nameOfSchool').invalid">Please enter a valid name of school.</mat-error>
+        </mat-form-field>
+
+
+            <!--Course-->
+        <mat-form-field  class="txtField" appearance="outline">
+            <mat-label>Basic Education/Degree/Course</mat-label>
+            <input
+            name="course"
+            matInput
+            formControlName ="course"
+            type="text"
+            required>
+            <mat-error *ngIf = "form.get('course').invalid">Please enter course.</mat-error>
+        </mat-form-field>
+
+
+        <div class="row">
+          <div class="col-sm-4"><p>Period of Attendance:</p></div>
+          <div class="col-sm-4">
+                      <!--fromYear-->
+            <mat-form-field class="txtField" appearance="outline">
+              <mat-label>From:</mat-label>
+              <input matInput name = "fromYear" formControlName ="fromYear">
+            <mat-error *ngIf = "form.get('fromYear').invalid">Please enter fromYear.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+                    <!--toYear-->
+            <mat-form-field class="txtField" appearance="outline">
+              <mat-label>To:</mat-label>
+              <input matInput name = "toYear" formControlName ="toYear">
+          <mat-error *ngIf = "form.get('toYear').invalid">Please enter a toYear</mat-error>
+      </mat-form-field>
+          </div>
+        </div>
+
+        <mat-checkbox formControlName = "checkBox">Graduate?</mat-checkbox><br><br>
+
+        <!--highestLevel-->
+         <mat-form-field *ngIf="!form.value.checkBox" class="txtField" appearance="outline">
+          <mat-label>Highest Level</mat-label>
+          <input
+          matInput
+          name = "highestLevel"
+          formControlName ="highestLevel"
+
+          >
+          <mat-error *ngIf = "form.get('highestLevel').invalid">Please enter highestLevel.</mat-error>
+      </mat-form-field>
+
+
+         <!--yearGraduated-->
+        <mat-form-field  *ngIf="form.value.checkBox" class="txtField" appearance="outline">
+          <mat-label>Year graduated</mat-label>
+          <input
+          matInput
+          name = "yearGraduated"
+          formControlName ="yearGraduated"
+          type="text"
+          >
+          <mat-error *ngIf = "form.get('yearGraduated').invalid">Please enter yearGraduated.</mat-error>
+        </mat-form-field>
+
+
+             <!--honors-->
+             <mat-form-field class="txtField" appearance="outline">
+              <mat-label>Honors</mat-label>
+              <textarea
+              matInput
+              name = "honors"
+              formControlName ="honors"
+
+              ></textarea>
+              <mat-error *ngIf = "form.get('honors').invalid">Please enter a honors.</mat-error>
+          </mat-form-field><br>
+
+
+
+        <button class="btn positive" mat-flat-button color="primary" type="submit" *ngIf="!isLoading">Confirm</button>
+        <mat-spinner *ngIf="isLoading"
+        [diameter]="30"
+        style="margin: 0; position: absolute; top: 50%; left: 50%;
+              -ms-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);"
+        ></mat-spinner>
+
+    </form>
+    <button class="btn negative" mat-flat-button color="primary" (click)="onNoClick()" >Cancel</button>
+
+    </main>
+
+</div>

@@ -11,14 +11,14 @@ mat-card{
     max-width: 500px;
     width: 100%;
 }
-  
-.full-width {
+
+.txtField {
     width: 100%;
     padding: 0px;
 
 }
 
-mat-form-field.full-width {
+mat-form-field.txtField {
   font-size: 12px;
   margin: 0px;
 }
@@ -27,14 +27,14 @@ mat-form-field.full-width {
 .btnSignInForm {
    width: 100%;
    height: 45px;
-   margin-bottom: 10px;
+   margin-bottom: 20px;
    margin-top: 30px;
 }
 .positive{
-  background-color: #2ba9c8;
+  background-color: #5a68f0;
 }
 .negative{
-  background-color: #2b79c8;
+  background-color: #f05a5a;
 }
 
 
@@ -42,13 +42,13 @@ mat-form-field.full-width {
 .txtTitle{
   font-weight: bold;
   padding-top: 1em;
-  margin-bottom: 2em;
-  font-size: xx-large;
+  font-size: x-large;
   text-align: center;
 }
+
 .signUpLink{
   font-weight: bold;
-  color: #2ba9c8;
+  color: #f05a5a;
   cursor: pointer;
 
 }
@@ -57,11 +57,19 @@ p {
 }
 
 .container {
-  max-width: 800px;
-  margin: 30px auto;
+  max-width: 400px;
+  margin-right: 5%;
   min-height: 300px;
   padding: 30px;
   border-radius: 5px;
+
+  /* center */
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 mat-spinner {

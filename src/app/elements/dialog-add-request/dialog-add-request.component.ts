@@ -66,33 +66,33 @@ export class DialogAddRequestComponent implements AfterViewInit{
       
     //mode is edit
     this.mode = "edit";
-    requestService.getRequest(data)
-    .subscribe( (response) => {
+    // requestService.getRequest(data)
+    // .subscribe( (response) => {
 
       
-        this.request = response;
+    //     this.request = response;
     
-        //set data
-        this.form.patchValue({subject : this.request.subject});
-        this.form.patchValue({faculty : this.request.faculty_id});
-        this.form.patchValue({status : this.request.status});
-        this.form.patchValue({desc : this.request.desc});
-        this.form.patchValue({semester : this.request.semester});
-        this.form.patchValue({year : this.request.year});
-        this.form.patchValue({cys : this.request.cys});
+    //     //set data
+    //     this.form.patchValue({subject : this.request.subject});
+    //     this.form.patchValue({faculty : this.request.faculty_id});
+    //     this.form.patchValue({status : this.request.status});
+    //     this.form.patchValue({desc : this.request.desc});
+    //     this.form.patchValue({semester : this.request.semester});
+    //     this.form.patchValue({year : this.request.year});
+    //     this.form.patchValue({cys : this.request.cys});
 
       
-        if(this.myRole === 'Admin'){
-         this.form.patchValue({student : this.request.user_id});
-        }
+    //     if(this.myRole === 'Admin'){
+    //      this.form.patchValue({student : this.request.user_id});
+    //     }
 
       
-    }, err=>{
+    // }, err=>{
 
 
-      window.alert(err);
+    //   window.alert(err);
 
-    });
+    // });
     
   
   }
@@ -100,13 +100,7 @@ export class DialogAddRequestComponent implements AfterViewInit{
 
       //mode is create
       this.mode = "create"
-      if(this.myRole === "Student"){
 
-        console.log(this.userService.getCYS());
-        this.form.patchValue({cys : this.userService.getCYS()});
-        
-
-      }
 
 
     }
@@ -128,6 +122,9 @@ addOne(year : string){
   }
   let addedYear = +year +1
   return 'to 20'+addedYear;
+
+
+
 }
 
 
@@ -136,39 +133,39 @@ addOne(year : string){
 
             
 
-        this.userService.getUserByRole("Student")
-        .subscribe(
-          response =>{
+        // this.userService.getUserByRole("Student")
+        // .subscribe(
+        //   response =>{
     
-           this.students = response['users'];
-           this.students.sort((a,b)=>a.l_name.localeCompare(b.l_name));
+        //    this.students = response['users'];
+        //    this.students.sort((a,b)=>a.l_name.localeCompare(b.l_name));
     
         
            
     
-          },
-          err =>{
+        //   },
+        //   err =>{
     
-            console.log(err);
+        //     console.log(err);
     
-          }
-        );
+        //   }
+        // );
     
-        this.userService.getUserByRole("Faculty")
-        .subscribe(
-          res =>{
+        // this.userService.getUserByRole("Faculty")
+        // .subscribe(
+        //   res =>{
             
-           this.professors = res['users'];
-           this.professors.sort((a,b)=>a.l_name.localeCompare(b.l_name))
+        //    this.professors = res['users'];
+        //    this.professors.sort((a,b)=>a.l_name.localeCompare(b.l_name))
           
         
 
-          },
-          error =>{
+        //   },
+        //   error =>{
     
-            console.log(error);
-          }
-        );
+        //     console.log(error);
+        //   }
+        // );
 
     
       }
@@ -176,15 +173,15 @@ addOne(year : string){
   getSubjects(){
 
 
-    this.adminService.getSubjects();
-    this.adminService.getSubjectsUpdateListener()
-    .subscribe((subjData) =>{
+    // this.adminService.getSubjects();
+    // this.adminService.getSubjectsUpdateListener()
+    // .subscribe((subjData) =>{
 
-      this.subjects = subjData.subjects;
-      this.subjects.sort((a,b)=>a.subject_name.localeCompare(b.subject_name));
+    //   this.subjects = subjData.subjects;
+    //   this.subjects.sort((a,b)=>a.subject_name.localeCompare(b.subject_name));
       
 
-    })
+    // })
       
 
   }
@@ -196,117 +193,117 @@ addOne(year : string){
   onAddRequest(){
 
 
-    let studentName: string;
-    if(this.myRole === 'Admin'){
+    // let studentName: string;
+    // if(this.myRole === 'Admin'){
 
-      studentName = this.form.value.student
-    }
-    else{
+    //   studentName = this.form.value.student
+    // }
+    // else{
 
-      studentName = this.userService.getUserId();
-    }
+    //   studentName = this.userService.getUserId();
+    // }
   
 
-    if(this.form.invalid){
-      console.log('form is invalid' +   this.findInvalidControls());
+    // if(this.form.invalid){
+    //   console.log('form is invalid' +   this.findInvalidControls());
     
-      return;
-    }
+    //   return;
+    // }
 
-    else{
+    // else{
 
 
-      switch(this.mode){
+    //   switch(this.mode){
 
-        case "create":
+    //     case "create":
 
-          let request : Request = {
+    //       let request : Request = {
 
-            request_id: null,
-            subject : this.form.value.subject,
-            user_id: studentName,
-            faculty_id: this.form.value.faculty,
-            status: "Requested",
-            creator: this.userService.getUserId(),
-            desc:   this.form.value.desc,
-            dateRequested: null,
-            dateAccepted: null,
-            semester: this.form.value.semester,
-            year: this.form.value.year,
-            note: null,
-            cys: this.form.value.cys,
-            verdict: null,
-            request_form:null
-          }
+    //         request_id: null,
+    //         subject : this.form.value.subject,
+    //         user_id: studentName,
+    //         faculty_id: this.form.value.faculty,
+    //         status: "Requested",
+    //         creator: this.userService.getUserId(),
+    //         desc:   this.form.value.desc,
+    //         dateRequested: null,
+    //         dateAccepted: null,
+    //         semester: this.form.value.semester,
+    //         year: this.form.value.year,
+    //         note: null,
+    //         cys: this.form.value.cys,
+    //         verdict: null,
+    //         request_form:null
+    //       }
 
-          // this.requestService.addRequest(this.form.value.subject,studentName,
-          //   this.form.value.faculty, "Requested",
-          //   this.form.value.desc,
-          //   this.userService.getUserId(),
-          //   this.form.value.semester,
-          //   this.form.value.year,
-          //   this.form.value.cys,
-          //   null,
-          //   null
-          //   )
-          // .subscribe(
-          //   res=>{
-          //     //success
-          //     console.log("Success!", res);
-          //     window.alert("Success!");
-          //     this.dialogRef.close(res);
-          //   },
-          //   err => {
-          //       //error
-          //       window.alert("Something went wrong. " + err);
-          //       this.form.reset();
-          //   }
-          // );
+    //       this.requestService.addRequest(this.form.value.subject,studentName,
+    //         this.form.value.faculty, "Requested",
+    //         this.form.value.desc,
+    //         this.userService.getUserId(),
+    //         this.form.value.semester,
+    //         this.form.value.year,
+    //         this.form.value.cys,
+    //         null,
+    //         null
+    //         )
+    //       .subscribe(
+    //         res=>{
+    //           //success
+    //           console.log("Success!", res);
+    //           window.alert("Success!");
+    //           this.dialogRef.close(res);
+    //         },
+    //         err => {
+    //             //error
+    //             window.alert("Something went wrong. " + err);
+    //             this.form.reset();
+    //         }
+    //       );
 
-          // break;
-          this.dialogRef.close(request);
-          break;
+    //       break;
+    //       this.dialogRef.close(request);
+    //       break;
       
-        case "edit":
-          this.requestService.updateRequest(
-            this.request._id, 
-            this.form.value.subject,
-            this.form.value.faculty,
-            this.form.value.student,
-            this.request.status,
-            this.request.creator,
-            this.form.value.desc,
-            this.request.dateRequested,
-            this.request.dateAccepted, 
-            this.form.value.semester,
-            this.form.value.year,
-            this.request.note,
-            this.form.value.cys,
-            null,
-            null).subscribe(
-              res=>{
+    //     case "edit":
+    //       this.requestService.updateRequest(
+    //         this.request._id, 
+    //         this.form.value.subject,
+    //         this.form.value.faculty,
+    //         this.form.value.student,
+    //         this.request.status,
+    //         this.request.creator,
+    //         this.form.value.desc,
+    //         this.request.dateRequested,
+    //         this.request.dateAccepted, 
+    //         this.form.value.semester,
+    //         this.form.value.year,
+    //         this.request.note,
+    //         this.form.value.cys,
+    //         null,
+    //         null).subscribe(
+    //           res=>{
 
-                window.alert('Success');
-                console.log(res);
-                this.dialogRef.close("Success");
-              },
-              err =>{
+    //             window.alert('Success');
+    //             console.log(res);
+    //             this.dialogRef.close("Success");
+    //           },
+    //           err =>{
 
-                window.alert("Something went wrong. " + err);
-                this.dialogRef.close();
+    //             window.alert("Something went wrong. " + err);
+    //             this.dialogRef.close();
 
-              }
-            );
-
-
-
-          break;
-
-      }
+    //           }
+    //         );
 
 
 
-    }
+    //       break;
+
+    //   }
+
+
+
+    // }
 
     
   }

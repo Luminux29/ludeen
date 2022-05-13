@@ -2,11 +2,7 @@
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+
   mat-spinner{
 
     margin: auto;
@@ -15,42 +11,43 @@
   th{
     text-align: center;
   }
+li{
 
-  main{
+  list-style: none;
 
-    display: block;
-    margin-top: 1rem;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  body {
-    font-family:  sans-serif;
-    margin: 0;
-    background-color: #075773;
-  }
-  
-  .container {
+}
+
+
+
+  /* .container {
     max-width: 800px;
     margin: auto;
     min-height: 300px;
     padding: 30px;
     border-radius: 5px;
-    
-    
-  }
+
+
+  } */
 
 
 input[type="file"]{
   visibility: hidden;
   }
-  
 
-  html, body {margin: 0; height: 100%; overflow: hidden;}
 
   mat-form-field.full-width {
     font-size: 14px;
   }
 
+  body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 0;
+    /* background-image: url("\assets\images\background.png"); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 60%;
+    background-position: center;
+    background-color: #334166;
+
+  }
 

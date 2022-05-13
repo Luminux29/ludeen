@@ -1,0 +1,281 @@
+<!--SHOW THIS IF LOADING-->
+<mat-spinner [diameter]="30"
+
+style="
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);"
+
+*ngIf="isLoading"></mat-spinner>
+
+<button class="add-button" (click)="openAddSchoolDialog()"
+    mat-fab color="accent"
+    matTooltip="Add Content"
+    matTooltipPosition="left">
+    <mat-icon>add</mat-icon>
+  </button>
+<!--ELSE SHOW THIS-->
+<main class="educationalBackground" *ngIf="schools.length > 0 && !isLoading">
+
+
+    <!-- ELEMENTARY -->
+
+
+
+
+            <h1>Elementary</h1>
+
+
+            <!-- INFORMATION -->
+            <div *ngFor = "let primarySchool of primarySchools">
+
+
+
+                <div class="row">
+                  <div class="col-sm-3"><p>Name of School:</p></div>
+                  <div class="col-sm-9"><p>{{primarySchool.nameOfSchool}}</p></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3"><p>Degree/Course: </p></div>
+                  <div class="col-sm-9"><p>{{primarySchool.course}}</p></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3"><p>From Year: </p></div>
+                  <div class="col-sm-9"><p>{{primarySchool.fromYear}}</p></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">To Year: </div>
+                  <div class="col-sm-9"><p>{{presentIfStringIfNull(primarySchool.toYear)}}</p></div>
+                </div>
+                <div class="row" *ngIf="primarySchool.highestLevel">
+                  <div class="col-sm-3"><p>Highest Level: </p></div>
+                  <div class="col-sm-9"><p>{{primarySchool.highestLevel}}</p></div>
+                </div>
+                <div class="row" *ngIf="primarySchool.yearGraduated">
+                  <div class="col-sm-3"><p>Year Graduated: </p></div>
+                  <div class="col-sm-9"><p>{{primarySchool.yearGraduated}}</p></div>
+                </div>
+                <div class="row" *ngIf="primarySchool.honor">
+                  <div class="col-sm-3"><p>Honors: </p></div>
+                  <div class="col-sm-9"><p>{{primarySchool.honor}}</p></div>
+                </div>
+
+                <div class="editDelete-button">
+                    <button  mat-flat-button color="primary" (click) ="onEditDialog(primarySchool)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button  mat-flat-button color="warn" (click) = "onDelete(primarySchool._id)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+
+                <mat-divider></mat-divider>
+
+            </div>
+
+
+
+
+
+
+
+    <!-- SECONDARY -->
+
+              <h1>Secondary</h1>
+
+            <!-- INFORMATION -->
+            <div *ngFor = "let secondarySchool of secondarySchools">
+
+              <div class="row">
+                <div class="col-sm-3"><p>Name of School:</p></div>
+                <div class="col-sm-9"><p>{{secondarySchool.nameOfSchool}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Degree/Course: </p></div>
+                <div class="col-sm-9"><p>{{secondarySchool.course}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>From Year: </p></div>
+                <div class="col-sm-9"><p>{{secondarySchool.fromYear}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">To Year: </div>
+                <div class="col-sm-9"><p>{{presentIfStringIfNull(secondarySchool.toYear)}}</p></div>
+              </div>
+              <div class="row" *ngIf="secondarySchool.highestLevel">
+                <div class="col-sm-3"><p>Highest Level: </p></div>
+                <div class="col-sm-9"><p>{{secondarySchool.highestLevel}}</p></div>
+              </div>
+              <div class="row" *ngIf="secondarySchool.yearGraduated">
+                <div class="col-sm-3"><p>Year Graduated: </p></div>
+                <div class="col-sm-9"><p>{{secondarySchool.yearGraduated}}</p></div>
+              </div>
+              <div class="row" *ngIf="secondarySchool.honor">
+                <div class="col-sm-3"><p>Honors: </p></div>
+                <div class="col-sm-9"><p>{{secondarySchool.honor}}</p></div>
+              </div>
+
+              <div class="editDelete-button">
+                  <button  mat-flat-button color="primary" (click) ="onEditDialog(secondarySchool)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button  mat-flat-button color="warn" (click) = "onDelete(secondarySchool._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </div>
+              <mat-divider></mat-divider>
+
+            </div>
+       <!-- VOCATIONAL -->
+
+            <h1>Vocational</h1>
+
+
+            <!-- INFORMATION -->
+            <div *ngFor = "let vocationalSchool of vocationalSchools">
+              <div class="row">
+                <div class="col-sm-3"><p>Name of School:</p></div>
+                <div class="col-sm-9"><p>{{vocationalSchool.nameOfSchool}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Degree/Course: </p></div>
+                <div class="col-sm-9"><p>{{vocationalSchool.course}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>From Year: </p></div>
+                <div class="col-sm-9"><p>{{vocationalSchool.fromYear}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">To Year: </div>
+                <div class="col-sm-9"><p>{{presentIfStringIfNull(vocationalSchool.toYear)}}</p></div>
+              </div>
+              <div class="row" *ngIf="vocationalSchool.highestLevel">
+                <div class="col-sm-3"><p>Highest Level: </p></div>
+                <div class="col-sm-9"><p>{{vocationalSchool.highestLevel}}</p></div>
+              </div>
+              <div class="row" *ngIf="vocationalSchool.yearGraduated">
+                <div class="col-sm-3"><p>Year Graduated: </p></div>
+                <div class="col-sm-9"><p>{{vocationalSchool.yearGraduated}}</p></div>
+              </div>
+              <div class="row" *ngIf="vocationalSchool.honor">
+                <div class="col-sm-3"><p>Honors: </p></div>
+                <div class="col-sm-9"><p>{{vocationalSchool.honor}}</p></div>
+              </div>
+
+              <div class="editDelete-button">
+                  <button  mat-flat-button color="primary" (click) ="onEditDialog(vocationalSchool)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button  mat-flat-button color="warn" (click) = "onDelete(vocationalSchool._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </div>
+              <mat-divider></mat-divider>
+
+            </div>
+
+            <!-- COLLEGE -->
+
+            <h1>College</h1>
+
+
+            <!-- INFORMATION -->
+            <div *ngFor = "let collegeSchool of collegeSchools">
+              <div class="row">
+                <div class="col-sm-3"><p>Name of School:</p></div>
+                <div class="col-sm-9"><p>{{collegeSchool.nameOfSchool}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Degree/Course: </p></div>
+                <div class="col-sm-9"><p>{{collegeSchool.course}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>From Year: </p></div>
+                <div class="col-sm-9"><p>{{collegeSchool.fromYear}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">To Year: </div>
+                <div class="col-sm-9"><p>{{presentIfStringIfNull(collegeSchool.toYear)}}</p></div>
+              </div>
+              <div class="row" *ngIf="collegeSchool.highestLevel">
+                <div class="col-sm-3"><p>Highest Level: </p></div>
+                <div class="col-sm-9"><p>{{collegeSchool.highestLevel}}</p></div>
+              </div>
+              <div class="row" *ngIf="collegeSchool.yearGraduated">
+                <div class="col-sm-3"><p>Year Graduated: </p></div>
+                <div class="col-sm-9"><p>{{collegeSchool.yearGraduated}}</p></div>
+              </div>
+              <div class="row" *ngIf="collegeSchool.honor">
+                <div class="col-sm-3"><p>Honors: </p></div>
+                <div class="col-sm-9"><p>{{collegeSchool.honor}}</p></div>
+              </div>
+
+              <div class="editDelete-button">
+                  <button  mat-flat-button color="primary" (click) ="onEditDialog(collegeSchool)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button  mat-flat-button color="warn" (click) = "onDelete(collegeSchool._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+
+
+
+         <!-- Graduate Studies -->
+
+                <h1>Graduate Studies</h1>
+
+
+            <!-- INFORMATION -->
+            <div *ngFor = "let graduateSchool of graduateSchools">
+              <div class="row">
+                <div class="col-sm-3"><p>Name of School:</p></div>
+                <div class="col-sm-9"><p>{{graduateSchool.nameOfSchool}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Degree/Course: </p></div>
+                <div class="col-sm-9"><p>{{graduateSchool.course}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>From Year: </p></div>
+                <div class="col-sm-9"><p>{{graduateSchool.fromYear}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">To Year: </div>
+                <div class="col-sm-9"><p>{{presentIfStringIfNull(graduateSchool.toYear)}}</p></div>
+              </div>
+              <div class="row" *ngIf="graduateSchool.highestLevel">
+                <div class="col-sm-3"><p>Highest Level: </p></div>
+                <div class="col-sm-9"><p>{{graduateSchool.highestLevel}}</p></div>
+              </div>
+              <div class="row" *ngIf="graduateSchool.yearGraduated">
+                <div class="col-sm-3"><p>Year Graduated: </p></div>
+                <div class="col-sm-9"><p>{{graduateSchool.yearGraduated}}</p></div>
+              </div>
+              <div class="row" *ngIf="graduateSchool.honor">
+                <div class="col-sm-3"><p>Honors: </p></div>
+                <div class="col-sm-9"><p>{{graduateSchool.honor}}</p></div>
+              </div>
+
+              <div class="editDelete-button">
+                  <button  mat-flat-button color="primary" (click) ="onEditDialog(graduateSchool)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button  mat-flat-button color="warn" (click) = "onDelete(graduateSchool._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+              </div>
+              <mat-divider></mat-divider>
+
+            </div>
+
+
+</main>
+<br><br>
+<p *ngIf="schools.length <= 0 && !isLoading"><b>*Hoot hoot* *Hoot hoot*</b> <bR>Nothing here..</p>
+

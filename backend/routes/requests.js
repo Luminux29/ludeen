@@ -1,8 +1,8 @@
 const express = require('express');
 const Request = require('../models/request');
 const router = express.Router();
-
 const checkAuth = require('../middleware/check-auth');
+
 const { json } = require('body-parser');
 const multer = require('multer');
 const storage = multer.diskStorage({

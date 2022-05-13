@@ -18,7 +18,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {  MatPaginatorModule } from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTabsModule} from '@angular/material/tabs';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,6 +57,20 @@ import { ValidityRedirectComponent } from './page/faculty/validity-redirect/vali
 import { DialogAddSubjectComponent } from './elements/dialog-add-subject/dialog-add-subject.component';
 import { SettingsComponent } from './page/settings/settings.component';
 import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-change-pass.component';
+import { ProfileInfoComponent } from './elements/profile-info/profile-info.component';
+import { DialogAddSchoolComponent } from './elements/dialog-add-school/dialog-add-school.component';
+import { CardSchoolComponent } from './elements/card-school/card-school.component';
+import { DialogAddCivilComponent } from './elements/dialog-add-civil/dialog-add-civil.component';
+import { CardCivilComponent } from './elements/card-civil/card-civil.component';
+import { DialogAddWorkComponent } from './elements/dialog-add-work/dialog-add-work.component';
+import { CardWorkComponent } from './elements/card-work/card-work.component';
+import { DialogAddTrainingComponent } from './elements/dialog-add-training/dialog-add-training.component';
+import { CardTrainingComponent } from './elements/card-training/card-training.component';
+import { SideNavComponent } from './elements/side-nav/side-nav.component';
+import { PersonalInfoComponent } from './elements/personal-info/personal-info.component';
+import { PdfviewerComponent } from './elements/pdfviewer/pdfviewer.component';
+import { CreateAdminComponent } from './page/create-admin/create-admin.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,13 +101,32 @@ import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-
     ValidityRedirectComponent,
     DialogAddSubjectComponent,
     SettingsComponent,
-    DialogChangePassComponent
+    DialogChangePassComponent,
+    ProfileInfoComponent,
+    DialogAddSchoolComponent,
+    CardSchoolComponent,
+    DialogAddCivilComponent,
+    CardCivilComponent,
+    DialogAddWorkComponent,
+    CardWorkComponent,
+    DialogAddTrainingComponent,
+    CardTrainingComponent,
+    SideNavComponent,
+    PersonalInfoComponent,
+    PdfviewerComponent,
+    CreateAdminComponent
   ],
   imports: [
+    MatSidenavModule,
+    MatDatepickerModule,
+    PdfViewerModule,
+    MatDividerModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
@@ -108,9 +145,9 @@ import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-
     MatSortModule,
     MatDialogModule,
     MatTabsModule,
-    PdfViewerModule
-    
-   
+
+
+
   ],
   providers: [{provide: HTTP_INTERCEPTORS , useClass : AuthInterceptor, multi:true}],
   bootstrap: [AppComponent]

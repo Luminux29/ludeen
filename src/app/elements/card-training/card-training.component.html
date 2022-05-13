@@ -1,0 +1,80 @@
+<!--SHOW THIS IF LOADING-->
+<mat-spinner [diameter]="30"
+
+style="
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);"
+
+*ngIf="isLoading"></mat-spinner>
+
+<button class="add-button" (click)="openAddTrainingDialog()"
+mat-fab
+color="accent"
+matTooltip="Add Content"
+matTooltipPosition="left">
+
+<mat-icon>add</mat-icon>
+</button>
+<!--ELSE SHOW THIS-->
+<main class="training" *ngIf="trainings.length > 0 && !isLoading">
+
+
+
+            <h1>Training</h1>
+
+            <!-- INFORMATION -->
+            <div *ngFor = "let training of trainings">
+
+              <div class="row">
+                <div class="col-sm-3"><p>Training Name: </p></div>
+                <div class="col-sm-9"><p>{{training.title}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Type: </p></div>
+                <div class="col-sm-9"><p>{{training.typeOfLearningDevelopment}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Conductor: </p></div>
+                <div class="col-sm-9"><p>{{training.conductor}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Date: </p></div>
+                <div class="col-sm-9"><p>{{readableDate(training.fromDate)}} - {{readableDate(training.toDate)}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Number of hours:</p></div>
+                <div class="col-sm-9"><p>{{training.noOfHours}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Type Of Learning Development: </p></div>
+                <div class="col-sm-9"><p>{{training.typeOfLearningDevelopment}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Certificate: </p></div>
+                <div class="col-sm-9"><p><a [href]="training.certificate" target="_blank" rel="noopener noreferrer">Certificate file</a></p></div>
+              </div>
+
+                <div class="editDelete-button">
+                  <button  mat-flat-button color="primary" (click) ="onEditDialog(training)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button  mat-flat-button color="warn" (click) = "onDelete(training._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+
+                <mat-divider></mat-divider>
+
+            </div>
+
+
+
+
+</main>
+<br><br>
+<p *ngIf="trainings.length <= 0 && !isLoading"><b>*Hoot hoot* *Hoot hoot*</b> <bR>Nothing here..</p>
+

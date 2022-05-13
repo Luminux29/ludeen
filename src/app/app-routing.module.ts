@@ -18,24 +18,30 @@ import { AdminRequestComponent } from './page/admin/admin-request/admin-request.
 import { MyrequestComponent } from './user/myrequest/myrequest.component';
 import { SubjectsComponent } from './page/admin/subjects/subjects.component';
 import { FacultyRequestComponent } from './page/faculty/faculty-request/faculty-request.component'
-
+import { ProfileInfoComponent } from './elements/profile-info/profile-info.component';
 import { FacultyProfileComponent } from './page/faculty/faculty-profile/faculty-profile.component'
 import { ValidityRedirectComponent } from './page/faculty/validity-redirect/validity-redirect.component';
+import { CardSchoolComponent } from './elements/card-school/card-school.component';
+import { CardWorkComponent } from './elements/card-work/card-work.component';
+import { CardTrainingComponent } from './elements/card-training/card-training.component';
+import { CardCivilComponent } from './elements/card-civil/card-civil.component';
+import { ReverseAuthGuard } from './service/reverse-auth-guard';
+import { PdfviewerComponent } from './elements/pdfviewer/pdfviewer.component';
+import { CreateAdminComponent } from './page/create-admin/create-admin.component';
 const routes: Routes = [
 
 
   {path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-  {path : 'sign-in', component: SignInComponent},
-  {path : 'sign-up', component: SignupComponent},
+  {path : 'sign-in', component: SignInComponent, canActivate:[ReverseAuthGuard]},
+  {path : 'sign-up', component: SignupComponent, canActivate:[ReverseAuthGuard]},
   
   
-  //STUDENT GUARDS
+  
   {path : 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, StudentGuard]},
   {path : 'profile', component: ProfileComponent ,  canActivate: [AuthGuard]},
   {path : 'myrequest', component: MyrequestComponent ,  canActivate: [AuthGuard, StudentGuard]},
   
   //ADMIN GUARDS
-  {path : 'admin-dashboard', component: AdminDashboardComponent,  canActivate: [AuthGuard, AdminGuard] },
   {path : 'accounts', component: AccountsComponent,  canActivate: [AuthGuard, AdminGuard] },
   {path : 'admin-request', component: AdminRequestComponent,  canActivate: [AuthGuard, AdminGuard] },
   {path : 'admin-settings', component: AdminSettingsComponent,  canActivate: [AuthGuard, AdminGuard] },
@@ -45,13 +51,24 @@ const routes: Routes = [
   {path : 'faculty-dashboard', component: FacultyDashboardComponent,  canActivate: [AuthGuard, FacultyGuard] },
   {path : 'faculty-profile', component: FacultyProfileComponent,  canActivate: [AuthGuard, FacultyGuard] },
   {path : 'faculty-request', component: FacultyRequestComponent,  canActivate: [AuthGuard, FacultyGuard] },
-  {path : 'validity-redirect', component: ValidityRedirectComponent,  canActivate: [AuthGuard] }
+  {path : 'validity-redirect', component: ValidityRedirectComponent,  canActivate: [AuthGuard] },
 
+
+
+  //RAYMOND GUARDS
+  {path : 'profile-info', component: ProfileInfoComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'school', component: CardSchoolComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'work', component: CardWorkComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'training', component: CardTrainingComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'civil', component: CardCivilComponent, canActivate: [AuthGuard, FacultyGuard]},
+  {path : 'admin-dashboard', component: AdminDashboardComponent,  canActivate: [AuthGuard, AdminGuard]},
+  {path : 'create-admin', component: CreateAdminComponent,  canActivate: [ReverseAuthGuard]}
+  
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers:[AuthGuard]
+  providers:[AuthGuard, ReverseAuthGuard, FacultyGuard, AdminGuard]
 })
 export class AppRoutingModule { }

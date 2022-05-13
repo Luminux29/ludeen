@@ -1,7 +1,108 @@
-button{
 
-    width: 200px;
-    height: 200px;
-    margin:10px;
+table{
+
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    /* border: 1px solid #ddd; */
+    height: 100%;
 
 }
+  th, td {
+    text-align: left;
+    font-size: small;
+  }
+
+  td button{
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+
+  table{
+    margin: 10px;
+  }
+  .main-container{
+    margin: 40px;
+    margin-right: 100px;
+  }
+  mat-card{
+    max-height: 80vh;
+    overflow-y:auto;
+    overflow-x:auto;
+    border-radius: 0;
+
+  }
+
+  mat-tab-group{
+    background-color: rgb(28, 88, 156);
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 88vh;
+
+  }
+
+  .mat-tab-icon{
+    color: #ffffff;
+  }
+  .mat-tab-label{
+    color: #ffffff;
+  }
+
+  .txtField {
+    width: 40%;
+    padding: 0px;
+    font-size: 12px;
+
+  }
+
+
+  .logout-button{
+    position:fixed;
+    color: #fff;
+    background-color: brown;
+
+    top:6%;
+    right:2%;
+  }
+
+  .search{
+    align-content: flex-end;
+  }
+
+  .showAll-button{
+    position:fixed;
+    color: #fff;
+    background-color: cadetblue;
+
+    bottom:7%;
+    right:2%;
+  }
+
+  .xlsx-button{
+    position:fixed;
+    color: #fff;
+    background-color: #41c77d;
+
+    bottom:17%;
+    right:2%;
+  }
+
+  .csv-button{
+    position:fixed;
+    color: #fff;
+    background-color: rgb(221, 139, 62);
+
+    bottom:27%;
+    right:2%;
+  }
+
+  .json-button{
+    position:fixed;
+    color: #fff;
+    background-color: rgb(156, 160, 160);
+
+    bottom:37%;
+    right:2%;
+  }
+

@@ -1,13 +1,108 @@
-.sig-preview img{
-    height: 100px;
 
-     }
-.example-container {
-position: relative;
+
+
+
+mat-card{
+
+  width: 70%;
+  margin: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
 }
 
+mat-card-title{
+margin-top: 30px;
+}
+
+.signin-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+
+
+.txtField {
+width: 100%;
+padding: 0px;
+font-size: 12px;
+margin: 3px;
+}
+
+
+
+.btnUpload{
+background-color: #12aa82;
+}
+.btn {
+  width: 100%;
+  height: 45px;
+  margin-bottom: 10px;
+}
+.positive{
+  background-color: #5a68f0;
+}
+.negative{
+  background-color: #f05a5a;
+}
+
+
+.btnUpload{
+width: 60%;
+height: 35px;
+margin-bottom: 10px;
+}
+
+mat-form-field.full-width {
+font-size: 12px;
+margin: 0px;
+}
+
+
+.txtTitle{
+font-weight: bold;
+padding-top: 0.5em;
+margin-bottom: 2em;
+font-size: xx-large;
+text-align: center;
+}
+
+
 .file-preview img{
-border-radius: 50%;
-height: 100px;
-width:100px;
+
+
+  width: 180px;
+  height: 180px;
+object-fit: cover;
+
+}
+
+.profile-preview img{
+
+  object-fit: cover;
+  margin-bottom: 20px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  padding: 10px;
+  border: 2px;
+  background-color: rgb(63, 83, 104);
+}
+
+mat-spinner {
+zoom: 0.2
+}
+
+.center{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.mat-dialog-title{
+  text-align: left;
+  font-size: large;
+  font-weight: 700;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

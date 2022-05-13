@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
 
 
       this.user = res as User;
-      this.role = this.user.role;
+      // this.role = this.user.role;
       
       this.isLoading=false;
      

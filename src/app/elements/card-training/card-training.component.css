@@ -1,0 +1,48 @@
+.training{
+  padding: 50px;
+}
+
+.add-button{
+  position:fixed;
+  color: #fff;
+
+	bottom:5%;
+	right:4%;
+}
+
+h1{
+  font-weight: 600;
+  color: #fff;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  padding-left: 100px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.col-sm-3{
+  font-weight: 500;
+  color: #fff;
+}
+.col-sm-9{
+  font-family: 'Courier New', Courier, monospace;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.row{
+  margin-left: 20%;
+}
+
+.editDelete-button{
+  margin-top: 20px;
+  padding-left: 20%;
+  margin-bottom: 50px;
+}
+.editDelete-button button{
+  margin-left: 10px;
+}
+
+mat-divider{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

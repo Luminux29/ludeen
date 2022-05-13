@@ -1,0 +1,93 @@
+<!--SHOW THIS IF LOADING-->
+<mat-spinner [diameter]="30"
+
+style="
+margin: 0;
+position: absolute;
+top: 50%;
+left: 50%;
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);"
+
+*ngIf="isLoading"></mat-spinner>
+
+<button class="add-button" mat-fab (click)="openAddWorkDialog()"
+    color="accent"
+    matTooltip="Add Content"
+    matTooltipPosition="left">
+
+  <mat-icon>add</mat-icon>
+</button>
+<!--ELSE SHOW THIS-->
+<main class="workExp" *ngIf="works.length > 0 && !isLoading">
+
+
+
+
+                <h1>Work Experience</h1>
+
+            <!-- INFORMATION -->
+            <div *ngFor = "let work of works">
+
+              <div class="row">
+                <div class="col-sm-3"><p>Position: </p></div>
+                <div class="col-sm-9"><p>{{work.position}}</p></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"><p>Company: </p></div>
+                <div class="col-sm-9"><p>{{work.dept}}</p></div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3"><p>Inclusive Dates</p></div>
+              </div>
+
+                <div class="row">
+                  <div class="col-sm-3"><p>From: </p></div>
+                  <div class="col-sm-9"><p>{{readableDate(work.fromDate)}}</p></div>
+                </div>
+                <div class="row" *ngIf="work.toYear">
+                  <div class="col-sm-3"><p>To: </p></div>
+                  <div class="col-sm-9"><p>{{readableDate(work.toYear)}}</p></div>
+                </div>
+                <div class="row" *ngIf="!work.toYear">
+                  <div class="col-sm-3"><p>To: </p></div>
+                  <div class="col-sm-9"><p>Present</p></div>
+                </div>
+
+                <!-- CONTINUE HEREEEEEEEEEEEEEEEEEEEEEEEE -->
+
+                <div class="row">
+                  <div class="col-sm-3"><p>Monthly Salary: </p></div>
+                  <div class="col-sm-9"><p>{{convertToPhp(work.monthlySalary)}}</p></div>
+                </div>
+                <div class="row" *ngIf="work.salaryGrade">
+                  <div class="col-sm-3"><p>Salary Grade: </p></div>
+                  <div class="col-sm-9"><p>{{work.salaryGrade}}</p></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3"><p>Status of appointment: </p></div>
+                  <div class="col-sm-9"><p>{{work.status}}</p></div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3"><p>Government Service:</p></div>
+                  <div class="col-sm-9"><p>{{convertBool(work.government)}}</p></div>
+                </div>
+
+                <div class="editDelete-button">
+                  <button  mat-flat-button color="primary" (click) ="onEditDialog(work)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button  mat-flat-button color="warn" (click) = "onDelete(work._id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+
+                <mat-divider></mat-divider>
+                </div>
+
+
+</main>
+<br><br>
+<p *ngIf="works.length <= 0 && !isLoading"><b>*Hoot hoot* *Hoot hoot*</b> <bR>Nothing here..</p>
+

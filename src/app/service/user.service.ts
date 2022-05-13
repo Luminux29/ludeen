@@ -14,7 +14,9 @@ import { AdminServiceService } from './admin-service.service';
 })
 export class UserService {
 
-
+  private _passcode = 'siVlysx3r6WK4GNw';
+  private name : string; 
+  private pfp: string;
   private status: string;
   private cys: string;
   private isAuthenticated = false;
@@ -24,112 +26,187 @@ export class UserService {
   private u_id: string;
   private role:string;
   public users: User[]=[];
-  private usersUpdated = new Subject<{users: User [], userCount: number}>();
+  private usersUpdated = new Subject<{users: User []}>();
 
 
   constructor(public http: HttpClient, public router: Router, private adminService: AdminServiceService) { }
 
 
-  // // ----------CREATE USER-------------
-  // createUser(f_name: string, l_name: string, role:string, email:string, password:string, e_sig: File, pfp:File, student_no: string){
-
-  //   let _student_no : string = " ";
-    
-  //   let pfp_filename : string;
-  //   let e_sig_filename : string;
-
-  //   if(student_no){
-      
-  //     _student_no = student_no;
-
-  //   }
-
-  //   if(!pfp){
-
-  //     pfp_filename = "";
-  //   }
-  //   else{
-
-  //     pfp_filename = pfp.name;
-
-  //   }
-
-  //   if(!e_sig){
-
-  //     e_sig_filename = "";
-  //   }
-  //   else{
-
-  //     e_sig_filename = e_sig.name;
-
-  //   }
-
-
-
-  //   const authData = new FormData();
-  //   authData.append("f_name", f_name);
-  //   authData.append("l_name", l_name);
-  //   authData.append("role", role);
-  //   authData.append("email", email);
-  //   authData.append("password", password);
-  //   authData.append("student_no", student_no);
-  //   authData.append("e_sig", e_sig, e_sig_filename);
-  //   authData.append("pfp", pfp, pfp_filename);
-    
-  //     this.http.post("http://localhost:3000/api/users/signup", authData)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //       )
-  //     .subscribe(result =>{
-  //       window.alert("Success!");
-    
-  //     })  ;
-
-  // }
 
  
+  getPassCode(){
+
+    return this._passcode;
+
+  }
 
   getCYS(){
 
     return this.cys;
   }
+
+  setPFP(temp :string){
+
+    this.pfp = temp;
+    localStorage.setItem('pfp', temp);
+    
+  }
+  setName(temp :string){
+    
+    this.name = temp;
+    localStorage.setItem('name', temp);
+
+  }
+
+  getUsers(){
+
+    
+    this.http
+    .get<{message: string, users: User[]}>("http://localhost:3000/api/users")
+    .subscribe((userData) => {
+
+  
+        this.users = userData.users;
+        this.usersUpdated.next({
+          users : [...this.users]
+        });
+    });
+
+  }
+
+  updateFacultyStatus(id: string, status: string){
+
+    let data = {
+      status: status
+    }
+
+    return this.http
+    .put("http://localhost:3000/api/users/updatestatus/" + id, data)
+    .pipe(catchError(this.handleError));
+  
+
+  }
+
+  geUsersUpdateListener(){
+    return this.usersUpdated.asObservable();
+  }
+
+  deleteUser(u_id: string)
+  {
+      return this.http.delete("http://localhost:3000/api/users/" + u_id);
+  }
+
+  createAdmin(FirstName: string,
+    LastName: string,
+    email: string,
+    password: string,
+    profilePic: File){
+
+      const facultyDataForm = new FormData();
+      facultyDataForm.append('profilePic', profilePic, profilePic.name);
+    
+      facultyDataForm.append('password', password);
+      facultyDataForm.append("FirstName", FirstName);
+      facultyDataForm.append('LastName', LastName);
+      facultyDataForm.append('email', email);
+      facultyDataForm.append('role', 'Admin')
+
+      return this.http.post("http://localhost:3000/api/users/createadmin", facultyDataForm)
+      .pipe(
+        catchError(this.handleError)
+        );
+  }
+
+
   //CREATE USER BY ADMIN  
-  createUserFromAdmin(f_name: string,
-    l_name: string,
-    role:string, 
-    email:string, 
-    password:string, 
-    e_sig:File, 
-    student_no: string,
-    course: string,
-    year: string,
-    section:string
+  createUserFromAdmin(
+    profilePic: File,
+    EmployeeNumber: string,
+    LastName: string,
+    FirstName: string,
+    MidInit: string,
+    NameExtention: string,
+    birthdate: Date,
+    age: string,
+    PlaceOfBirth: string,
+    gender: string,
+    CivilStatus: string,
+    height: string,
+    weight: string,
+    BloodType: string,
+    gsis: string,
+    pagibig: string,
+    philHealth: string,
+    sss: string,
+    tin: string,
+    citizenship: string,
+    r_zipCode: string,
+    r_lotNo: string,
+    r_street: string,
+    r_village: string,
+    r_brgy: string,
+    r_city: string,
+    r_province: string,
+    p_zipCode: string,
+    p_LotNo: string,
+    p_street: string,
+    p_village: string,
+    p_brgy: string,
+    p_city: string,
+    p_province: string,
+    email: string,
+    altEmail: string,
+    password: string,
+    TelNo: string,
+    MobileNo: string
     ){
     
   
     
+    const facultyDataForm = new FormData();
+    facultyDataForm.append('profilePic', profilePic , profilePic.name);
+    facultyDataForm.append("emp", EmployeeNumber);
+    facultyDataForm.append('LastName', LastName);
+    facultyDataForm.append('FirstName', FirstName);
+    facultyDataForm.append('MidInit', MidInit);
+    facultyDataForm.append('NameExtention', NameExtention);
+    facultyDataForm.append('birthdate', new Date(birthdate).toISOString());
+    facultyDataForm.append('age', age);
+    facultyDataForm.append('PlaceOfBirth', PlaceOfBirth);
+    facultyDataForm.append('gender', gender);
+    facultyDataForm.append('CivilStatus', CivilStatus);
+    facultyDataForm.append('height', height);
+    facultyDataForm.append('weight', weight);
+    facultyDataForm.append('BloodType', BloodType);
+    facultyDataForm.append('gsis', gsis);
+    facultyDataForm.append('pagibig', pagibig);
+    facultyDataForm.append('philHealth', philHealth);
+    facultyDataForm.append('sss', sss);
+    facultyDataForm.append('tin', tin);
+    facultyDataForm.append('citizenship', citizenship);
+    facultyDataForm.append('r_zipCode', r_zipCode);
+    facultyDataForm.append('r_lotNo', r_lotNo);
+    facultyDataForm.append('r_street', r_street);
+    facultyDataForm.append('r_village', r_village);
+    facultyDataForm.append('r_brgy', r_brgy);
+    facultyDataForm.append('r_city', r_city);
+    facultyDataForm.append('r_province', r_province);
+    facultyDataForm.append('p_zipCode', p_zipCode);
+    facultyDataForm.append('p_LotNo', p_LotNo);
+    facultyDataForm.append('p_street', p_street);
+    facultyDataForm.append('p_village', p_village);
+    facultyDataForm.append('p_brgy', p_brgy);
+    facultyDataForm.append('p_city', p_city);
+    facultyDataForm.append('p_province', p_province);
+    facultyDataForm.append('email', email);
+    facultyDataForm.append('altEmail', altEmail);
+    facultyDataForm.append('password', password);
+    facultyDataForm.append('TelNo', TelNo);
+    facultyDataForm.append('MobileNo', MobileNo);
+    facultyDataForm.append('status', "Pending");
 
-    const authData = new FormData();
-    authData.append("f_name", f_name);
-    authData.append("l_name", l_name);
-    authData.append("role", role);
-    authData.append("email", email);
-    authData.append("password", password);
-    authData.append("e_sig", e_sig, e_sig.name);
-    
-    if(role === 'Student'){
-      authData.append("student_no", student_no);
-      authData.append("course", course);
-      authData.append("year", year);
-      authData.append("section", section);
-    }
 
-    if(role === 'Faculty'){
-      authData.append("status", "Pending");
-    }
-    
-
-    return this.http.post("http://localhost:3000/api/users/signup", authData)
+    return this.http.post("http://localhost:3000/api/users/signup", facultyDataForm)
     .pipe(
       catchError(this.handleError)
       );
@@ -175,48 +252,150 @@ export class UserService {
   }
 
   
-  updateUser(id:string, firstName:string, lastName:string, email:string, role: string, e_sig:File | string, student_no:string, status: string, course:string, year:string, section:string){
+  updateUser(
+    id :string,
+    profilePic: File | string,
+    EmployeeNumber: string,
+    LastName: string,
+    FirstName: string,
+    MidInit: string,
+    NameExtention: string,
+    birthdate: Date,
+    PlaceOfBirth: string,
+    gender: string,
+    CivilStatus: string,
+    height: string,
+    weight: string,
+    BloodType: string,
+    gsis: string,
+    pagibig: string,
+    philHealth: string,
+    sss: string,
+    tin: string,
+    citizenship: string,
+    r_zipCode: string,
+    r_lotNo: string,
+    r_street: string,
+    r_village: string,
+    r_brgy: string,
+    r_city: string,
+    r_province: string,
+    p_zipCode: string,
+    p_LotNo: string,
+    p_street: string,
+    p_village: string,
+    p_brgy: string,
+    p_city: string,
+    p_province: string,
+    email: string,
+    altEmail: string,
+    TelNo: string,
+    MobileNo: string,
+    status: string,
+    role: string
+  ){
 
-    let userData : User | FormData;
+
+    let facultyDataForm : User | FormData;
     
-    if(typeof(e_sig)=='object'){
 
-      userData= new FormData();
+    //if image is going to be updated, use FormData
+    console.log('type of profile pic is : ' + typeof(profilePic));
+    if(typeof(profilePic) =='object'){
 
-      userData.append("u_id", id);
-      userData.append("f_name", firstName);
-      userData.append("l_name", lastName);
-      userData.append("role", role);
-      userData.append("email", email);
-      userData.append("e_sig", e_sig, (e_sig as File).name);
-      userData.append("student_no", student_no);
-      userData.append("section", section);
-      userData.append("course", course);
-      userData.append("year", year);
-      userData.append("status", status);
+      facultyDataForm= new FormData();
+      facultyDataForm.append('id', id);
+      facultyDataForm.append('profilePic', profilePic , profilePic.name);
+      facultyDataForm.append("emp", EmployeeNumber);
+      facultyDataForm.append('LastName', LastName);
+      facultyDataForm.append('FirstName', FirstName);
+      facultyDataForm.append('MidInit', MidInit);
+      facultyDataForm.append('NameExtention', NameExtention);
+      facultyDataForm.append('birthdate', new Date(birthdate).toISOString());
+      facultyDataForm.append('PlaceOfBirth', PlaceOfBirth);
+      facultyDataForm.append('gender', gender);
+      facultyDataForm.append('CivilStatus', CivilStatus);
+      facultyDataForm.append('height', height);
+      facultyDataForm.append('weight', weight);
+      facultyDataForm.append('BloodType', BloodType);
+      facultyDataForm.append('gsis', gsis);
+      facultyDataForm.append('pagibig', pagibig);
+      facultyDataForm.append('philHealth', philHealth);
+      facultyDataForm.append('sss', sss);
+      facultyDataForm.append('tin', tin);
+      facultyDataForm.append('citizenship', citizenship);
+      facultyDataForm.append('r_zipCode', r_zipCode);
+      facultyDataForm.append('r_lotNo', r_lotNo);
+      facultyDataForm.append('r_street', r_street);
+      facultyDataForm.append('r_village', r_village);
+      facultyDataForm.append('r_brgy', r_brgy);
+      facultyDataForm.append('r_city', r_city);
+      facultyDataForm.append('r_province', r_province);
+      facultyDataForm.append('p_zipCode', p_zipCode);
+      facultyDataForm.append('p_LotNo', p_LotNo);
+      facultyDataForm.append('p_street', p_street);
+      facultyDataForm.append('p_village', p_village);
+      facultyDataForm.append('p_brgy', p_brgy);
+      facultyDataForm.append('p_city', p_city);
+      facultyDataForm.append('p_province', p_province);
+      facultyDataForm.append('email', email);
+      facultyDataForm.append('altEmail', altEmail);
+      facultyDataForm.append('TelNo', TelNo);
+      facultyDataForm.append('MobileNo', MobileNo);
 
 
     }
     else{
     
+    //  if image is not going to be updated , us JSON
     
-        userData = {
-          u_id: id,
-          f_name:   firstName,
-          l_name: lastName,
-          role: role,
-          email: email,
-          student_no:student_no,
-          e_sig:e_sig as string,
-          status: status,
-          course: course,
-          section: section,
-          year:year
+      
+      facultyDataForm = {
 
-  
-  
-        }
+      id: id,
+      EmployeeNumber: EmployeeNumber,
+      LastName: LastName,
+      FirstName: FirstName,
+      MidInit: MidInit,
+      NameExtention: NameExtention,
+      birthdate: birthdate,
+      PlaceOfBirth: PlaceOfBirth,
+      gender: gender,
+      CivilStatus: CivilStatus,
+      height: height,
+      weight: weight,
+      BloodType: BloodType,
+      gsis: gsis,
+      pagibig: pagibig,
+      philHealth: philHealth,
+      sss: sss,
+      tin: tin,
+      citizenship: citizenship,
+      r_zipCode: r_zipCode,
+      r_lotNo: r_lotNo,
+      r_street: r_street,
+      r_village: r_village,
+      r_brgy: r_brgy,
+      r_city: r_city,
+      r_province: r_province,
+      p_zipCode: p_zipCode,
+      p_LotNo: p_LotNo,
+      p_street: p_street,
+      p_village: p_village,
+      p_brgy: p_brgy,
+      p_city: p_city,
+      p_province: p_province,
+      password: null,
+      TelNo: TelNo,
+      MobileNo: MobileNo,
+      email:email,
+      altEmail: altEmail,
+      status: status,
+      role: role,
+      profilePic: profilePic
 
+
+    }
   
 
     }
@@ -224,7 +403,7 @@ export class UserService {
         
   
     return this.http
-    .put("http://localhost:3000/api/users/" + id, userData)
+    .put("http://localhost:3000/api/users/" + id, facultyDataForm)
     .pipe(catchError(this.handleError));
   
   }
@@ -232,6 +411,16 @@ export class UserService {
 getStatus(){
   const authInformation = this.getAuthData();
   return authInformation.status;
+
+}
+getPFP(){
+  
+
+  return this.pfp;
+}
+getName(){
+
+  return this.name;
 
 }
 
@@ -270,7 +459,7 @@ checkPass(id:string, password: string){
 
     };
 
-    return this.http.post<{token:string, expiresIn: number, u_id: string, role:string, course: string, year: number, section: string, status: string}>("http://localhost:3000/api/users/login", loginData)
+    return this.http.post<{ token:string, expiresIn: number, u_id: string, role:string, status: string, name : string, pfp: string}>("http://localhost:3000/api/users/login", loginData)
     .pipe( map(response =>{
 
       const token = response.token;
@@ -278,36 +467,34 @@ checkPass(id:string, password: string){
       if(token){
 
         console.log("response.status: "+response.status);
-      this.status = response.status;
+        this.status = response.status;
         this.u_id = response.u_id;
         this.role = response.role;
-        if(this.role === 'Student'){
-          
-          this.cys = response.course+" "+response.year+response.section;
-        }
-
+        this.pfp = response.pfp;
+        this.name = response.name;
         console.log(this.cys);
         const expiresInDuration  = response.expiresIn;
         this.setAuthTimer(expiresInDuration);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresInDuration *1000);
-        this.saveAuthData(token, expirationDate, this.u_id, this.role, this.status);
+        this.saveAuthData(token, expirationDate, this.u_id, this.role, this.status, this.name, this.pfp);
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
     
 
         console.log("Success!");
-         if(this.role === 'Admin'){
-          this.router.navigate(['/admin-dashboard']);
-        }
-        else if (this.role === 'Student'){
+        this.router.navigate(['/profile-info']);
+        //  if(this.role === 'Admin'){
+        //   this.router.navigate(['/admin-dashboard']);
+        // }
+        // else if (this.role === 'Student'){
 
-          this.router.navigate(['/dashboard']);
-        }
-        else{
+        //   this.router.navigate(['/dashboard']);
+        // }
+        // else{
 
-          this.router.navigate(['/dashboard']);
-        }
+        //   this.router.navigate(['/dashboard']);
+        // }
        }},
        catchError(this.handleError)));
     
@@ -347,6 +534,8 @@ checkPass(id:string, password: string){
       this.clearAuthData();
       clearTimeout(this.tokenTimer);
       this.role = null;
+      this.name = null;
+      this.pfp = null;
       this.u_id = null;
 
   }
@@ -355,13 +544,16 @@ checkPass(id:string, password: string){
     return this.authStatusListener.asObservable();
   }
 
-  saveAuthData(token: string, expirationDate: Date, u_id: string, role:string, status: string){
+  saveAuthData(token: string, expirationDate: Date, u_id: string, role:string, status: string, name : string, pfp: string){
 
     localStorage.setItem('token', token);
     localStorage.setItem('expirationDate', expirationDate.toISOString()); 
     localStorage.setItem('u_id', u_id);
     localStorage.setItem('role', role);
     localStorage.setItem('status', status);
+    localStorage.setItem('name', name);
+    localStorage.setItem('pfp', pfp);
+
 
   }
 
@@ -372,6 +564,9 @@ checkPass(id:string, password: string){
     localStorage.removeItem("u_id");
     localStorage.removeItem("role");
     localStorage.removeItem('status');
+    localStorage.removeItem('name');
+    localStorage.removeItem('pfp');
+
 
   }
 
@@ -389,6 +584,8 @@ checkPass(id:string, password: string){
       this.u_id = authInformation.u_id;
       this.role = authInformation.role;
       this.status = authInformation.status;
+      this.pfp = authInformation.pfp;
+      this.name = authInformation.name;
       this.setAuthTimer(expiresIn/1000);
       this.isAuthenticated = true;
       this.authStatusListener.next(true);
@@ -406,6 +603,9 @@ checkPass(id:string, password: string){
     const u_id = localStorage.getItem('u_id');
     const role = localStorage.getItem('role');
     const status = localStorage.getItem('status');
+    const name = localStorage.getItem('name');
+    const pfp = localStorage.getItem('pfp');
+
     
     if(!token || !expirationDate){
       return null;
@@ -417,7 +617,11 @@ checkPass(id:string, password: string){
         expirationDate : new Date(expirationDate),
         u_id: u_id,
         role: role,
-        status: status
+        status: status,
+        name: name,
+        pfp: pfp
+
+
 
       };
 
