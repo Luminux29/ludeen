@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TrainingService } from 'src/app/service/training.service';
 import { UserService } from 'src/app/service/user.service';
 import { DialogAddTrainingComponent } from '../dialog-add-training/dialog-add-training.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-card-training',
@@ -78,28 +79,47 @@ export class CardTrainingComponent implements OnInit {
   }
 
   onDelete(id:string){
-    let willDelete = window.confirm("Are you sure you want to delete training?");
 
-    if(willDelete){
+    Swal.fire({
+      title: 'Are you sure you want to delete this informtion?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
 
       this.trainingService.deleteTraining(id)
       .subscribe(
         res=>{
 
-
-          window.alert("Success!");
-         window.location.reload();
+          Swal.fire({
+            icon: 'success',
+            title: 'Deleted!',
+            text: 'Information deleted successfully!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
 
         },
         err=>{
 
-          console.log(err);
-          window.alert(err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'Something went wrong!'
+           })
 
         }
       );
+    }});
 
-    }
+
+
 
 
   }

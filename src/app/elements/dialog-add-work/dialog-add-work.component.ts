@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/service/user.service';
 import { WorkService } from 'src/app/service/work.service';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-dialog-add-work',
@@ -24,7 +26,7 @@ export class DialogAddWorkComponent implements OnInit {
     {value: "Part-time"}
 
   ];
-  
+
   constructor(private workService: WorkService,
     public dialogRef: MatDialogRef<DialogAddWorkComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,9 +35,9 @@ export class DialogAddWorkComponent implements OnInit {
   ngOnInit(): void {
 
     //create form
-     //create form 
+     //create form
      this.form = new FormGroup({
-      
+
       'toDate' : new FormControl(null),
       'fromDate' : new FormControl(null,  {validators:[Validators.required]}),
       'position' : new FormControl(null, {validators:[Validators.required]}),
@@ -46,7 +48,7 @@ export class DialogAddWorkComponent implements OnInit {
       'government' : new FormControl(null, {validators:[Validators.required]})
 
     })
-    
+
     this.form.patchValue({government : false});
 
     this.selectedStatus = "Permanent"
@@ -91,6 +93,17 @@ export class DialogAddWorkComponent implements OnInit {
 
     if(this.mode === 'create'){
 
+      Swal.fire({
+        title: 'Are you sure you want to add this information?',
+        text: "",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#5a68f0',
+        cancelButtonColor: '#f05a5a',
+        confirmButtonText: 'Confirm'
+    }).then((result) => {
+    if (result.isConfirmed) {
+
       this.workService.addWork(
         this.form.value.toDate,
         this.form.value.fromDate,
@@ -103,27 +116,55 @@ export class DialogAddWorkComponent implements OnInit {
         this.userService.getUserId()
       ).subscribe(
 
-        res =>{
+        res=>{
           //success!
-          console.log("Work creation is successful! " + res);
-          window.alert("Success!");
-          this.dialogRef.close("success");
+          Swal.fire({
+            icon: 'success',
+            title: 'Yehey!',
+            text: 'Added information successfully!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.isLoading = false;
+              this.dialogRef.close('success');
+            }
+          });
+
         },
-        err=>{
+        err =>{
           //error
-          console.log("Work creation failed! " + err);
-          window.alert("Error!");
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'Something went wrong!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.isLoading = false;
+            }
+          });
 
         }
 
       );
+
+    }})
 
 
     }
 
     else{
 
-      //to edit 
+      //to edit
+      Swal.fire({
+        title: 'Are you sure you want to update this information?',
+        text: "",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#5a68f0',
+        cancelButtonColor: '#f05a5a',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+      if (result.isConfirmed) {
+
       this.workService.updateWork(
         this.data._id,
         this.form.value.toDate,
@@ -138,25 +179,50 @@ export class DialogAddWorkComponent implements OnInit {
       ).subscribe(
         res=>{
             //success
-            console.log("Work edit is successful! " + res);
-            window.alert("Success Edit");
-            this.dialogRef.close("success");
+            Swal.fire({
+              icon: 'success',
+              title: 'Yehey!',
+              text: 'Information updated successfully!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.dialogRef.close("Success");
+              }
+            });
 
         },
         err=>{
           //failed
-          console.log("Work edit failed! " + err);
-          window.alert("Error! " + err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'Something went wrong!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.dialogRef.close();
+            }
+          });
 
         }
       );
-
+    }});
     }
 
   }
 
   onNoClick(){
-    this.dialogRef.close();
+    Swal.fire({
+      title: 'Are you sure you want to discard your progress?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.dialogRef.close();
+      }
+    })
   }
 
 }

@@ -2,11 +2,11 @@
 <h1 mat-dialog-title>Edit Profile</h1>
 <div mat-dialog-content>
 
-
+  <div class="container">
   <form [formGroup] = "mainForm" (submit) = "onSubmit()">
 
 
-        <div class="container">
+
 
           <!-- ProfilePic -->
         <div style="margin-bottom: 2rem">
@@ -427,7 +427,7 @@
 
 
           <div class="row">
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <mat-form-field class="txtField" appearance="outline">
                 <mat-label>Email</mat-label>
                 <input  type="email" matInput
@@ -435,8 +435,8 @@
                        placeholder="Ex. pat@example.com">
 
               </mat-form-field>
-            </div>
-            <div class="col-sm-6">
+            </div> -->
+            <div class="col-sm-12">
               <mat-form-field class="txtField" appearance="outline">
                 <mat-label>Alternate Email</mat-label>
                 <input  type="email" matInput
@@ -473,13 +473,13 @@
             </div>
           </div> -->
 
-          <div class="rows">
+          <div class="row">
             <button class="btn positive" mat-flat-button color="primary" type="submit">Confirm</button>
-            <button class="btn negative" mat-flat-button color="primary"  (click)="onNoClick()">Cancel</button>
           </div>
+        </form>
+        <div class="row">
+          <button class="btn negative" mat-flat-button color="primary"  (click)="onNoClick()">Cancel</button>
         </div>
-
-
-  </form>
+      </div>
 
   </div>

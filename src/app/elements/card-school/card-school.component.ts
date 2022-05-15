@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SchoolService } from 'src/app/service/school.service';
 import { UserService } from 'src/app/service/user.service';
 import { DialogAddSchoolComponent } from '../dialog-add-school/dialog-add-school.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-card-school',
@@ -31,28 +32,43 @@ export class CardSchoolComponent implements OnInit {
 
   onDelete(id:string){
 
-    let willDelete = window.confirm("Are you sure you want to delete?");
+    Swal.fire({
+      title: 'Are you sure you want to delete this informtion?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.schoolService.deleteSchool(id)
+        .subscribe(
+          res=>{
 
-    if(willDelete){
+            Swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'Information deleted successfully!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
 
-      this.schoolService.deleteSchool(id)
-      .subscribe(
-        res=>{
+          },
+          err=>{
 
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'Something went wrong!'
+            })
 
-          window.alert("Success!");
-         window.location.reload();
+          }
+        );
+      }});
 
-        },
-        err=>{
-
-          console.log(err);
-          window.alert(err);
-
-        }
-      );
-
-    }
 
   }
 
@@ -72,9 +88,6 @@ export class CardSchoolComponent implements OnInit {
 
       }
     });
-
-
-
   }
 
   refreshSchoolData(){
@@ -85,7 +98,6 @@ export class CardSchoolComponent implements OnInit {
     this.collegeSchools.splice(0);
     this.vocationalSchools.splice(0);
     this.graduateSchools.splice(0);
-
     this.isLoading = true;
 
     this.schoolService.getSchools();
