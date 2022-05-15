@@ -7,6 +7,8 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { PdfviewerComponent } from 'src/app/elements/pdfviewer/pdfviewer.component';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -90,35 +92,56 @@ export class AdminDashboardComponent implements OnInit {
 
   logout(){
 
-    let logout = window.confirm("Are you sure you want to logout?");
-    if(logout){
-
-      this.userService.logout();
-
-    }
+    Swal.fire({
+      title: 'Are you sure you want to logout?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Logout'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.logout();
+      }
+    });
 
   }
 
   deleteUser(id : string){
 
-    let willDelete = window.confirm('Are you sure you want to delete this user?');
-    if(willDelete){
+    Swal.fire({
+      title: 'Are you sure you want to archive this account?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-      this.userService.deleteUser(id)
-      .subscribe(res=>{
+        this.userService.deleteUser(id)
+        .subscribe(res=>{
 
-        window.alert("Success!");
-        this.refreshTable();
+          window.alert("Success!");
+          this.refreshTable();
 
-      },
-      err =>{
-        console.log(err);
-        window.alert("Failed!");
+        },
+        err =>{
+          console.log(err);
+          window.alert("Failed!");
 
 
-      });
+        });
 
-    }
+      }
+    })
+
+
+
+
+
 
   }
 

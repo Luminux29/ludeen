@@ -463,7 +463,7 @@
               <input class="loginInput" matInput
                 formControlName="password" name="password"
                 [type]="hide ? 'password' : 'text'" placeholder="Password"  >
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
               <!--<mat-icon matSuffix>email</mat-icon>-->
@@ -475,7 +475,7 @@
               <input class="loginInput" matInput
                 formControlName="reEnterPassword" name="reEnterPassword"
                 [type]="hide ? 'password' : 'text'" placeholder="Password" >
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
             <!--<mat-icon matSuffix>email</mat-icon>-->
@@ -485,7 +485,7 @@
 
         <div class="rows">
           <button class="btn positive" mat-flat-button color="primary" type="submit">Register</button>
-          <button class="btn negative" mat-flat-button color="primary"  routerLink="/sign-in">Back</button>
+          <button type="button" class="btn negative" mat-flat-button color="primary"  routerLink="/sign-in">Back</button>
           </div>
       </div>
       </mat-card-content>

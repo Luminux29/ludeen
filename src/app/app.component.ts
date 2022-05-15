@@ -52,13 +52,8 @@ export class AppComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.userService.logout();
-        // Swal.fire(
-        //   'Deleted!',
-        //   'Your file has been deleted.',
-        //   'success'
-        // )
       }
-    })
+    });
     // if(willLogout){
 
     //   this.userService.logout();
