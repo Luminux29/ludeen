@@ -85,6 +85,7 @@ export class DialogAddWorkComponent implements OnInit {
 
   onCreateWork(){
 
+    
     if(this.form.invalid){
       console.log(this.findInvalidControls());
       return;
@@ -104,6 +105,7 @@ export class DialogAddWorkComponent implements OnInit {
     }).then((result) => {
     if (result.isConfirmed) {
 
+      this.isLoading = true;
       this.workService.addWork(
         this.form.value.toDate,
         this.form.value.fromDate,
@@ -118,6 +120,7 @@ export class DialogAddWorkComponent implements OnInit {
 
         res=>{
           //success!
+          this.isLoading = false;
           Swal.fire({
             icon: 'success',
             title: 'Yehey!',
@@ -132,6 +135,7 @@ export class DialogAddWorkComponent implements OnInit {
         },
         err =>{
           //error
+          this.isLoading = false;
           Swal.fire({
             icon: 'error',
             title: 'Oops!',
@@ -165,6 +169,7 @@ export class DialogAddWorkComponent implements OnInit {
       }).then((result) => {
       if (result.isConfirmed) {
 
+        this.isLoading = true;
       this.workService.updateWork(
         this.data._id,
         this.form.value.toDate,
@@ -179,6 +184,7 @@ export class DialogAddWorkComponent implements OnInit {
       ).subscribe(
         res=>{
             //success
+             this.isLoading = false;
             Swal.fire({
               icon: 'success',
               title: 'Yehey!',
@@ -192,6 +198,7 @@ export class DialogAddWorkComponent implements OnInit {
         },
         err=>{
           //failed
+          this.isLoading = false;
           Swal.fire({
             icon: 'error',
             title: 'Oops!',
