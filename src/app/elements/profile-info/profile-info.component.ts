@@ -329,7 +329,7 @@ export class ProfileInfoComponent implements OnInit {
         toField.setText(this.presentRequiredDate(new Date(this.schools[i].toYear)));
         unitsField.setText(this.noAssignmentStringIfNull(this.schools[i].highestLevel));
         yearGraduatedField.setText(this.noAssignmentStringIfNull(this.schools[i].yearGraduated));
-        awardField.setText(this.noAssignmentStringIfNull(this.schools[i].honors));
+        awardField.setText(this.noAssignmentStringIfNull(this.schools[i].honor));
 
 
       //set form field's font to bold

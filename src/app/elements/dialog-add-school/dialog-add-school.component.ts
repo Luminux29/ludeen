@@ -44,7 +44,7 @@ export class DialogAddSchoolComponent implements OnInit {
         'toYear' : new FormControl(null),
         'highestLevel' : new FormControl(null),
         'yearGraduated' : new FormControl(null),
-        'honors' : new FormControl(null),
+        'honor' : new FormControl(null),
         'checkBox' : new FormControl(true),
         'type' : new FormControl(null, {validators:[Validators.required]})
 
@@ -71,7 +71,7 @@ export class DialogAddSchoolComponent implements OnInit {
           this.form.patchValue({yearGraduated : this.data.yearGraduated});
         }
 
-        this.form.patchValue({honors : this.data.honors});
+        this.form.patchValue({honor : this.data.honor});
         this.form.patchValue({type : this.data.type});
 
 
@@ -110,7 +110,8 @@ export class DialogAddSchoolComponent implements OnInit {
           showCancelButton: true,
           confirmButtonColor: '#5a68f0',
           cancelButtonColor: '#f05a5a',
-          confirmButtonText: 'Confirm'
+          confirmButtonText: 'Confirm',
+          allowOutsideClick: false
       }).then((result) => {
       if (result.isConfirmed) {
 
@@ -123,7 +124,7 @@ export class DialogAddSchoolComponent implements OnInit {
           this.form.value.toYear,
           this.form.value.highestLevel,
           this.form.value.yearGraduated,
-          this.form.value.honors,
+          this.form.value.honor,
           this.form.value.type,
           this.id
         ).subscribe(
@@ -132,6 +133,7 @@ export class DialogAddSchoolComponent implements OnInit {
           Swal.fire({
             icon: 'success',
             title: 'Yehey!',
+            allowOutsideClick: false,
             text: 'Added information successfully!'
           }).then((result) => {
             if (result.isConfirmed) {
@@ -183,9 +185,12 @@ export class DialogAddSchoolComponent implements OnInit {
         showCancelButton: true,
         confirmButtonColor: '#5a68f0',
         cancelButtonColor: '#f05a5a',
-        confirmButtonText: 'Confirm'
+        confirmButtonText: 'Confirm',
+        allowOutsideClick: false
       }).then((result) => {
       if (result.isConfirmed) {
+
+        console.log('updating type to: ' + this.form.value.type);
 
       this.schoolService.updateSchool(
         this.data._id,
@@ -195,7 +200,7 @@ export class DialogAddSchoolComponent implements OnInit {
         this.form.value.toYear,
         this.form.value.highestLevel,
         this.form.value.yearGraduated,
-        this.form.value.honors,
+        this.form.value.honor,
         this.form.value.type
       )
       .subscribe(

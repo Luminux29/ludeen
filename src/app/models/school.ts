@@ -5,7 +5,7 @@ export interface School{
     toYear: string;
     highestLevel:string;
     yearGraduated: string;
-    honors: string;
+    honor: string;
     type: string;
     user_id:string;
   }
