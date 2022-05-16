@@ -28,16 +28,33 @@ export class AccountCardComponent implements OnInit {
 
 
     this.isLoading = true;
-    this.adminService.getFacultyByStatus(this.status)
-    .subscribe((userData) => {
-      this.isLoading = false;
-      console.log(userData['users']);
-      this.users = userData['users'];
+    if(this.status === 'Archive'){
+    
+      this.adminService.getUserByStatus(this.status)
+      .subscribe((userData) => {
+        this.isLoading = false;
+        console.log(userData['users']);
+        this.users = userData['users'];
+  
+      },
+      err =>{
+        console.log(err);
+      });
+    }
+    else{
+      this.adminService.getFacultyByStatus(this.status)
+      .subscribe((userData) => {
+        this.isLoading = false;
+        console.log(userData['users']);
+        this.users = userData['users'];
+  
+      },
+      err =>{
+        console.log(err);
+      });
+  
 
-    },
-    err =>{
-      console.log(err);
-    });
+    }
 
 
   }
@@ -90,7 +107,8 @@ export class AccountCardComponent implements OnInit {
             Swal.fire({
               icon: 'success',
               title: 'Yehey!',
-              text: 'Added information successfully!'
+              text: 'Added information successfully!',
+              allowOutsideClick: false
             }).then((result) => {
               if (result.isConfirmed) {
                 window.location.reload();
@@ -131,6 +149,34 @@ export class AccountCardComponent implements OnInit {
 
     return "Present";
 
+
+  }
+
+  restoreFaculty(data: any){
+
+    let flag = window.confirm('Are you sure you want to restore this account?');
+    if(flag){
+
+      this.userService.updateFacultyStatus(data._id, 'Accepted')
+      .subscribe(
+        res=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'Yehey!',
+            text: 'User successfully restored',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+
+        }
+      );
+
+    }
+
+  
 
   }
 

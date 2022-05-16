@@ -48,11 +48,18 @@ export class AdminServiceService {
       return this.http.delete("http://localhost:3000/api/users/" + u_id);
   }
 
-  //SUBJECTS
   getFacultyByStatus(status: string){
 
 
     return this.http.get("http://localhost:3000/api/users/faculty/" + status)
+    .pipe(catchError(this.handleError));
+
+
+  }
+  getUserByStatus(status: string){
+
+
+    return this.http.get("http://localhost:3000/api/users/getbystatus/" + status)
     .pipe(catchError(this.handleError));
 
 

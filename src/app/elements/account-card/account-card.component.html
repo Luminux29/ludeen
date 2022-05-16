@@ -140,6 +140,7 @@
             <button  *ngIf = "user.status === 'Pending'"  mat-button color="primary" (click) = "acceptFaculty(user, 'Accept')">Accept</button>
             <button  *ngIf = "user.status === 'Pending'"  mat-button color="warn" (click)= "acceptFaculty(user, 'Reject')">Reject</button>
             <button *ngIf = "user.status === 'Rejected'"  mat-button color="warn" (click)= "acceptFaculty(user, 'Appeal')" >Re-appeal</button>
+            <button *ngIf = "user.status === 'Archive'"  mat-button color="warn" (click)= "restoreFaculty(user)" >Restore</button>
 
         </mat-action-row>
 

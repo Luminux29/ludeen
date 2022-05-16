@@ -60,9 +60,10 @@ export class UserService {
 
   getUsers(){
 
+    let myId = this.getUserId();
     
     this.http
-    .get<{message: string, users: User[]}>("http://localhost:3000/api/users")
+    .get<{message: string, users: User[]}>("http://localhost:3000/api/users/getallusers/" +myId)
     .subscribe((userData) => {
 
   
@@ -91,10 +92,9 @@ export class UserService {
     return this.usersUpdated.asObservable();
   }
 
-  deleteUser(u_id: string)
-  {
-      return this.http.delete("http://localhost:3000/api/users/" + u_id);
-  }
+
+
+
 
   createAdmin(FirstName: string,
     LastName: string,
@@ -241,6 +241,8 @@ export class UserService {
     return this.role;
 
   }
+
+
 
   
   getRequestFacultyStudentName(user_id:string, faculty_id:string){

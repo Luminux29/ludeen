@@ -108,7 +108,7 @@ export class AdminDashboardComponent implements OnInit {
 
   }
 
-  deleteUser(id : string){
+  archiveUser(id : string){
 
     Swal.fire({
       title: 'Are you sure you want to archive this account?',
@@ -121,11 +121,19 @@ export class AdminDashboardComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.userService.deleteUser(id)
+        this.userService.updateFacultyStatus(id, "Archive")
         .subscribe(res=>{
 
-          window.alert("Success!");
-          this.refreshTable();
+          Swal.fire({
+            icon: 'success',
+            title: 'Yehey!',
+            text: 'User archived successfully!',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
 
         },
         err =>{

@@ -92,7 +92,7 @@
                       <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef>Actions</th>
                         <td mat-cell *matCellDef="let row">
-                            <button mat-raised-button color="warn" (click)="deleteUser(row._id)"
+                            <button mat-raised-button color="warn" (click)="archiveUser(row._id)"
                             matTooltip="Archive"
                             matTooltipPosition="left">
                               <mat-icon>archive</mat-icon>
@@ -278,7 +278,7 @@
         <app-account-card status='Accepted'></app-account-card>
       </mat-tab>
 
-      <!-- TAB 2 Rejected -->
+      <!-- TAB 3 Rejected -->
       <mat-tab label="Rejected Account">
         <ng-template mat-tab-label>
           <mat-icon class="mat-tab-icon">cancel</mat-icon>
@@ -286,6 +286,16 @@
 
         </ng-template>
         <app-account-card status='Rejected'></app-account-card>
+      </mat-tab>
+
+        <!-- TAB 4 ARCHIVE ACCOUNTS -->
+      <mat-tab label="Archived Accounts">
+        <ng-template mat-tab-label>
+          <mat-icon class="mat-tab-icon">delete</mat-icon>
+          <mat-label class="mat-tab-label">Archived Account</mat-label>
+
+        </ng-template>
+        <app-account-card status='Archive'></app-account-card>
       </mat-tab>
 
   </mat-tab-group>
