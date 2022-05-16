@@ -8,6 +8,15 @@ mat-icon{
   transform: scale(1.2);
 }
 
+.changepass-button{
+  color: #fff;
+  position:fixed;
+  background-color: red;
+
+	bottom:25%;
+	right:4%;
+}
+
 .edit-button{
   color: #fff;
   position:fixed;

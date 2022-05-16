@@ -19,6 +19,7 @@ import { WorkService } from 'src/app/service/work.service';
 import { Work } from 'src/app/models/work';
 import { TrainingService } from 'src/app/service/training.service';
 import { Training } from 'src/app/models/training';
+import { DialogChangePassComponent } from '../dialog-change-pass/dialog-change-pass.component';
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
@@ -640,6 +641,23 @@ export class ProfileInfoComponent implements OnInit {
     let timeDiff = Math.abs(Date.now() - new Date(bday).getTime());
     let age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
     return age;
+
+  }
+
+  changePass(id: string){
+
+     //open dialog
+     const dialogRef = this.dialog.open(DialogChangePassComponent, {
+
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+   
+      if(res){
+        window.location.reload();
+      }
+
+    });
 
   }
 

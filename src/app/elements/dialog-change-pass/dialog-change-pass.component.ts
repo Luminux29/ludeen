@@ -14,16 +14,16 @@ export class DialogChangePassComponent implements OnInit {
 
   myRole : string;
   isLoading = false;
+
+  hidePass = true;
+  hideNewPass = true;
+  hideReEnterNewPass = true;
   form : FormGroup;
   constructor( public dialogRef: MatDialogRef<DialogChangePassComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
-    private requestService: RequestService,
-    private userService: UserService,
-    private adminService: AdminServiceService) {
+    private userService: UserService) {
 
-      this.myRole = userService.getRole();
-   
-   
+    
         this.form = new FormGroup({
           'current_password': new FormControl(null, {validators: [Validators.required]}),
           'new_password' : new FormControl(null, {validators: [Validators.required]}),
@@ -39,12 +39,12 @@ export class DialogChangePassComponent implements OnInit {
   onChangePass(){
 
     this.isLoading= true;
-    //check if form is valid 
+    //check if form is valid
     if(this.form.invalid){
       this.isLoading=false;
       return;
     }
-    
+
     //check if new password and confirm password are the same
 
     if(this.form.value.new_password !== this.form.value.confirm_password){
@@ -85,10 +85,10 @@ export class DialogChangePassComponent implements OnInit {
     })
 
 
-    
 
 
- 
+
+
 
     //check for errors
 
