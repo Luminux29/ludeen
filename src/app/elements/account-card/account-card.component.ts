@@ -29,13 +29,13 @@ export class AccountCardComponent implements OnInit {
 
     this.isLoading = true;
     if(this.status === 'Archive'){
-    
+
       this.adminService.getUserByStatus(this.status)
       .subscribe((userData) => {
         this.isLoading = false;
         console.log(userData['users']);
         this.users = userData['users'];
-  
+
       },
       err =>{
         console.log(err);
@@ -47,12 +47,12 @@ export class AccountCardComponent implements OnInit {
         this.isLoading = false;
         console.log(userData['users']);
         this.users = userData['users'];
-  
+
       },
       err =>{
         console.log(err);
       });
-  
+
 
     }
 
@@ -176,7 +176,7 @@ export class AccountCardComponent implements OnInit {
 
     }
 
-  
+
 
   }
 
