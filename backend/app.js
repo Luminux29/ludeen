@@ -9,6 +9,7 @@ const subjectRoutes = require('./routes/subjects');
 const civilRoutes = require('./routes/civil');
 const workRoutes = require('./routes/work');
 const trainingRoutes = require('./routes/training');
+const aboutRoutes = require('./routes/about');
 
 
 //const cors = require('cors');
@@ -45,8 +46,7 @@ app.use("/api/schools", schoolRoutes);
 app.use("/api/civils", civilRoutes);
 app.use("/api/works",workRoutes);
 app.use("/api/trainings",trainingRoutes);
-
-
+app.use("/api/abouts",aboutRoutes);
 
 
 //app.use(cors());

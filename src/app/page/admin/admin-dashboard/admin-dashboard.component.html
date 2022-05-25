@@ -45,19 +45,13 @@
                   matTooltipPosition="left">
                   <mat-icon>receipt</mat-icon>
               </button>
-              <button (click)="exporter.exportTable('csv',{fileName:'User_data'})"
+             
+              <button (click)="openContentDialog()"
+                  mat-fab
                   class="csv-button"
-                  mat-fab
-                  matTooltip="Export as CSV"
+                  matTooltip="Content Management"
                   matTooltipPosition="left">
-                  <mat-icon>receipt</mat-icon>
-              </button>
-              <button (click)="exporter.exportTable('json',{fileName:'User_data'})"
-                  class="json-button"
-                  mat-fab
-                  matTooltip="Export as JSON"
-                  matTooltipPosition="left">
-              <mat-icon>receipt</mat-icon></button>
+              <mat-icon>settings</mat-icon></button>
 
 
           </div>

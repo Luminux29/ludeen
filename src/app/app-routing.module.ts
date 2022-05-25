@@ -28,6 +28,8 @@ import { CardCivilComponent } from './elements/card-civil/card-civil.component';
 import { ReverseAuthGuard } from './service/reverse-auth-guard';
 import { PdfviewerComponent } from './elements/pdfviewer/pdfviewer.component';
 import { CreateAdminComponent } from './page/create-admin/create-admin.component';
+import { AboutComponent } from './page/about/about.component';
+import { AdminAboutComponent } from './page/admin-about/admin-about.component';
 const routes: Routes = [
 
 
@@ -62,8 +64,10 @@ const routes: Routes = [
   {path : 'training', component: CardTrainingComponent, canActivate: [AuthGuard, FacultyGuard]},
   {path : 'civil', component: CardCivilComponent, canActivate: [AuthGuard, FacultyGuard]},
   {path : 'admin-dashboard', component: AdminDashboardComponent,  canActivate: [AuthGuard, AdminGuard]},
-  {path : 'create-admin', component: CreateAdminComponent,  canActivate: [ReverseAuthGuard]}
+  {path : 'create-admin', component: CreateAdminComponent,  canActivate: [ReverseAuthGuard]},
+  {path : 'about', component: AboutComponent, canActivate: [AuthGuard, FacultyGuard]},
   
+  {path : 'admin-about', component: AdminAboutComponent, canActivate: [AuthGuard, AdminGuard]}
 ];
 
 @NgModule({

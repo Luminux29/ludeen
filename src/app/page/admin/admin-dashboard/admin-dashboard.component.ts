@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { DialogEditAboutComponent } from 'src/app/elements/dialog-edit-about/dialog-edit-about.component';
 import { PdfviewerComponent } from 'src/app/elements/pdfviewer/pdfviewer.component';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
@@ -39,6 +40,24 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshTable();
+  }
+
+
+  openContentDialog(){
+
+    const dialogRef = this.dialog.open(DialogEditAboutComponent, {
+      data: null
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res){
+
+        window.location.reload();
+
+      }
+    });
+
+
   }
 
 
@@ -223,6 +242,8 @@ export class AdminDashboardComponent implements OnInit {
 
 
   }
+
+
 
 
   setPageSizeOption(){

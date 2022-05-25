@@ -71,6 +71,9 @@ import { SideNavComponent } from './elements/side-nav/side-nav.component';
 import { PersonalInfoComponent } from './elements/personal-info/personal-info.component';
 import { PdfviewerComponent } from './elements/pdfviewer/pdfviewer.component';
 import { CreateAdminComponent } from './page/create-admin/create-admin.component';
+import { AboutComponent } from './page/about/about.component';
+import { AdminAboutComponent } from './page/admin-about/admin-about.component';
+import { DialogEditAboutComponent } from './elements/dialog-edit-about/dialog-edit-about.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +118,10 @@ import { CreateAdminComponent } from './page/create-admin/create-admin.component
     SideNavComponent,
     PersonalInfoComponent,
     PdfviewerComponent,
-    CreateAdminComponent
+    CreateAdminComponent,
+    AboutComponent,
+    AdminAboutComponent,
+    DialogEditAboutComponent
   ],
   imports: [
     MatSidenavModule,
