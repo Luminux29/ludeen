@@ -183,7 +183,7 @@ export class ProfileInfoComponent implements OnInit {
     const form = personalDoc.getForm()
 
     //get bold font
-    const fontBold = await personalDoc.embedFont(StandardFonts.HelveticaBold);
+    const fontBold = await personalDoc.embedFont(StandardFonts.Courier);
 
 
     //get fields
@@ -304,7 +304,7 @@ export class ProfileInfoComponent implements OnInit {
         const educationalFormUrl = 'assets/files/Educational_Background_Form.pdf';
         const educationFormPdfBytes = await fetch(educationalFormUrl).then(res => res.arrayBuffer());
         const educationDoc = await PDFDocument.load(educationFormPdfBytes);
-        const fontBold = await educationDoc.embedFont(StandardFonts.HelveticaBold);
+        const fontBold = await educationDoc.embedFont(StandardFonts.Courier);
 
 
         //get form
@@ -367,7 +367,7 @@ export class ProfileInfoComponent implements OnInit {
           const civilFormUrl = 'assets/files/Civil_Service_Form.pdf';
           const civilFormPdfBytes = await fetch(civilFormUrl).then(res => res.arrayBuffer());
           const civilDoc = await PDFDocument.load(civilFormPdfBytes);
-        const fontBold = await civilDoc.embedFont(StandardFonts.HelveticaBold);
+        const fontBold = await civilDoc.embedFont(StandardFonts.Courier);
 
 
           //get form
@@ -423,7 +423,7 @@ export class ProfileInfoComponent implements OnInit {
         const workFormUrl = 'assets/files/Work_Experience.pdf';
         const workFormPdfBytes = await fetch(workFormUrl).then(res => res.arrayBuffer());
         const workDoc = await PDFDocument.load(workFormPdfBytes);
-        const fontBold = await workDoc.embedFont(StandardFonts.HelveticaBold);
+        const fontBold = await workDoc.embedFont(StandardFonts.Courier);
 
 
         //get form
@@ -491,7 +491,7 @@ export class ProfileInfoComponent implements OnInit {
         const trainingFormUrl = 'assets/files/Training_Form.pdf';
         const trainingFormPdfBytes = await fetch(trainingFormUrl).then(res => res.arrayBuffer());
         const trainingDoc = await PDFDocument.load(trainingFormPdfBytes);
-        const fontBold = await trainingDoc.embedFont(StandardFonts.HelveticaBold);
+        const fontBold = await trainingDoc.embedFont(StandardFonts.Courier);
 
 
         //get training form
@@ -652,7 +652,7 @@ export class ProfileInfoComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((res) => {
-   
+
       if(res){
         window.location.reload();
       }

@@ -88,7 +88,7 @@ export class DialogAddCivilComponent implements OnInit {
             //success!
             Swal.fire({
             icon: 'success',
-            title: 'Yehey!',
+            title: 'Success!',
             text: 'Added information successfully!'
           }).then((result) => {
             if (result.isConfirmed) {
@@ -141,7 +141,7 @@ export class DialogAddCivilComponent implements OnInit {
               //success
               Swal.fire({
                 icon: 'success',
-                title: 'Yehey!',
+                title: 'Success!',
                 text: 'Information updated successfully!'
               }).then((result) => {
                 if (result.isConfirmed) {

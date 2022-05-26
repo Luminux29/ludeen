@@ -145,7 +145,7 @@ export class AdminDashboardComponent implements OnInit {
 
           Swal.fire({
             icon: 'success',
-            title: 'Yehey!',
+            title: 'Success!',
             text: 'User archived successfully!',
             allowOutsideClick: false
           }).then((result) => {

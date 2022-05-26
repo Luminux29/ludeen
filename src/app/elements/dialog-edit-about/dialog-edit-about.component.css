@@ -1,5 +1,4 @@
-
-.txtField {
+  .txtField {
     width: 100%;
     padding: 0px;
     font-size: 12px;
@@ -12,18 +11,18 @@
   .col-sm-2{
     margin: auto;
   }
-  
+
   .mat-dialog-title{
     text-align: left;
     font-size: large;
     font-weight: 700;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
-  
+
   mat-checkbox{
     margin-left: 2%;
   }
-  
+
   .btn {
     width: 100%;
     height: 45px;
@@ -35,9 +34,8 @@
   .negative{
     background-color: #f05a5a;
   }
-  
+
   .btnUpload{
     background-color: #12aa82;
   }
-  
-  
+

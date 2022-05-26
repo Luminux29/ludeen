@@ -10,8 +10,8 @@
 .avatar{
     object-fit: cover;
     margin-top: 50px;
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     padding: 10px;
     border: 2px;
@@ -43,11 +43,13 @@ mat-divider {
 mat-sidenav {
     width: 20%;
     border-right: none;
-    background: #1c253d;
-    color: white;
+    background: #24344b;
+    color: rgb(255, 255, 255);
     text-align: center;
-    border-radius: 0px 30px 30px 0px;
+    /* border-radius: 0px 30px 30px 0px; */
 }
+
+
 
 .content {
 
@@ -57,7 +59,8 @@ padding: 20px;
 
 mat-sidenav-container {
     height: 100%;
-    background-color: #334166;
+    background-color: #ffffff;
+
 }
 
 .sidenav-buttons{
@@ -70,7 +73,8 @@ mat-sidenav-container {
     align-items: center;
     justify-content: flex-start;
     font-size: 0.8rem;
-    padding-left: 25%;
+    padding-left: 20%;
+    color: rgba(255, 255, 255, 0.452);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -83,9 +87,37 @@ mat-sidenav-container {
 
 mat-icon {
     margin-right: 10px;
+    transform: scale(0.8);
 }
 
 .mat-accent{
   background-color: #5a68f0;
   color: #fff;
+}
+
+.icon-profile{
+
+}
+.icon-school{
+  color: #3ac2b6;
+  transform: scale(0.3);
+
+}
+.icon-work{
+  color: #ef3a65;
+  transform: scale(0.3);
+
+}
+.icon-civil{
+  color: goldenrod;
+  transform: scale(0.3);
+
+}
+.icon-train{
+  color: mediumpurple;
+  transform: scale(0.3);
+
+}
+.icon-about{
+  /* color: #ef3a65; */
 }

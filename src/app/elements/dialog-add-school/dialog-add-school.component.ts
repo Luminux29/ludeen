@@ -132,7 +132,7 @@ export class DialogAddSchoolComponent implements OnInit {
 
           Swal.fire({
             icon: 'success',
-            title: 'Yehey!',
+            title: 'Success!',
             allowOutsideClick: false,
             text: 'Added information successfully!'
           }).then((result) => {
@@ -207,7 +207,7 @@ export class DialogAddSchoolComponent implements OnInit {
         res=>{
           Swal.fire({
             icon: 'success',
-            title: 'Yehey!',
+            title: 'Success!',
             text: 'Information updated successfully!'
           }).then((result) => {
             if (result.isConfirmed) {

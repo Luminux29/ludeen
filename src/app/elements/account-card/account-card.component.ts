@@ -106,7 +106,7 @@ export class AccountCardComponent implements OnInit {
 
             Swal.fire({
               icon: 'success',
-              title: 'Yehey!',
+              title: 'Success!',
               text: 'Added information successfully!',
               allowOutsideClick: false
             }).then((result) => {
@@ -162,7 +162,7 @@ export class AccountCardComponent implements OnInit {
         res=>{
           Swal.fire({
             icon: 'success',
-            title: 'Yehey!',
+            title: 'Success!',
             text: 'User successfully restored',
             allowOutsideClick: false
           }).then((result) => {

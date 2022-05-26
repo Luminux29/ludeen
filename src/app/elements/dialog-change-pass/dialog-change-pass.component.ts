@@ -66,7 +66,7 @@ export class DialogChangePassComponent implements OnInit {
 
         Swal.fire({
           icon: 'success',
-          title: 'Yehey!',
+          title: 'Success!',
           text: 'Password updated successfully!'
         }).then((result) => {
           if (result.isConfirmed) {

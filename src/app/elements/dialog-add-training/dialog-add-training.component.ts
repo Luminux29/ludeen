@@ -94,7 +94,7 @@ export class DialogAddTrainingComponent implements OnInit {
 
           Swal.fire({
             icon: 'success',
-            title: 'Yehey!',
+            title: 'Success!',
             text: 'Added information successfully!'
           }).then((result) => {
             if (result.isConfirmed) {
@@ -151,7 +151,7 @@ export class DialogAddTrainingComponent implements OnInit {
         res=>{
           Swal.fire({
             icon: 'success',
-            title: 'Yehey!',
+            title: 'Success!',
             text: 'Information updated successfully!'
           }).then((result) => {
             if (result.isConfirmed) {

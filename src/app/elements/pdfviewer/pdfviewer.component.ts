@@ -30,93 +30,93 @@ export class PdfviewerComponent implements OnInit {
   civils : Civil[]=[];
   works: Work[]=[];
   trainings: Training[]=[];
-  
+
   constructor(
     public dialogRef: MatDialogRef<PdfviewerComponent>,
-    private userService: UserService, 
-    private workService: WorkService, 
-    private civilService: CivilService, 
-    private schoolService: SchoolService, 
-    private trainingService: TrainingService, 
+    private userService: UserService,
+    private workService: WorkService,
+    private civilService: CivilService,
+    private schoolService: SchoolService,
+    private trainingService: TrainingService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
 
- 
+
     this.isLoading = true;
     this.userService.getUser(this.data)
     .subscribe(
       res=>{
         this.user = res;
- 
-        this.name = this.user.LastName + ", "+this.user.FirstName+ " "+ this.emptyStringIfNull(this.user.NameExtention) + " " + this.emptyStringIfNull(this.user.MI); 
+
+        this.name = this.user.LastName + ", "+this.user.FirstName+ " "+ this.emptyStringIfNull(this.user.NameExtention) + " " + this.emptyStringIfNull(this.user.MI);
         this.profilePicPath = this.user.profilePic;
-  
+
         this.schoolService.getSchoolByUserId(this.data)
         .subscribe(res=>{
-    
+
           let mySchools = res['schools'];
-     
-     
-          //push schools according to type 
+
+
+          //push schools according to type
           for(let i = 0; i < mySchools.length; i++){
-    
+
             if(mySchools[i].type === 'Elementary' ){
-    
+
                 this.schools.push(mySchools[i]);
-    
+
             }
-    
+
           }
-    
+
           for(let i = 0; i < mySchools.length; i++){
-    
+
             if(mySchools[i].type === 'Secondary' ){
-    
+
                 this.schools.push(mySchools[i]);
-    
+
             }
-    
+
           }
-    
+
           for(let i = 0; i < mySchools.length; i++){
-    
+
             if(mySchools[i].type === 'Vocational' ){
-    
+
                 this.schools.push(mySchools[i]);
-    
+
             }
-    
+
           }
-    
-          
+
+
           for(let i = 0; i < mySchools.length; i++){
-    
+
             if(mySchools[i].type === 'College' ){
-    
+
                 this.schools.push(mySchools[i]);
-    
+
             }
-    
+
           }
-    
+
           for(let i = 0; i < mySchools.length; i++){
-    
+
             if(mySchools[i].type === 'Graduate Studies' ){
-    
+
                 this.schools.push(mySchools[i]);
-    
+
             }
-    
+
           }
-    
+
             //get civil service information
             this.civilService.getCivilByUserId(this.data)
             .subscribe(res=>{
-              
+
               this.civils = res['civils'];
-              
+
                 this.workService.getWorksByUserId(this.data)
                 .subscribe(res=>{
 
@@ -133,13 +133,13 @@ export class PdfviewerComponent implements OnInit {
 
             });
         });
-        
+
         }
     );
 
 
-     
- 
+
+
 
 
 
@@ -147,7 +147,7 @@ export class PdfviewerComponent implements OnInit {
     //fill up pdf
 
 
- 
+
 
   }
 
@@ -172,9 +172,9 @@ export class PdfviewerComponent implements OnInit {
     const form = personalDoc.getForm()
 
     //get bold font
-    const fontBold = await personalDoc.embedFont(StandardFonts.HelveticaBold);
+    const fontBold = await personalDoc.embedFont(StandardFonts.Courier);
 
-  
+
     //get fields
     const pfpField = form.getButton('pfp')
     const nameField = form.getTextField('Name')
@@ -271,10 +271,10 @@ export class PdfviewerComponent implements OnInit {
     form.flatten();
 
 
-    //create main document 
+    //create main document
     const pdfDoc = await PDFDocument.create();
 
-    //copy created form to main document 
+    //copy created form to main document
     const [existingPage1] = await pdfDoc.copyPages(personalDoc, [0])
     const [existingPage2] = await pdfDoc.copyPages(personalDoc, [1])
     pdfDoc.addPage(existingPage1)
@@ -288,14 +288,14 @@ export class PdfviewerComponent implements OnInit {
 
       //loop education entry
       for(let i = 0; i < this.schools.length; i++){
-        
+
         //load educational from pdf from assets/files folder
         const educationalFormUrl = 'assets/files/Educational_Background_Form.pdf';
         const educationFormPdfBytes = await fetch(educationalFormUrl).then(res => res.arrayBuffer());
         const educationDoc = await PDFDocument.load(educationFormPdfBytes);
-        const fontBold = await educationDoc.embedFont(StandardFonts.HelveticaBold);
-        
-        
+        const fontBold = await educationDoc.embedFont(StandardFonts.Courier);
+
+
         //get form
         const educForm = educationDoc.getForm();
 
@@ -329,12 +329,12 @@ export class PdfviewerComponent implements OnInit {
         if (type === "PDFTextField"){
           educForm.getTextField(name).updateAppearances(fontBold);
       }})
-      
+
 
       //flatten form
       educForm.flatten();
 
-      //add education form to main document 
+      //add education form to main document
       const [educPage] = await pdfDoc.copyPages(educationDoc, [0]);
       pdfDoc.addPage(educPage)
 
@@ -343,7 +343,7 @@ export class PdfviewerComponent implements OnInit {
       }
     }
 
-  
+
     //load Civil Background Form Url
 
     //if there are civil entry, proceed
@@ -356,12 +356,12 @@ export class PdfviewerComponent implements OnInit {
           const civilFormUrl = 'assets/files/Civil_Service_Form.pdf';
           const civilFormPdfBytes = await fetch(civilFormUrl).then(res => res.arrayBuffer());
           const civilDoc = await PDFDocument.load(civilFormPdfBytes);
-          const fontBold = await civilDoc.embedFont(StandardFonts.HelveticaBold);
-          
-          
+          const fontBold = await civilDoc.embedFont(StandardFonts.Courier);
+
+
           //get form
           const civilForm = civilDoc.getForm();
-  
+
           //get form fields
           const nameField = civilForm.getTextField('name');
           const ratingField = civilForm.getTextField('rating');
@@ -369,7 +369,7 @@ export class PdfviewerComponent implements OnInit {
           const placeOfExamField = civilForm.getTextField('place_of_exam');
           const licenseField = civilForm.getTextField('license');
           const dateOfValidField = civilForm.getTextField('date_of_valid');
-         
+
           //set form fields
           nameField.setText(this.civils[i].nameOfCivilServiceEligibility);
           ratingField.setText(this.noAssignmentStringIfNull(this.civils[i].rating));
@@ -377,9 +377,9 @@ export class PdfviewerComponent implements OnInit {
           placeOfExamField.setText(this.noAssignmentStringIfNull(this.civils[i].placeOfExamination));
           licenseField.setText(this.noAssignmentStringIfNull(this.civils[i].licenseNo));
           dateOfValidField.setText(this.nullDateNotRequired(this.civils[i].dateOfValidity));
-              
+
           //set form field's font to bold
-          
+
           const fields = civilForm.getFields();
           fields.forEach((field) => {
             const type = field.constructor.name;
@@ -387,11 +387,11 @@ export class PdfviewerComponent implements OnInit {
             if (type === "PDFTextField"){
               civilForm.getTextField(name).updateAppearances(fontBold);
           }});
-          
+
           //flatten form
           civilForm.flatten();
 
-          //add education form to main document 
+          //add education form to main document
           const [civilPage] = await pdfDoc.copyPages(civilDoc, [0]);
           pdfDoc.addPage(civilPage);
 
@@ -412,9 +412,9 @@ export class PdfviewerComponent implements OnInit {
         const workFormUrl = 'assets/files/Work_Experience.pdf';
         const workFormPdfBytes = await fetch(workFormUrl).then(res => res.arrayBuffer());
         const workDoc = await PDFDocument.load(workFormPdfBytes);
-        const fontBold = await workDoc.embedFont(StandardFonts.HelveticaBold);
-          
-          
+        const fontBold = await workDoc.embedFont(StandardFonts.Courier);
+
+
         //get form
         const workForm = workDoc.getForm();
 
@@ -427,7 +427,7 @@ export class PdfviewerComponent implements OnInit {
         const salaryGradeField = workForm.getTextField('salary_grade');
         const appointmentField = workForm.getTextField('appointment');
         const checkBoxField = workForm.getCheckBox('checkbox');
-         
+
         //set form fields
         positionField.setText(this.works[i].position);
         companyField.setText(this.noAssignmentStringIfNull(this.works[i].dept));
@@ -436,17 +436,17 @@ export class PdfviewerComponent implements OnInit {
         monthlySalaryField.setText(this.noAssignmentStringIfNull(this.works[i].monthlySalary));
         salaryGradeField.setText(this.noAssignmentStringIfNull(this.works[i].salaryGrade));
         appointmentField.setText(this.noAssignmentStringIfNull(this.works[i].status));
-          
+
           if(this.works[i].government){
 
             checkBoxField.check();
 
           }
-          
-          
-              
+
+
+
           //set form field's font to bold
-          
+
           const fields = workForm.getFields();
           fields.forEach((field) => {
             const type = field.constructor.name;
@@ -454,11 +454,11 @@ export class PdfviewerComponent implements OnInit {
             if (type === "PDFTextField"){
               workForm.getTextField(name).updateAppearances(fontBold);
           }});
-          
+
           //flatten form
           workForm.flatten();
 
-          //add education form to main document 
+          //add education form to main document
           const [workPage] = await pdfDoc.copyPages(workDoc, [0]);
           pdfDoc.addPage(workPage);
 
@@ -480,9 +480,9 @@ export class PdfviewerComponent implements OnInit {
         const trainingFormUrl = 'assets/files/Training_Form.pdf';
         const trainingFormPdfBytes = await fetch(trainingFormUrl).then(res => res.arrayBuffer());
         const trainingDoc = await PDFDocument.load(trainingFormPdfBytes);
-        const fontBold = await trainingDoc.embedFont(StandardFonts.HelveticaBold);
-          
-          
+        const fontBold = await trainingDoc.embedFont(StandardFonts.Courier);
+
+
         //get training form
         const trainingForm = trainingDoc.getForm();
 
@@ -494,7 +494,7 @@ export class PdfviewerComponent implements OnInit {
         const toField = trainingForm.getTextField('to');
         const noHoursField = trainingForm.getTextField('no_hours');
 ;
-         
+
         //set form fields
         trainingField.setText(this.trainings[i].title);
         typeField.setText(this.noAssignmentStringIfNull(this.trainings[i].typeOfLearningDevelopment));
@@ -502,12 +502,12 @@ export class PdfviewerComponent implements OnInit {
         fromField.setText(this.readableDate(this.trainings[i].fromDate));
         toField.setText(this.presentRequiredDate(this.trainings[i].toDate));
         noHoursField.setText(this.noAssignmentStringIfNull(this.trainings[i].noOfHours));
-     
-          
-          
-              
+
+
+
+
           //set form field's font to bold
-          
+
           const fields = trainingForm.getFields();
           fields.forEach((field) => {
             const type = field.constructor.name;
@@ -515,7 +515,7 @@ export class PdfviewerComponent implements OnInit {
             if (type === "PDFTextField"){
               trainingForm.getTextField(name).updateAppearances(fontBold);
           }});
-          
+
           //flatten form
           trainingForm.flatten();
 
@@ -525,7 +525,7 @@ export class PdfviewerComponent implements OnInit {
         const certPdfBytes = await fetch(certFormUrl).then(res => res.arrayBuffer());
         const certDoc = await PDFDocument.load(certPdfBytes);
 
-          //add training form to main document 
+          //add training form to main document
           const [certPage] = await pdfDoc.copyPages(trainingDoc, [0]);
           const [certPage2] = await pdfDoc.copyPages(certDoc, [0]);
 
@@ -540,7 +540,7 @@ export class PdfviewerComponent implements OnInit {
     }
 
 
-    //save main pdf 
+    //save main pdf
     const pdfBytes = await pdfDoc.save()
     const blob = new Blob([pdfBytes], { type: 'application/pdf' });
     //this.pdfSrc = 'blob';
@@ -555,10 +555,10 @@ export class PdfviewerComponent implements OnInit {
  }
 
 
-  
+
 
   presentRequiredDate(date: Date){
-   
+
     if(date){
 
       return this.readableDate(date);

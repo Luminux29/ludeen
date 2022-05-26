@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class DialogEditAboutComponent implements OnInit {
 
-  
+
   about: any;
   form: FormGroup;
   isLoading = false;
@@ -67,14 +67,14 @@ export class DialogEditAboutComponent implements OnInit {
       this.form.value.logo
     )
     .subscribe(res=>{
-      
+
       this.isLoading = false;
       Swal.fire({
         icon: 'success',
-        title: 'Yehey!',
+        title: 'Success!',
         text: 'Updated successfully!',
         allowOutsideClick: false
-    
+
       }).then((result) => {
         if (result.isConfirmed) {
           this.isLoading = false;
@@ -82,7 +82,7 @@ export class DialogEditAboutComponent implements OnInit {
         }
       });
 
-      
+
 
     },err=>{
       this.dialogRef.close();
