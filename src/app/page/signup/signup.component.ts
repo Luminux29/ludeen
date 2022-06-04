@@ -33,45 +33,16 @@ export class SignupComponent implements OnInit {
     this.mainForm = new FormGroup({
 
       'profilePic': new FormControl(null,{validators: [Validators.required]}),
-      'EmployeeNumber': new FormControl(null),
+
       'LastName' : new FormControl(null, {validators: [Validators.required]}),
       'FirstName' : new FormControl(null, {validators: [Validators.required]}),
-      'MidInit' : new FormControl(null),
-      'NameExtention' : new FormControl(null),
+
       'birthdate' : new FormControl(null),
-      'age' : new FormControl(null),
-      'PlaceOfBirth' : new FormControl(null),
-      'gender' : new FormControl(null),
-      'CivilStatus' : new FormControl(null),
-      'height' : new FormControl(null),
-      'weight' : new FormControl(null),
-      'BloodType' : new FormControl(null),
-      'gsis' : new FormControl(null),
-      'pagibig' : new FormControl(null),
-      'philHealth' : new FormControl(null),
-      'sss' : new FormControl(null),
-      'tin' : new FormControl(null),
-      'citizenship' : new FormControl(null),
-      'r_zipCode' : new FormControl(null),
-      'r_lotNo' : new FormControl(null),
-      'r_street' : new FormControl(null),
-      'r_village' : new FormControl(null),
-      'r_brgy' : new FormControl(null),
-      'r_city' : new FormControl(null),
-      'r_province' : new FormControl(null),
-      'p_zipCode' : new FormControl(null),
-      'p_LotNo' : new FormControl(null),
-      'p_street' : new FormControl(null),
-      'p_village' : new FormControl(null),
-      'p_brgy' : new FormControl(null),
-      'p_city' : new FormControl(null),
-      'p_province' : new FormControl(null),
+
       'email' : new FormControl(null, {validators: [Validators.required]}),
-      'altEmail' : new FormControl(null),
+
       'password' : new FormControl(null, {validators: [Validators.required]}),
       'reEnterPassword' : new FormControl(null),
-      'TelNo' : new FormControl(null),
-      'MobileNo' : new FormControl(null)
 
     })
 

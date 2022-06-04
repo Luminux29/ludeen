@@ -30,47 +30,25 @@ import { AppComponent } from './app.component';
 
 import { SignInComponent } from './page/sign-in/sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardComponent } from './page/dashboard/dashboard.component';
 
 import { SignupComponent } from './page/signup/signup.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AuthInterceptor } from './service/auth-interceptor';
-import { AdminDashboardComponent } from './page/admin/admin-dashboard/admin-dashboard.component';
-import { AccountsComponent} from './page/admin/accounts/accounts.component';
-import { AdminRequestComponent } from './page/admin/admin-request/admin-request.component';
-import { AdminSettingsComponent } from './page/admin/admin-settings/admin-settings.component';
-import { SubjectsComponent } from './page/admin/subjects/subjects.component';
-
+import {ProfileInfoComponent} from './elements/profile-info/profile-info.component';
 import { AddAccountComponent } from './elements/add-account/add-account.component';
-import { AccountCardComponent } from './elements/account-card/account-card.component';
-import { ProfileInfoComponent } from './elements/profile-info/profile-info.component';
-
+import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-change-pass.component';
 import { SideNavComponent } from './elements/side-nav/side-nav.component';
-import { PersonalInfoComponent } from './elements/personal-info/personal-info.component';
-import { AboutComponent } from './page/about/about.component';
-import { AdminAboutComponent } from './page/admin-about/admin-about.component';
-import { DialogEditAboutComponent } from './elements/dialog-edit-about/dialog-edit-about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProfileInfoComponent,
+    AddAccountComponent,
     SignInComponent,
-    DashboardComponent,
     SignupComponent,
     ProfileComponent,
-    AdminDashboardComponent,
-    AccountsComponent,
-    AdminRequestComponent,
-    AdminSettingsComponent,
-    SubjectsComponent,
-    AddAccountComponent,
-    AccountCardComponent,
-    ProfileInfoComponent,
     SideNavComponent,
-    PersonalInfoComponent,
-    AboutComponent,
-    AdminAboutComponent,
-    DialogEditAboutComponent
+    DialogChangePassComponent
   ],
   imports: [
     MatSidenavModule,

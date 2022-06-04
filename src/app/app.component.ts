@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
       .subscribe(res =>{
 
         this.user = res as User;
-        this.name = this.user.FirstName + " " + this.emptyStringIfNull(this.user.MidInit) + " " + this.user.LastName + " " + this.emptyStringIfNull(this.user.NameExtention);
+        this.name = this.user.FirstName + " " +this.user.LastName;
         this.isLoading = false;
       })
 

@@ -6,7 +6,8 @@
               -ms-transform: translate(-50%, -50%);
               transform: translate(-50%, -50%);"
 ></mat-spinner>
-  <mat-sidenav-container *ngIf="!isLoading && userService.getAuth() && userService.getRole() !== 'Admin' && userService.getStatus() !== 'Pending'" fullscreen>
+
+  <mat-sidenav-container *ngIf="!isLoading && userService.getAuth()" fullscreen>
     <mat-sidenav mode ="side" class="mat-elevation-z8" opened >
 
 
@@ -23,30 +24,6 @@
         <span>Profile</span>
       </button>
 
-      <button mat-button class="menu-button" routerLink="school" routerLinkActive="mat-accent">
-        <mat-icon class="icon-school">info icon</mat-icon>
-        <span>Educational Background</span>
-      </button>
-      <button mat-button class="menu-button" routerLink="work" routerLinkActive="mat-accent">
-        <mat-icon class="icon-work">info icon</mat-icon>
-        <span>Work Experience</span>
-      </button>
-
-
-      <button mat-button class="menu-button" routerLink="civil" routerLinkActive="mat-accent">
-        <mat-icon class="icon-civil">info icon</mat-icon>
-        <span>Civil Service Eligibility</span>
-      </button>
-
-      <button mat-button class="menu-button" routerLink="training" routerLinkActive="mat-accent">
-        <mat-icon class="icon-train">info icon</mat-icon>
-        <span>Trainings</span>
-      </button>
-
-      <button mat-button class="menu-button" routerLink="about" routerLinkActive="mat-accent">
-        <mat-icon class="icon-about">info</mat-icon>
-        <span>About</span>
-      </button>
     </div>
 
 
@@ -76,4 +53,4 @@
 
 </mat-sidenav-container>
 
-<router-outlet *ngIf="!userService.getAuth() || userService.getStatus() === 'Pending' || userService.getRole() === 'Admin'"></router-outlet>
+<router-outlet *ngIf="!userService.getAuth()"></router-outlet>
