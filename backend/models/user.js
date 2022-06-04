@@ -5,7 +5,7 @@ const userSchema = mongoose.Schema({
 
     email: { type: String, required: true, unique: true },
     password: {type: String, required: true},
-    status: {type: String, enum: ['Pending', 'Rejected', 'Accepted'], required: false, default:"Pending"},
+    status: {type: String, enum: ['Pending', 'Rejected', 'Accepted'], required: false},
     rejectedReason  : {type: String, required: false, default: null},
 
   profilePic: {type: String, required: false},
