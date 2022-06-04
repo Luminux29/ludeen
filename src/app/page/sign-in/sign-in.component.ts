@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-sign-in',
@@ -20,7 +20,7 @@ hidePass = true;
   ngOnInit(): void {}
 
   signIn(form: NgForm){
-    
+
     if(form.invalid){
       return;
     }
@@ -33,10 +33,22 @@ hidePass = true;
     },
     error =>{
 
-      window.alert(error.error['message']);
-      this.isLoading=false;
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Error! ' +error.error['message'],
+        allowOutsideClick: false
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.isLoading=false;
+        }
+      });
+
+
+
     });
-  
-    
+
+
   }
 }
