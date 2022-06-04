@@ -27,50 +27,26 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ButtonComponent } from './elements/button/button.component';
-import { InputTextComponent } from './elements/input-text/input-text.component';
+
 import { SignInComponent } from './page/sign-in/sign-in.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RequestComponent } from './elements/request/request.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
-import { HeaderDashboardUserComponent } from './elements/header-dashboard-user/header-dashboard-user.component';
+
 import { SignupComponent } from './page/signup/signup.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { AuthInterceptor } from './service/auth-interceptor';
 import { AdminDashboardComponent } from './page/admin/admin-dashboard/admin-dashboard.component';
-import { FacultyDashboardComponent } from './page/faculty/faculty-dashboard/faculty-dashboard.component';
 import { AccountsComponent} from './page/admin/accounts/accounts.component';
 import { AdminRequestComponent } from './page/admin/admin-request/admin-request.component';
 import { AdminSettingsComponent } from './page/admin/admin-settings/admin-settings.component';
-import { MyrequestComponent } from './user/myrequest/myrequest.component';
 import { SubjectsComponent } from './page/admin/subjects/subjects.component';
-import { FacultyRequestComponent } from './page/faculty/faculty-request/faculty-request.component';
-import { FacultyProfileComponent } from './page/faculty/faculty-profile/faculty-profile.component';
-import { FacultyRequestElementComponent } from './elements/faculty-request-element/faculty-request-element.component';
-import { DialogAddRequestComponent } from './elements/dialog-add-request/dialog-add-request.component';
-import { DialogRejectRequestComponent } from './elements/dialog-reject-request/dialog-reject-request.component';
-import { DialogRequestVerdictComponent } from './elements/dialog-request-verdict/dialog-request-verdict.component';
-import { RequestFormComponent } from './elements/request-form/request-form.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 import { AddAccountComponent } from './elements/add-account/add-account.component';
 import { AccountCardComponent } from './elements/account-card/account-card.component';
-import { ValidityRedirectComponent } from './page/faculty/validity-redirect/validity-redirect.component';
-import { DialogAddSubjectComponent } from './elements/dialog-add-subject/dialog-add-subject.component';
-import { SettingsComponent } from './page/settings/settings.component';
-import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-change-pass.component';
 import { ProfileInfoComponent } from './elements/profile-info/profile-info.component';
-import { DialogAddSchoolComponent } from './elements/dialog-add-school/dialog-add-school.component';
-import { CardSchoolComponent } from './elements/card-school/card-school.component';
-import { DialogAddCivilComponent } from './elements/dialog-add-civil/dialog-add-civil.component';
-import { CardCivilComponent } from './elements/card-civil/card-civil.component';
-import { DialogAddWorkComponent } from './elements/dialog-add-work/dialog-add-work.component';
-import { CardWorkComponent } from './elements/card-work/card-work.component';
-import { DialogAddTrainingComponent } from './elements/dialog-add-training/dialog-add-training.component';
-import { CardTrainingComponent } from './elements/card-training/card-training.component';
+
 import { SideNavComponent } from './elements/side-nav/side-nav.component';
 import { PersonalInfoComponent } from './elements/personal-info/personal-info.component';
-import { PdfviewerComponent } from './elements/pdfviewer/pdfviewer.component';
-import { CreateAdminComponent } from './page/create-admin/create-admin.component';
 import { AboutComponent } from './page/about/about.component';
 import { AdminAboutComponent } from './page/admin-about/admin-about.component';
 import { DialogEditAboutComponent } from './elements/dialog-edit-about/dialog-edit-about.component';
@@ -78,47 +54,20 @@ import { DialogEditAboutComponent } from './elements/dialog-edit-about/dialog-ed
 @NgModule({
   declarations: [
     AppComponent,
-    ButtonComponent,
-    InputTextComponent,
     SignInComponent,
-    RequestComponent,
     DashboardComponent,
-    HeaderDashboardUserComponent,
     SignupComponent,
     ProfileComponent,
     AdminDashboardComponent,
-    FacultyDashboardComponent,
     AccountsComponent,
     AdminRequestComponent,
     AdminSettingsComponent,
-    MyrequestComponent,
     SubjectsComponent,
-    FacultyRequestComponent,
-    FacultyProfileComponent,
-    FacultyRequestElementComponent,
-    DialogAddRequestComponent,
-    DialogRejectRequestComponent,
-    DialogRequestVerdictComponent,
-    RequestFormComponent,
     AddAccountComponent,
     AccountCardComponent,
-    ValidityRedirectComponent,
-    DialogAddSubjectComponent,
-    SettingsComponent,
-    DialogChangePassComponent,
     ProfileInfoComponent,
-    DialogAddSchoolComponent,
-    CardSchoolComponent,
-    DialogAddCivilComponent,
-    CardCivilComponent,
-    DialogAddWorkComponent,
-    CardWorkComponent,
-    DialogAddTrainingComponent,
-    CardTrainingComponent,
     SideNavComponent,
     PersonalInfoComponent,
-    PdfviewerComponent,
-    CreateAdminComponent,
     AboutComponent,
     AdminAboutComponent,
     DialogEditAboutComponent
@@ -126,7 +75,6 @@ import { DialogEditAboutComponent } from './elements/dialog-edit-about/dialog-ed
   imports: [
     MatSidenavModule,
     MatDatepickerModule,
-    PdfViewerModule,
     MatDividerModule,
     BrowserModule,
     AppRoutingModule,

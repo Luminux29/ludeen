@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddAccountComponent } from 'src/app/elements/add-account/add-account.component';
 import { DialogChangePassComponent } from 'src/app/elements/dialog-change-pass/dialog-change-pass.component';
 import { User } from 'src/app/models/user';
-import { AdminServiceService } from 'src/app/service/admin-service.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -20,7 +19,6 @@ export class ProfileComponent implements OnInit {
  
 
   constructor(private userService: UserService, 
-    private adminService: AdminServiceService,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -41,26 +39,6 @@ export class ProfileComponent implements OnInit {
   }
 
   
-  deleteMyAccount(){
-
-    let u_id : string = this.user._id;
-    var willDelete = window.confirm('Are you sure you want to delete?');
-
-    if(willDelete){
-      console.log("will delete: "+ u_id);
-      this.adminService.deleteUser(u_id)
-      .subscribe(result =>{
-
-
-        window.alert("Your account was successfully deleted!");
-        this.userService.logout();
-       
-
-      });
-    }
-
-    
-  }
 
   changePassword(){
 
@@ -84,6 +62,12 @@ export class ProfileComponent implements OnInit {
 
 
   }
+
+   deleteMyAccount(){
+
+
+    
+   }
   
   editMyAccount(){
 
