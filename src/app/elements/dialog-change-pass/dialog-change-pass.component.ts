@@ -1,8 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AdminServiceService } from 'src/app/service/admin-service.service';
-import { RequestService } from 'src/app/service/request.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2'
 

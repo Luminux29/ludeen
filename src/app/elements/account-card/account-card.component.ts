@@ -2,7 +2,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
-import { AdminServiceService } from 'src/app/service/admin-service.service';
 import { UserService } from 'src/app/service/user.service';
 import Swal from 'sweetalert2'
 
@@ -22,40 +21,13 @@ export class AccountCardComponent implements OnInit {
   p_address: string;
   r_address: string;
 
-  constructor(private userService: UserService, private adminService: AdminServiceService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
 
 
     this.isLoading = true;
-    if(this.status === 'Archive'){
-
-      this.adminService.getUserByStatus(this.status)
-      .subscribe((userData) => {
-        this.isLoading = false;
-        console.log(userData['users']);
-        this.users = userData['users'];
-
-      },
-      err =>{
-        console.log(err);
-      });
-    }
-    else{
-      this.adminService.getFacultyByStatus(this.status)
-      .subscribe((userData) => {
-        this.isLoading = false;
-        console.log(userData['users']);
-        this.users = userData['users'];
-
-      },
-      err =>{
-        console.log(err);
-      });
-
-
-    }
-
+   
 
   }
 

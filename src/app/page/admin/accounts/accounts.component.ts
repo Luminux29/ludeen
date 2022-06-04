@@ -2,7 +2,6 @@ import { Component, Inject, OnInit, ViewChild, OnDestroy, Optional } from '@angu
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Subscription, throwError } from 'rxjs';
 import { User } from 'src/app/models/user';
-import { AdminServiceService } from 'src/app/service/admin-service.service';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import {MatDialog, MatDialogContent, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -38,7 +37,7 @@ export class AccountsComponent  implements OnInit, OnDestroy {
   authData: AuthData;
   
 
-  constructor(private adminService: AdminServiceService, private dialog : MatDialog, private userService: UserService) {
+  constructor( private dialog : MatDialog, private userService: UserService) {
  
   }
 
