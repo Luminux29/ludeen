@@ -1,3 +1,7 @@
 
-<h1>Your account validation request: {{status}}</h1>
-<button mat-flat-button (click) ="logout()">Logout</button>
+<mat-card>
+  <h1>Your account validation request: <b>{{status}}</b></h1>
+  <mat-card-actions>
+  <button mat-flat-button  (click) ="logout()">Back</button>
+  </mat-card-actions>
+</mat-card>

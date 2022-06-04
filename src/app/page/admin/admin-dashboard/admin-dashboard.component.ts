@@ -4,9 +4,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { DialogEditAboutComponent } from 'src/app/elements/dialog-edit-about/dialog-edit-about.component';
 import { PdfviewerComponent } from 'src/app/elements/pdfviewer/pdfviewer.component';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -37,6 +40,24 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshTable();
+  }
+
+
+  openContentDialog(){
+
+    const dialogRef = this.dialog.open(DialogEditAboutComponent, {
+      data: null
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res){
+
+        window.location.reload();
+
+      }
+    });
+
+
   }
 
 
@@ -90,35 +111,64 @@ export class AdminDashboardComponent implements OnInit {
 
   logout(){
 
-    let logout = window.confirm("Are you sure you want to logout?");
-    if(logout){
-
-      this.userService.logout();
-
-    }
+    Swal.fire({
+      title: 'Are you sure you want to logout?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Logout'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.logout();
+      }
+    });
 
   }
 
-  deleteUser(id : string){
+  archiveUser(id : string){
 
-    let willDelete = window.confirm('Are you sure you want to delete this user?');
-    if(willDelete){
+    Swal.fire({
+      title: 'Are you sure you want to archive this account?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
 
-      this.userService.deleteUser(id)
-      .subscribe(res=>{
+        this.userService.updateFacultyStatus(id, "Archive")
+        .subscribe(res=>{
 
-        window.alert("Success!");
-        this.refreshTable();
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'User archived successfully!',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
 
-      },
-      err =>{
-        console.log(err);
-        window.alert("Failed!");
+        },
+        err =>{
+          console.log(err);
+          window.alert("Failed!");
 
 
-      });
+        });
 
-    }
+      }
+    })
+
+
+
+
+
 
   }
 
@@ -192,6 +242,8 @@ export class AdminDashboardComponent implements OnInit {
 
 
   }
+
+
 
 
   setPageSizeOption(){

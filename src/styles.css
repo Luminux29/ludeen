@@ -43,11 +43,12 @@ input[type="file"]{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 0;
     /* background-image: url("\assets\images\background.png"); */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 60%;
-    background-position: center;
-    background-color: #334166;
+    /* background-repeat: no-repeat;
+    background-attachment: fixed; */
+    /* background-size: 60%; */
+    background-color: aliceblue;
+
+    /* background-color: linear-gradient(131deg, rgba(56,86,236,1) 0%, rgba(0,169,215,1) 38%, rgba(156,221,246,1) 100%); */
 
   }
 

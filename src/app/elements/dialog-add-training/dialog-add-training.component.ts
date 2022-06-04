@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Training } from 'src/app/models/training';
 import { TrainingService } from 'src/app/service/training.service';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-dialog-add-training',
@@ -26,7 +28,7 @@ export class DialogAddTrainingComponent implements OnInit {
 
     //create form
     this.form = new FormGroup({
-      
+
       'title' : new FormControl(null, {validators: [Validators.required]}),
       'typeOfLearningDevelopment' : new FormControl(null,  {validators:[Validators.required]}),
       'conductor' : new FormControl(null, {validators:[Validators.required]}),
@@ -34,7 +36,7 @@ export class DialogAddTrainingComponent implements OnInit {
       'fromDate' : new FormControl(null, {validators:[Validators.required]}),
       'noOfHours' : new FormControl(null, {validators:[Validators.required]}),
       'certificate' : new FormControl(null, {validators:[Validators.required]}),
-     
+
 
     });
 
@@ -51,7 +53,7 @@ export class DialogAddTrainingComponent implements OnInit {
       this.form.patchValue({certificate : this.data.certificate});
       this.fileTitlePrev = this.data.certificate;
     }
-  
+
 
   }
 
@@ -66,8 +68,18 @@ export class DialogAddTrainingComponent implements OnInit {
 
     if(this.mode === 'create'){
 
-      console.log("Creating certificate " + this.form.value.certificate);
-      this.trainingService.addTraining(
+      Swal.fire({
+        title: 'Are you sure you want to add this information?',
+        text: "",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#5a68f0',
+        cancelButtonColor: '#f05a5a',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+      if (result.isConfirmed) {
+
+        this.trainingService.addTraining(
         this.form.value.title,
         this.form.value.fromDate,
         this.form.value.toDate,
@@ -80,21 +92,49 @@ export class DialogAddTrainingComponent implements OnInit {
       .subscribe(
         res=>{
 
-          console.log("Success", res);
-          window.alert("Success create!");
-          this.dialogRef.close("Success!");
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Added information successfully!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.isLoading = false;
+              this.dialogRef.close('success');
+            }
+          });
 
         },
         err=>{
 
-          console.log("Error", err);
-          window.alert("Error!");
-          this.dialogRef.close();
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'Something went wrong!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.isLoading = false;
+            }
+          });
 
         });
 
+
+      }})
+
+
     }
     else{
+
+      Swal.fire({
+        title: 'Are you sure you want to update this information?',
+        text: "",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#5a68f0',
+        cancelButtonColor: '#f05a5a',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+      if (result.isConfirmed) {
 
       this.trainingService.updateTraining(
         this.data._id,
@@ -109,22 +149,31 @@ export class DialogAddTrainingComponent implements OnInit {
       )
       .subscribe(
         res=>{
-
-
-          window.alert('Success Edit!');
-          this.dialogRef.close("success");
-
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Information updated successfully!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.dialogRef.close("Success");
+            }
+          });
 
         },
         err=>{
-          window.alert('Edit FAiled!');
-          this.dialogRef.close();
-          
-
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'Something went wrong!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.dialogRef.close();
+            }
+          });
 
         }
-      )
-
+      );
+    }});
 
     }
 
@@ -142,7 +191,20 @@ export class DialogAddTrainingComponent implements OnInit {
   }
 
   onNoClick(){
-    this.dialogRef.close();
+    Swal.fire({
+      title: 'Are you sure you want to discard your progress?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.dialogRef.close();
+      }
+    })
+
   }
 
   onFilePicked(event: Event){

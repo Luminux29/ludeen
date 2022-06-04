@@ -45,19 +45,13 @@
                   matTooltipPosition="left">
                   <mat-icon>receipt</mat-icon>
               </button>
-              <button (click)="exporter.exportTable('csv',{fileName:'User_data'})"
+             
+              <button (click)="openContentDialog()"
+                  mat-fab
                   class="csv-button"
-                  mat-fab
-                  matTooltip="Export as CSV"
+                  matTooltip="Content Management"
                   matTooltipPosition="left">
-                  <mat-icon>receipt</mat-icon>
-              </button>
-              <button (click)="exporter.exportTable('json',{fileName:'User_data'})"
-                  class="json-button"
-                  mat-fab
-                  matTooltip="Export as JSON"
-                  matTooltipPosition="left">
-              <mat-icon>receipt</mat-icon></button>
+              <mat-icon>settings</mat-icon></button>
 
 
           </div>
@@ -92,10 +86,10 @@
                       <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef>Actions</th>
                         <td mat-cell *matCellDef="let row">
-                            <button mat-raised-button color="warn" (click)="deleteUser(row._id)"
-                            matTooltip="Delete"
+                            <button mat-raised-button color="warn" (click)="archiveUser(row._id)"
+                            matTooltip="Archive"
                             matTooltipPosition="left">
-                              <mat-icon>delete</mat-icon>
+                              <mat-icon>archive</mat-icon>
 
                             </button>
                             <button mat-raised-button color="primary" (click)="view(row._id)"
@@ -278,7 +272,7 @@
         <app-account-card status='Accepted'></app-account-card>
       </mat-tab>
 
-      <!-- TAB 2 Rejected -->
+      <!-- TAB 3 Rejected -->
       <mat-tab label="Rejected Account">
         <ng-template mat-tab-label>
           <mat-icon class="mat-tab-icon">cancel</mat-icon>
@@ -286,6 +280,16 @@
 
         </ng-template>
         <app-account-card status='Rejected'></app-account-card>
+      </mat-tab>
+
+        <!-- TAB 4 ARCHIVE ACCOUNTS -->
+      <mat-tab label="Archived Accounts">
+        <ng-template mat-tab-label>
+          <mat-icon class="mat-tab-icon">archive</mat-icon>
+          <mat-label class="mat-tab-label">Archived Account</mat-label>
+
+        </ng-template>
+        <app-account-card status='Archive'></app-account-card>
       </mat-tab>
 
   </mat-tab-group>

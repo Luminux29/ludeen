@@ -1,0 +1,33 @@
+h1{
+  text-align: center;
+  font-size: large;
+  padding-top: 50px;
+  margin-bottom: 50px;
+
+}
+
+mat-card{
+  width: 40%;
+  margin: auto;
+  padding: 50px;
+
+    /* center */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+button{
+  width: 100%;
+  background-color: #f05a5a;
+  color: #fff ;
+
+}
+
+mat-card-actions{
+  padding-right: 40%;
+  padding-left: 40%;
+}

@@ -4,12 +4,12 @@
 <!--ELSE SHOW THIS-->
 <mat-accordion multi=true *ngIf="requests.length > 0 && !isLoading" >
     <mat-expansion-panel  *ngFor = "let request of requests" >
-        
+
         <!-- TITLE -->
         <mat-expansion-panel-header>
             <b style= "color: #673AB7;"><b>Subject: </b>{{request.subject}}</b>
         </mat-expansion-panel-header>
-           
+
         <!-- INFORMATION -->
         <li><b>Student: </b>{{request.user_id}}</li>
         <li><b>Section: </b>{{request.cys}}</li>
@@ -19,7 +19,7 @@
         <li><b>Semester/Tri-semester/Summer: </b>{{request.semester}}</li>
         <li><b>Academic Year: </b>{{transformAcadYear(request.year)}}</li>
         <li><b>Status: </b>{{request.status}}</li>
-    
+
         <li><b>Date requested: </b>{{readableDate(request.dateRequested)}}</li>
         <li *ngIf="request.status==='Completed' || request.status ==='Processing'"><b>Date accepted: </b>{{readableDate(request.dateAccepted)}}</li>
         <li><b>PDF File: </b><a [href]="request.request_form" target="_blank" rel="noopener noreferrer">PDF Form file</a></li>
@@ -29,7 +29,7 @@
         <!-- ACTION ROW -->
         <mat-action-row *ngIf = "request.status === 'Requested'">
             <!-- <button  mat-button color="primary" (click) ="openEditRequestDialog(request._id)">EDIT</button> -->
-          
+
             <button  mat-button color="warn" (click)="deleteRequest(request._id)">DELETE</button>
 
         </mat-action-row>
@@ -39,10 +39,10 @@
             <button  mat-button color="primary" (click)="completeRequest(request._id)">Complete Request</button>
         </mat-action-row>
 
-    
+
     </mat-expansion-panel>
-    
+
 </mat-accordion>
 <br><br>
-<p *ngIf="requests.length <= 0 && !isLoading"><b>*Hoot hoot* *Hoot hoot*</b> <bR>Nothing here..</p>
-  
+<p *ngIf="requests.length <= 0 && !isLoading"> <bR>There's nothing here.</p>
+

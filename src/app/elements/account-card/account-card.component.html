@@ -140,6 +140,7 @@
             <button  *ngIf = "user.status === 'Pending'"  mat-button color="primary" (click) = "acceptFaculty(user, 'Accept')">Accept</button>
             <button  *ngIf = "user.status === 'Pending'"  mat-button color="warn" (click)= "acceptFaculty(user, 'Reject')">Reject</button>
             <button *ngIf = "user.status === 'Rejected'"  mat-button color="warn" (click)= "acceptFaculty(user, 'Appeal')" >Re-appeal</button>
+            <button *ngIf = "user.status === 'Archive'"  mat-button color="warn" (click)= "restoreFaculty(user)" >Restore</button>
 
         </mat-action-row>
 
@@ -147,5 +148,5 @@
 
 </mat-accordion>
 <br><br>
-<p class="empty" *ngIf="users.length <= 0 && !isLoading"><b>*Hoot hoot* *Hoot hoot*</b> <bR>Nothing here..</p>
+<p class="empty" *ngIf="users.length <= 0 && !isLoading"> <bR>There's nothing here.</p>
 

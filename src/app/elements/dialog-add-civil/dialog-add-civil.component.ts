@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CivilService } from 'src/app/service/civil.service';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-dialog-add-civil',
@@ -61,6 +62,18 @@ export class DialogAddCivilComponent implements OnInit {
       return;
     }
     if(this.mode === 'create'){
+
+      Swal.fire({
+        title: 'Are you sure you want to add this information?',
+        text: "",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#5a68f0',
+        cancelButtonColor: '#f05a5a',
+        confirmButtonText: 'Confirm'
+    }).then((result) => {
+    if (result.isConfirmed) {
+
         //to create
         this.civilService.addCivil(  this.form.value.nameOfCivilServiceEligibility,
         this.form.value.rating,
@@ -73,20 +86,47 @@ export class DialogAddCivilComponent implements OnInit {
 
           res =>{
             //success!
-            console.log("Civil Eligibility creation is successful! " + res);
-            window.alert("Success!");
-            this.dialogRef.close("success");
+            Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Added information successfully!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.isLoading = false;
+              this.dialogRef.close('success');
+            }
+          });
           },
           err=>{
             //error
-            console.log("Civil Eligibility creation failed! " + err);
-            window.alert("Error!");
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'Something went wrong!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.isLoading = false;
+              }
+            });
 
           });
+    }});
+
     }
 
     else {
         //to edit
+        Swal.fire({
+          title: 'Are you sure you want to update this information?',
+          text: "",
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#5a68f0',
+          cancelButtonColor: '#f05a5a',
+          confirmButtonText: 'Confirm'
+        }).then((result) => {
+        if (result.isConfirmed) {
+
         this.civilService.updateCivil(
           this.data._id,
           this.form.value.nameOfCivilServiceEligibility,
@@ -99,19 +139,32 @@ export class DialogAddCivilComponent implements OnInit {
         ).subscribe(
           res=>{
               //success
-              console.log("Civil Eligibility edit is successful! " + res);
-              window.alert("Success Edit");
-              this.dialogRef.close("success");
+              Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Information updated successfully!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  this.dialogRef.close("Success");
+                }
+              });
 
           },
           err=>{
             //failed
-            console.log("Civil Eligibility edit failed! " + err);
-            window.alert("Error! " + err);
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'Something went wrong!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.dialogRef.close();
+              }
+            });
 
           }
         );
-
+      }});
 
     }
 
@@ -119,7 +172,19 @@ export class DialogAddCivilComponent implements OnInit {
   }
 
   onNoClick(){
-    this.dialogRef.close();
+    Swal.fire({
+      title: 'Are you sure you want to discard your progress?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.dialogRef.close();
+      }
+    })
   }
 
 

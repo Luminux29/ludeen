@@ -59,7 +59,7 @@
 
             <input  type="text" matInput
                   formControlName="EmployeeNumber" name="EmployeeNumber"
-                  placeholder="Employee Number" >
+                  placeholder="Employee Number" required>
 
           </mat-form-field>
         </div>
@@ -72,7 +72,7 @@
 
             <input type="text" matInput
                   formControlName="LastName" name="LastName"
-                  placeholder="Last name" >
+                  placeholder="Last name" required>
 
           </mat-form-field>
         </div>
@@ -82,7 +82,7 @@
 
             <input  type="text" matInput
                   formControlName="FirstName" name="FirstName"
-                  placeholder="First name" >
+                  placeholder="First name" required>
 
           </mat-form-field>
         </div>
@@ -115,7 +115,7 @@
             <mat-label>Birthdate</mat-label>
             <input  matInput [matDatepicker]="picker"
             formControlName="birthdate" name="birthdate"
-            placeholder="MM/DD/YYYY"   (focus)="picker.open()">
+            placeholder="MM/DD/YYYY"   (focus)="picker.open()" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
 
@@ -135,7 +135,7 @@
             <mat-label>Citizenship</mat-label>
             <input  matInput
             formControlName="citizenship" name="citizenship"
-                   placeholder="Ex. xxx-xxx" >
+                   placeholder="Ex. xxx-xxx" required>
           </mat-form-field>
 
         </div>
@@ -277,7 +277,7 @@
                 <mat-label>Zip code</mat-label>
                 <input matInput
                 formControlName="r_zipCode" name="r_zipCode"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
 
               </mat-form-field>
             </div>
@@ -286,7 +286,7 @@
                 <mat-label>House/Block/Lot No.</mat-label>
                 <input  matInput
                 formControlName="r_lotNo" name="r_lotNo"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
 
               </mat-form-field>
             </div>
@@ -295,7 +295,7 @@
                 <mat-label>Street</mat-label>
                 <input  matInput
                 formControlName="r_street" name="r_street"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" >
               </mat-form-field>
             </div>
             <div class="col-sm-3">
@@ -314,7 +314,7 @@
                 <mat-label>Barangay</mat-label>
                 <input  matInput
                 formControlName="r_brgy" name="r_brgy"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
 
               </mat-form-field>
             </div>
@@ -323,7 +323,7 @@
                 <mat-label>City/Municipality</mat-label>
                 <input  matInput
                 formControlName="r_city" name="r_city"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
               </mat-form-field>
             </div>
             <div class="col-sm-4">
@@ -331,7 +331,7 @@
                 <mat-label>Province</mat-label>
                 <input  matInput
                 formControlName="r_province" name="r_province"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
 
               </mat-form-field>
             </div>
@@ -348,7 +348,7 @@
                 <mat-label>Zip code</mat-label>
                 <input  matInput
                 formControlName="p_zipCode" name="p_zipCode"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
 
               </mat-form-field>
             </div>
@@ -357,7 +357,7 @@
                 <mat-label>House/Block/Lot No.</mat-label>
                 <input  matInput
                 formControlName="p_LotNo" name="p_LotNo"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
 
               </mat-form-field>
             </div>
@@ -385,7 +385,7 @@
                 <mat-label>Barangay</mat-label>
                 <input  matInput
                 formControlName="p_brgy" name="p_brgy"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
 
               </mat-form-field>
             </div>
@@ -394,7 +394,7 @@
                 <mat-label>City/Municipality</mat-label>
                 <input  matInput
                 formControlName="p_city" name="p_city"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
               </mat-form-field>
             </div>
             <div class="col-sm-4">
@@ -402,7 +402,7 @@
                 <mat-label>Province</mat-label>
                 <input  matInput
                 formControlName="p_province" name="p_province"
-                       placeholder="Ex. xxx-xxx">
+                       placeholder="Ex. xxx-xxx" required>
 
               </mat-form-field>
             </div>
@@ -441,7 +441,7 @@
               <mat-label>Email</mat-label>
               <input  type="email" matInput
               formControlName="email" name="email"
-                     placeholder="Ex. pat@example.com">
+                     placeholder="Ex. pat@example.com" required>
 
             </mat-form-field>
           </div>
@@ -462,8 +462,8 @@
               <mat-label>Password</mat-label>
               <input class="loginInput" matInput
                 formControlName="password" name="password"
-                [type]="hide ? 'password' : 'text'" placeholder="Password"  >
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                [type]="hide ? 'password' : 'text'" placeholder="Password"  required>
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
               <!--<mat-icon matSuffix>email</mat-icon>-->
@@ -474,8 +474,8 @@
               <mat-label>Re-enter Password</mat-label>
               <input class="loginInput" matInput
                 formControlName="reEnterPassword" name="reEnterPassword"
-                [type]="hide ? 'password' : 'text'" placeholder="Password" >
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                [type]="hide ? 'password' : 'text'" placeholder="Password" required>
+              <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
             <!--<mat-icon matSuffix>email</mat-icon>-->
@@ -485,7 +485,7 @@
 
         <div class="rows">
           <button class="btn positive" mat-flat-button color="primary" type="submit">Register</button>
-          <button class="btn negative" mat-flat-button color="primary"  routerLink="/sign-in">Back</button>
+          <button type="button" class="btn negative" mat-flat-button color="primary"  routerLink="/sign-in">Back</button>
           </div>
       </div>
       </mat-card-content>

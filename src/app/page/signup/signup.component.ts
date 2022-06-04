@@ -3,7 +3,7 @@ import { NgForm, FormsModule,  FormGroup,FormControl, Validators } from '@angula
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-signup',
@@ -85,6 +85,13 @@ export class SignupComponent implements OnInit {
     if(this.mainForm.invalid){
       console.log("Invalid yung mainForm");
       window.alert('Invalid Form' + this.findInvalidControls());
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Fill all the fields correctly!',
+        allowOutsideClick: false
+        })
+
       return;
     }
 
@@ -134,14 +141,37 @@ export class SignupComponent implements OnInit {
 
 
     ).subscribe(res => {
-      console.log(res)
-      window.alert('Success!');
-      this.router.navigate(['/sign-in']);
+      // console.log(res)
+      // window.alert('Success!');
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Added information successfully!',
+    allowOutsideClick: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/sign-in']);
+        }
+      });
+
+
+
+
+
     },
     error=>{
-      window.alert('Error! ' +error.error['message']);
 
-      console.log(error)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Error! ' +error.error['message'],
+        allowOutsideClick: false
+      })
+
+      // window.alert('Error! ' +error.error['message']);
+
+      // console.log(error)
     });
 
   }

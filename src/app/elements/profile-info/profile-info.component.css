@@ -2,14 +2,24 @@
   padding: 50px;
 }
 p{
-  color: white;
+  color: rgb(51, 51, 51);
 }
 mat-icon{
   transform: scale(1.2);
 }
 
+.changepass-button{
+  color: #fff;
+  position:fixed;
+  background-color: #eb4462;
+
+	bottom:25%;
+	right:4%;
+}
+
 .edit-button{
   color: #fff;
+  background-color: #4ecbc7;
   position:fixed;
 
 	bottom:15%;
@@ -33,8 +43,8 @@ mat-icon{
 }
 h1{
   font-weight: 600;
-  color: #fff;
   margin-top: 30px;
+  color: rgb(51, 51, 51);
   margin-bottom: 50px;
   padding-left: 100px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;

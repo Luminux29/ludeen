@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { AdminServiceService } from 'src/app/service/admin-service.service';
 import { RequestService } from 'src/app/service/request.service';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-dialog-change-pass',
@@ -14,16 +15,16 @@ export class DialogChangePassComponent implements OnInit {
 
   myRole : string;
   isLoading = false;
+
+  hidePass = true;
+  hideNewPass = true;
+  hideReEnterNewPass = true;
   form : FormGroup;
   constructor( public dialogRef: MatDialogRef<DialogChangePassComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
-    private requestService: RequestService,
-    private userService: UserService,
-    private adminService: AdminServiceService) {
+    private userService: UserService) {
 
-      this.myRole = userService.getRole();
-   
-   
+
         this.form = new FormGroup({
           'current_password': new FormControl(null, {validators: [Validators.required]}),
           'new_password' : new FormControl(null, {validators: [Validators.required]}),
@@ -39,12 +40,12 @@ export class DialogChangePassComponent implements OnInit {
   onChangePass(){
 
     this.isLoading= true;
-    //check if form is valid 
+    //check if form is valid
     if(this.form.invalid){
       this.isLoading=false;
       return;
     }
-    
+
     //check if new password and confirm password are the same
 
     if(this.form.value.new_password !== this.form.value.confirm_password){
@@ -63,32 +64,51 @@ export class DialogChangePassComponent implements OnInit {
       this.userService.changePass(this.userService.getUserId(), this.form.value.new_password)
       .subscribe(res=>{
 
-        this.isLoading= false;
-        console.log(res);
-        window.alert("Success!");
-        this.dialogRef.close("Success");
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'Password updated successfully!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.isLoading= false;
+            this.dialogRef.close("Success");
+          }
+        });
+
       },
       err=>{
-
-
-        console.log("Error occured! " + err);
-        this.dialogRef.close();
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops!',
+          text: 'Something went wrong!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.dialogRef.close();
+          }
+        });
       })
 
     },
     err=>{
 
-      console.log(err);
-      window.alert("Wrong password!");
-      this.isLoading= false;
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Wrong password!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.dialogRef.close();
+          this.isLoading= false;
 
+        }
+      });
     })
 
 
-    
 
 
- 
+
+
 
     //check for errors
 
@@ -99,8 +119,20 @@ export class DialogChangePassComponent implements OnInit {
   }
   onNoClick(){
 
-    this.dialogRef.close();
-    
+    Swal.fire({
+      title: 'Are you sure you want to discard your progress?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.dialogRef.close();
+      }
+    })
+
   }
 
 }

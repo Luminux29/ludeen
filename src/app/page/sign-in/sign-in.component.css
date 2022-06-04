@@ -41,8 +41,8 @@ mat-form-field.txtField {
 
 .txtTitle{
   font-weight: bold;
-  padding-top: 1em;
-  font-size: x-large;
+  /* padding-top: 10px; */
+  font-size: large;
   text-align: center;
 }
 
@@ -75,5 +75,15 @@ p {
 mat-spinner {
   zoom: 0.2
 }
-
+.logoDiv{
+  height: fit-content;
+  padding-top: 30px;
+}
+.logo{
+  max-height: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 

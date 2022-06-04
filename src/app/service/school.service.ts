@@ -105,7 +105,7 @@ updateSchool(   id: string,
       toYear:toYear,
       highestLevel:highestLevel,
       yearGraduated:yearGraduated,
-      honors:honors,
+      honor:honors,
       type:type,
       user_id:null
       }

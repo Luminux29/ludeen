@@ -35,15 +35,17 @@ table{
   }
 
   mat-tab-group{
-    background-color: rgb(28, 88, 156);
+    background-color: rgb(105, 105, 105);
     border-radius: 10px;
     padding: 20px;
     max-height: 88vh;
+    height: 88vh;
 
   }
 
   .mat-tab-icon{
     color: #ffffff;
+
   }
   .mat-tab-label{
     color: #ffffff;

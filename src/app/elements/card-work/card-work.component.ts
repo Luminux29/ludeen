@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/service/user.service';
 import { WorkService } from 'src/app/service/work.service';
 import { DialogAddWorkComponent } from '../dialog-add-work/dialog-add-work.component';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-card-work',
@@ -62,28 +63,45 @@ export class CardWorkComponent implements OnInit {
 
   onDelete(id: string){
 
-    let willDelete = window.confirm("Are you sure you want to delete?");
 
-    if(willDelete){
+    Swal.fire({
+      title: 'Are you sure you want to delete this informtion?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.workService.deleteWork(id)
+        .subscribe(
+          res=>{
 
-      this.workService.deleteWork(id)
-      .subscribe(
-        res=>{
+            Swal.fire({
+              icon: 'success',
+              title: 'Deleted!',
+              text: 'Information deleted successfully!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
 
+          },
+          err=>{
 
-          window.alert("Success!");
-          window.location.reload();
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'Something went wrong!'
+            })
 
-        },
-        err=>{
+          }
+        );
+      }
+    })
 
-          console.log(err);
-          window.alert(err);
-
-        }
-      );
-
-    }
 
   }
 

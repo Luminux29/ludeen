@@ -206,6 +206,37 @@ router.post("/createadmin", multer({storage: storage}).single('profilePic'), (re
 });
 
 
+
+router.get('/getbystatus/:status', checkAuth ,(req,res,next) =>{
+
+  
+
+    User.find().where('status').equals(req.params.status)
+    .then( post =>{
+       
+            res.status(200).json( {
+
+                message:"Success!",
+                users: post
+
+      }); 
+     })
+    .catch(err=>{
+
+        res.status(500).json({
+
+            message: "An error occured",
+            error: err
+
+        });
+
+    });
+
+
+
+});
+
+
 router.get('/faculty/:status', checkAuth ,(req,res,next) =>{
 
   
@@ -332,6 +363,10 @@ router.post("/login", (req,res,next) => {
             console.log("NO ACCOUNT");
             haveAccount = false;
             return res.status(401).json({message: 'No account found'});
+        }
+           else if(user.status === 'Archive'){
+            haveAccount = false;
+            return res.status(401).json({message: 'Your account is archived. Contact admin to restore your account!'});
         }
         else{
             console.log("FETCHING USER");
@@ -546,11 +581,12 @@ router.get('/find/:id', checkAuth ,(req, res, next) =>{
 
 
 
-router.get('',checkAuth ,(req,res,next) =>{
+router.get('/getallusers/:id',checkAuth ,(req,res,next) =>{
 
-  
-    const userQuery = User.find();
-
+    console.log(req.params.id);
+    //const userQuery = User.find({status : {$ne: 'Archive'}, _id : {$ne: req.params.id}});
+    const userQuery = User.find().where('_id').ne(req.params.id)
+    .where('status').ne('Archive');
    
     userQuery
     .then((documents) =>{
@@ -573,7 +609,6 @@ router.get('',checkAuth ,(req,res,next) =>{
         });
 
     });
-    
 
 
 

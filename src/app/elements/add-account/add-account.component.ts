@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-add-account',
@@ -166,12 +167,34 @@ export class AddAccountComponent implements OnInit {
 }
 
     onNoClick(): void {
-      this.dialogRef.close();
+      Swal.fire({
+        title: 'Are you sure you want to discard your progress?',
+        text: "",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#5a68f0',
+        cancelButtonColor: '#f05a5a',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.dialogRef.close();
+        }
+      })
     }
 
 
     onSubmit(){
 
+      Swal.fire({
+        title: 'Are you sure you?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#5a68f0',
+        cancelButtonColor: '#f05a5a',
+        confirmButtonText: 'Confirm'
+      }).then((result) => {
+        if (result.isConfirmed) {
 
 
       //FORM IS VALID
@@ -223,17 +246,16 @@ export class AddAccountComponent implements OnInit {
         .subscribe(
           response =>{
 
-            console.log(response);
             this.userService.setPFP(this.fileTitleProfilePicPrev);
             this.userService.setName(this.mainForm.value.FirstName + " " +this.mainForm.value.LastName  );
 
-            window.alert("Success!");
+
             this.isLoading = false;
             this.dialogRef.close('success');
           },
           error =>{
 
-            window.alert(error);
+
             this.isLoading = false;
           }
         );
@@ -274,6 +296,16 @@ export class AddAccountComponent implements OnInit {
     // });
 
       }
+
+          // Swal.fire(
+          //   'Deleted!',
+          //   'Your file has been deleted.',
+          //   'success'
+          // )
+        }
+      })
+
+
 
     }
 

@@ -1,0 +1,11 @@
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<main *ngIf="!isLoading">
+    <img [src]="logo" style="width: 200px; height: 200px;">
+        <h1>Vision</h1>
+        <p>{{vision}}</p>
+
+        <h1>Mission</h1>
+        <p>{{mission}}</p>
+</main>

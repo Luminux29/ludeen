@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AdminServiceService } from 'src/app/service/admin-service.service';
 import { UserService } from 'src/app/service/user.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-account-card',
@@ -15,7 +16,7 @@ export class AccountCardComponent implements OnInit {
   @Input() status : string;
   public users : User[] = [];
   private userSub: Subscription = new Subscription;
-  
+
   isLoading = false;
 
   p_address: string;
@@ -27,16 +28,33 @@ export class AccountCardComponent implements OnInit {
 
 
     this.isLoading = true;
-    this.adminService.getFacultyByStatus(this.status)
-    .subscribe((userData) => {
-      this.isLoading = false;
-      console.log(userData['users']);
-      this.users = userData['users'];
-      
-    },
-    err =>{
-      console.log(err);
-    });
+    if(this.status === 'Archive'){
+
+      this.adminService.getUserByStatus(this.status)
+      .subscribe((userData) => {
+        this.isLoading = false;
+        console.log(userData['users']);
+        this.users = userData['users'];
+
+      },
+      err =>{
+        console.log(err);
+      });
+    }
+    else{
+      this.adminService.getFacultyByStatus(this.status)
+      .subscribe((userData) => {
+        this.isLoading = false;
+        console.log(userData['users']);
+        this.users = userData['users'];
+
+      },
+      err =>{
+        console.log(err);
+      });
+
+
+    }
 
 
   }
@@ -48,55 +66,81 @@ export class AccountCardComponent implements OnInit {
 
   acceptFaculty(user: any, verdict : string){
 
-  
+
     if(verdict === 'pending'){
 
       verdict = 're-appeal'
 
     }
+
+
     //accept faculty here
-    let yes = window.confirm("Are you sure you want to " + verdict + " this faculty account validity?");
-    
-    if(yes){
-
-      if(verdict === 'Appeal'){
-        verdict = "Pending"
-
-      }
-      else if (verdict === "Accept"){
-        verdict = "Accepted"
-
-      }
-      else {
-
-        verdict = "Rejected"
-
-      }
-    
- 
-      this.userService.updateFacultyStatus(user._id, verdict)
-      .subscribe(
-        res=>{
-
-          window.alert("Faculty successfully updated!");
-          window.location.reload();
-
-        },
-        err=>{
-
-          window.alert("Error! " + err);
+    Swal.fire({
+      title: "Are you sure you want to " + verdict + " this faculty account validity?",
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if(verdict === 'Appeal'){
+          verdict = "Pending"
 
         }
-      )
+        else if (verdict === "Accept"){
+          verdict = "Accepted"
+
+        }
+        else {
+
+          verdict = "Rejected"
+
+        }
+
+
+        this.userService.updateFacultyStatus(user._id, verdict)
+        .subscribe(
+          res=>{
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'Added information successfully!',
+              allowOutsideClick: false
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
+
+
+          },
+          err=>{
+
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'Something went wrong!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
+
+          }
+        )
+
+      }
+    })
 
 
   }
 
-  }
 
-  
   presentRequiredDate(date: Date){
-   
+
     if(date){
 
       return this.readableDate(date);
@@ -104,6 +148,34 @@ export class AccountCardComponent implements OnInit {
     }
 
     return "Present";
+
+
+  }
+
+  restoreFaculty(data: any){
+
+    let flag = window.confirm('Are you sure you want to restore this account?');
+    if(flag){
+
+      this.userService.updateFacultyStatus(data._id, 'Accepted')
+      .subscribe(
+        res=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'User successfully restored',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+
+        }
+      );
+
+    }
+
 
 
   }

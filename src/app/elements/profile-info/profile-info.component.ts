@@ -19,6 +19,7 @@ import { WorkService } from 'src/app/service/work.service';
 import { Work } from 'src/app/models/work';
 import { TrainingService } from 'src/app/service/training.service';
 import { Training } from 'src/app/models/training';
+import { DialogChangePassComponent } from '../dialog-change-pass/dialog-change-pass.component';
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
@@ -62,7 +63,7 @@ export class ProfileInfoComponent implements OnInit {
 
       this.faculty = res;
 
-      this.name = this.faculty.LastName + ", "+this.faculty.FirstName+ " "+ this.emptyStringIfNull(this.faculty.NameExtention) + " " + this.emptyStringIfNull(this.faculty.MidInit);
+      this.name = this.faculty.LastName +" " + this.emptyStringIfNull(this.faculty.NameExtention) + ", "+this.faculty.FirstName+ " " + " " + this.emptyStringIfNull(this.faculty.MidInit);
       this.profilePicPath = this.faculty.profilePic;
 
       //get user's school information
@@ -182,7 +183,7 @@ export class ProfileInfoComponent implements OnInit {
     const form = personalDoc.getForm()
 
     //get bold font
-    const fontBold = await personalDoc.embedFont(StandardFonts.HelveticaBold);
+    const fontBold = await personalDoc.embedFont(StandardFonts.Courier);
 
 
     //get fields
@@ -303,7 +304,7 @@ export class ProfileInfoComponent implements OnInit {
         const educationalFormUrl = 'assets/files/Educational_Background_Form.pdf';
         const educationFormPdfBytes = await fetch(educationalFormUrl).then(res => res.arrayBuffer());
         const educationDoc = await PDFDocument.load(educationFormPdfBytes);
-        const fontBold = await educationDoc.embedFont(StandardFonts.HelveticaBold);
+        const fontBold = await educationDoc.embedFont(StandardFonts.Courier);
 
 
         //get form
@@ -328,7 +329,7 @@ export class ProfileInfoComponent implements OnInit {
         toField.setText(this.presentRequiredDate(new Date(this.schools[i].toYear)));
         unitsField.setText(this.noAssignmentStringIfNull(this.schools[i].highestLevel));
         yearGraduatedField.setText(this.noAssignmentStringIfNull(this.schools[i].yearGraduated));
-        awardField.setText(this.noAssignmentStringIfNull(this.schools[i].honors));
+        awardField.setText(this.noAssignmentStringIfNull(this.schools[i].honor));
 
 
       //set form field's font to bold
@@ -366,7 +367,7 @@ export class ProfileInfoComponent implements OnInit {
           const civilFormUrl = 'assets/files/Civil_Service_Form.pdf';
           const civilFormPdfBytes = await fetch(civilFormUrl).then(res => res.arrayBuffer());
           const civilDoc = await PDFDocument.load(civilFormPdfBytes);
-        const fontBold = await civilDoc.embedFont(StandardFonts.HelveticaBold);
+        const fontBold = await civilDoc.embedFont(StandardFonts.Courier);
 
 
           //get form
@@ -422,7 +423,7 @@ export class ProfileInfoComponent implements OnInit {
         const workFormUrl = 'assets/files/Work_Experience.pdf';
         const workFormPdfBytes = await fetch(workFormUrl).then(res => res.arrayBuffer());
         const workDoc = await PDFDocument.load(workFormPdfBytes);
-        const fontBold = await workDoc.embedFont(StandardFonts.HelveticaBold);
+        const fontBold = await workDoc.embedFont(StandardFonts.Courier);
 
 
         //get form
@@ -490,7 +491,7 @@ export class ProfileInfoComponent implements OnInit {
         const trainingFormUrl = 'assets/files/Training_Form.pdf';
         const trainingFormPdfBytes = await fetch(trainingFormUrl).then(res => res.arrayBuffer());
         const trainingDoc = await PDFDocument.load(trainingFormPdfBytes);
-        const fontBold = await trainingDoc.embedFont(StandardFonts.HelveticaBold);
+        const fontBold = await trainingDoc.embedFont(StandardFonts.Courier);
 
 
         //get training form
@@ -640,6 +641,23 @@ export class ProfileInfoComponent implements OnInit {
     let timeDiff = Math.abs(Date.now() - new Date(bday).getTime());
     let age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
     return age;
+
+  }
+
+  changePass(id: string){
+
+     //open dialog
+     const dialogRef = this.dialog.open(DialogChangePassComponent, {
+
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+
+      if(res){
+        window.location.reload();
+      }
+
+    });
 
   }
 

@@ -2,9 +2,11 @@
 
 <div class="container">
     <mat-card class="signin-form mat-elevation-z8">
-
+        <div class="logoDiv">
+          <img class="logo" src="assets\images\ICON.png" alt="logo.png">
+        </div>
         <mat-card-content>
-            <h1 class="txtTitle">Sign in</h1>
+            <h1 class="txtTitle">FIS-Bowl</h1>
             <form (submit) ="signIn(signInForm)" #signInForm = "ngForm" >
 
             <mat-form-field class="txtField" appearance="outline" >
@@ -16,7 +18,7 @@
             <mat-form-field  class="txtField" appearance="outline">
                 <mat-label>Password</mat-label>
                 <input name="password" matInput type="password" ngModel #password="ngModel" required [type]="hidePass ? 'password' : 'text'">
-                <button mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
+                <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePass">
                     <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
                 <mat-error *ngIf = "password.invalid">Please enter a valid password.</mat-error>

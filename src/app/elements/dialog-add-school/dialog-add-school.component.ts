@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/service/user.service';
 import { SchoolService } from 'src/app/service/school.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-dialog-add-school',
@@ -23,7 +24,7 @@ export class DialogAddSchoolComponent implements OnInit {
   ]
   isCheck = true;
   isLoading = false;
-  
+
   id:string;
   mode : string;
   form: FormGroup;
@@ -43,7 +44,7 @@ export class DialogAddSchoolComponent implements OnInit {
         'toYear' : new FormControl(null),
         'highestLevel' : new FormControl(null),
         'yearGraduated' : new FormControl(null),
-        'honors' : new FormControl(null),
+        'honor' : new FormControl(null),
         'checkBox' : new FormControl(true),
         'type' : new FormControl(null, {validators:[Validators.required]})
 
@@ -70,7 +71,7 @@ export class DialogAddSchoolComponent implements OnInit {
           this.form.patchValue({yearGraduated : this.data.yearGraduated});
         }
 
-        this.form.patchValue({honors : this.data.honors});
+        this.form.patchValue({honor : this.data.honor});
         this.form.patchValue({type : this.data.type});
 
 
@@ -80,7 +81,7 @@ export class DialogAddSchoolComponent implements OnInit {
 
       }
 
-   
+
 
 
     }
@@ -92,47 +93,83 @@ export class DialogAddSchoolComponent implements OnInit {
 
   onCreateSchool(){
 
-    this.isLoading = true;
-    
+
+
+
     if(this.form.invalid){
       return;
     }
-    
-    if(this.mode === 'create'){ 
-      
 
-      this.schoolService.addSchool(
-        this.form.value.nameOfSchool,
-        this.form.value.course,
-        this.form.value.fromYear,
-        this.form.value.toYear,
-        this.form.value.highestLevel,
-        this.form.value.yearGraduated,
-        this.form.value.honors,
-        this.form.value.type,
-        this.id
-      ).subscribe(
-        res=>{
-  
-          this.isLoading = false;
-          window.alert('Success');
-          this.dialogRef.close('success');
-  
-  
-        },
-        err =>{
-  
-          this.isLoading = false;
-          window.alert('error');
-          console.log(err)
-  
-        }
-      );
+    if(this.mode === 'create'){
+
+
+      Swal.fire({
+          title: 'Are you sure you want to add this information?',
+          text: "",
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonColor: '#5a68f0',
+          cancelButtonColor: '#f05a5a',
+          confirmButtonText: 'Confirm',
+          allowOutsideClick: false
+      }).then((result) => {
+      if (result.isConfirmed) {
+
+
+          this.isLoading = true;
+          this.schoolService.addSchool(
+          this.form.value.nameOfSchool,
+          this.form.value.course,
+          this.form.value.fromYear,
+          this.form.value.toYear,
+          this.form.value.highestLevel,
+          this.form.value.yearGraduated,
+          this.form.value.honor,
+          this.form.value.type,
+          this.id
+        ).subscribe(
+          res=>{
+
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            allowOutsideClick: false,
+            text: 'Added information successfully!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.isLoading = false;
+              this.dialogRef.close('success');
+            }
+          });
+
+
+
+          },
+          err=>{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: 'Something went wrong!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.isLoading = false;
+              }
+            });
+
+
+
+          }
+        );
+      }})
+
+
 
     }
     else{
 
-      //edit 
+      //edit
+
+
 
       if(this.form.value.checkBox){
         this.form.value.highestLevel = null;
@@ -140,6 +177,20 @@ export class DialogAddSchoolComponent implements OnInit {
       else{
         this.form.value.yearGraduated = null;
       }
+
+      Swal.fire({
+        title: 'Are you sure you want to update this information?',
+        text: "",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#5a68f0',
+        cancelButtonColor: '#f05a5a',
+        confirmButtonText: 'Confirm',
+        allowOutsideClick: false
+      }).then((result) => {
+      if (result.isConfirmed) {
+
+        console.log('updating type to: ' + this.form.value.type);
 
       this.schoolService.updateSchool(
         this.data._id,
@@ -149,36 +200,56 @@ export class DialogAddSchoolComponent implements OnInit {
         this.form.value.toYear,
         this.form.value.highestLevel,
         this.form.value.yearGraduated,
-        this.form.value.honors,
+        this.form.value.honor,
         this.form.value.type
       )
       .subscribe(
-        res =>{
-
-          window.alert("Success!");
-          this.dialogRef.close("Success");
+        res=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Information updated successfully!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.dialogRef.close("Success");
+            }
+          });
 
         },
-        err =>{
+        err=>{
 
-          window.alert("Error!" + err);
-          this.dialogRef.close();
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'Something went wrong!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.dialogRef.close();
+            }
+          });
+
 
         }
       );
-
-
-
-
+    }});
     }
-
-
-
-
   }
 
   onNoClick(){
-    this.dialogRef.close();
+    Swal.fire({
+      title: 'Are you sure you want to discard your progress?',
+      text: "",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#5a68f0',
+      cancelButtonColor: '#f05a5a',
+      confirmButtonText: 'Confirm'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.dialogRef.close();
+      }
+    })
+
   }
 
 }
