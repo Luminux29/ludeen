@@ -1,0 +1,29 @@
+h1{
+    font-weight: 600;
+    margin-top: 40px;
+    color: rgb(51, 51, 51);
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  p{
+    text-align: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 50px;
+  
+  }
+  
+  img{
+  
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 50%;
+    max-width: 200px;
+    object-fit: cover;
+  
+  }
+  

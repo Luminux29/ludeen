@@ -3,16 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './service/auth-guard';
 
 // COMPONENTS
-
 import { SignInComponent } from './page/sign-in/sign-in.component';
 import { SignupComponent } from './page/signup/signup.component';
 import { ProfileComponent } from './user/profile/profile.component';
-
 import { StudentGuard } from './service/student-guard';
-
 import { ProfileInfoComponent } from './elements/profile-info/profile-info.component';
-
 import { ReverseAuthGuard } from './service/reverse-auth-guard';
+import { AboutComponent } from './page/about/about.component';
+import { HomeComponent } from './page/home/home.component';
 
 const routes: Routes = [
 
@@ -21,6 +19,8 @@ const routes: Routes = [
   {path : 'sign-in', component: SignInComponent, canActivate:[ReverseAuthGuard]},
   {path : 'sign-up', component: SignupComponent, canActivate:[ReverseAuthGuard]},
   {path : 'profile', component: ProfileComponent ,  canActivate: [AuthGuard]},
+  {path : 'about', component: AboutComponent ,  canActivate: [AuthGuard]},
+  {path : 'home', component: HomeComponent ,  canActivate: [AuthGuard]},
   {path : 'profile-info', component: ProfileInfoComponent, canActivate: [AuthGuard]},
 
 ];

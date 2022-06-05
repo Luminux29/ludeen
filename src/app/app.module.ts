@@ -38,6 +38,7 @@ import {ProfileInfoComponent} from './elements/profile-info/profile-info.compone
 import { AddAccountComponent } from './elements/add-account/add-account.component';
 import { DialogChangePassComponent } from './elements/dialog-change-pass/dialog-change-pass.component';
 import { SideNavComponent } from './elements/side-nav/side-nav.component';
+import { HomeComponent } from './page/home/home.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { SideNavComponent } from './elements/side-nav/side-nav.component';
     SignupComponent,
     ProfileComponent,
     SideNavComponent,
-    DialogChangePassComponent
+    DialogChangePassComponent,
+    HomeComponent
   ],
   imports: [
     MatSidenavModule,
